@@ -44,6 +44,17 @@ Requires a session token
         + payee (User)
         - payments (array[Payment101, Payment102])
 
+### Retrieve the contract from paymentId [GET /contracts/payments/{id}]
+Requires a session token
+
++ Parameters
+    - id: 101 (number, required) - The ID of the payment
+
++ Response 200 (application/json)
+    + Attributes (Contract)
+        + payer (User2)
+        + payee (User)
+        - payments (array[Payment101, Payment102])
 
 ### Create a new contract [POST]
 Requires a session token
@@ -304,7 +315,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 
 
 ## Payment101
-- paymentId: 1 (number) - unique ID of the payment
+- paymentId: 101 (number) - unique ID of the payment
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
@@ -314,7 +325,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment102
-- paymentId: 2 (number) - unique ID of the payment
+- paymentId: 102 (number) - unique ID of the payment
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
@@ -324,7 +335,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment103
-- paymentId: 3 (number) - unique ID of the payment
+- paymentId: 103 (number) - unique ID of the payment
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
@@ -334,7 +345,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment201
-- paymentId: 3 (number) - unique ID of the payment
+- paymentId: 103 (number) - unique ID of the payment
 - contractId: 91 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: `1000` (number) - payment amount (in cents)
@@ -344,7 +355,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment202
-- paymentId: 4 (number) - unique ID of the payment
+- paymentId: 104 (number) - unique ID of the payment
 - contractId: 91 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
@@ -354,7 +365,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment301
-- paymentId: 3 (number) - unique ID of the payment
+- paymentId: 103 (number) - unique ID of the payment
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
@@ -364,7 +375,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment302
-- paymentId: 4 (number) - unique ID of the payment
+- paymentId: 104 (number) - unique ID of the payment
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
@@ -374,7 +385,7 @@ Requesting this endpoint with an Authorization token will return the user that t
 - Include Timestamps
 
 ## Payment401
-- paymentId: 11 (number) - unique ID of the payment
+- paymentId: 111 (number) - unique ID of the payment
 - contractId: 94 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 70000 (number) - payment amount (in cents)
