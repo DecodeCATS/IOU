@@ -3,14 +3,29 @@ FORMAT: 1A
 # IOU
 The IOU API allows the management of money owed between connections.
 
+## Notifications [/notifications]
+List of notification events
+
+### Retrieve a list of notifications for the current user [GET /notifications]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes (array[Notification, Notification2])
+
+
 ## Contracts [/contracts]
 A contract represents an IOU or fullly defined contract between 2 users
 
-### Retrieve a list of contracts for a user [GET /contracts/users/{id}]
+### Retrieve a list of contracts for the current user [GET /contracts]
 Requires an `Athorization` session token
 
-+ Parameters
-    - id: `1` (number, required) - The user id 
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
 
 + Response 200 (application/json)
     + Attributes
@@ -21,12 +36,12 @@ Requires an `Athorization` session token
 Requires a session token
 
 + Parameters
-    - id: `90` (number, required) - The ID of the desired contract
+    - id: 90 (number, required) - The ID of the desired contract
 
 + Response 200 (application/json)
     + Attributes (Contract)
-        + Payer (User)
-        + Payee (User2)
+        + payer (User2)
+        + payee (User)
         - payments (array[Payment101, Payment102])
 
 
@@ -49,7 +64,7 @@ Requires a session token
 Deleting one's contracts requires passing a session token
 
 + Parameters
-    - id: `90` (number, required) - The unique ID of the contract to be deleted
+    - id: 90 (number, required) - The unique ID of the contract to be deleted
 
 + Request
     + Headers
@@ -62,7 +77,7 @@ Deleting one's contracts requires passing a session token
 Updating one's contract requires passing a session token. This endpoint only requires passing the data that changes.
 
 + Parameters
-    - id: `90` (number, required) - The unique ID of the contract to be updated
+    - id: 90 (number, required) - The unique ID of the contract to be updated
 
 + Request (application/json)
     + Headers
@@ -72,7 +87,31 @@ Updating one's contract requires passing a session token. This endpoint only req
     + Attributes (Contract)
 
 + Response 200 (application/json)
-    + Attributes (Contract3)
+    + Attributes (ContractUpdate)
+
+## Connections [/connections]
+
+### Get the list of connections [GET /connections]
+Get the list of connected users
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - users (array[User2, User3])
+        
+
+### Create a new connection [POST /connections/{userId}]
+Requires a session token
+
++ Parameters
+    - userId: 5 (number, required) - The ID of the desired connection
+
++ Response 201 (application/json)
+    + Attributes (User5)
 
 ## Authentication [/auth]
 
@@ -122,128 +161,225 @@ Requesting this endpoint with an Authorization token will return the user that t
 
 # Data Structures
 
+## Notification (object)
+- id: 1000 (number, required) - The unique ID of the notification
+- message: `Payment made` (string) - The message
+- contract (Contract) - The contract related to the notification
+- payment (Payment101) - The payment related to the notification
+- sender (User2) - the sender
+
+## Notification2 (object)
+- id: 1001 (number, required) - The unique ID of the notification
+- message: `Connection Request` (string) - The message
+- contract: {} - The contract related to the notification
+- payment: {} - The payment related to the notification
+- sender (User5) - the sender
+
 ## Contract (object)
-- id: `90` (number, required) - The unique ID of the contract
-- title: `Test contract` (string, required) - Contract title
-- payeeId: `1` (number) - The userId of the payee
-- payerId: `2` (number) - The userId of the payer
+- id: 90 (number, required) - The unique ID of the contract
+- title: `Test contract between userId 2 and 1` (string, required) - Contract title
+- payerId: 2 (number) - The userId of the payer (money out)
+- payeeId: 1 (number) - The userId of the payee (money in)
+- Include Timestamps
+
+## ContractUpdate (object)
+- id: 94 (number, required) - The unique ID of the contract
+- title: `Consolidated contractId 90, userId 2 and 3` (string, required) - Contract title
+- payerId: 2 (number) - The userId of the payer (money out)
+- payeeId: 3 (number) - The userId of the payee (money in)
 - Include Timestamps
 
 ## Contract2 (object)
-- id: `91` (number, required) - The unique ID of the contract
-- title: `Test contract` (string, required) - Contract title
-- payeeId: `1` (number) - The userId of the payee
-- payerId: `3` (number) - The userId of the payer
+- id: 91 (number, required) - The unique ID of the contract
+- title: `Test contract between userId 1 and 3` (string, required) - Contract title
+- payerId: 1 (number) - The userId of the payer (money out)
+- payeeId: 3 (number) - The userId of the payee (money in)
 - Include Timestamps
 
 ## Contract3 (object)
-- id: `90` (number, required) - The unique ID of the contract
-- title: `Updated contract` (string, required) - Contract title
-- payeeId: `3` (number) - The userId of the payee
-- payerId: `2` (number) - The userId of the payer
+- id: 92 (number, required) - The unique ID of the contract
+- title: `Test contract proposal` (string, required) - Contract title
+- payerId: 3 (number) - The userId of the payer (money out)
+- payeeId: null - The userId of the payee (money in)
 - Include Timestamps
 
+## Contract4 (object)
+- id: `93` (number, required) - The unique ID of the contract
+- title: `Test contract` (string, required) - Contract title
+- payerId: 1 (number) - The userId of the payer (money out)
+- payeeId: 4 (number) - The userId of the payee (money in)
+- Include Timestamps
 
 ## User (object)
-- id: `1` (number) - The unique ID of the user
+- id: 1 (number) - The unique ID of the user
 - userName: `User1` (string) - The username
+- firstName: `John` (string, required) - The firstname of the user
+- lastName: `Doe` (string) - The lastname of the user
 - type: `Person` - The user type
 - Include Timestamps
 
 ## User2 (object)
-- id: `2` (number) - The unique ID of the user
+- id: 2 (number) - The unique ID of the user
 - userName: `User2` - The username
+- firstName: `Jane` (string, required) - The firstname of the user
+- lastName: `Doe` (string) - The lastname of the user
 - type: `Person` - The user type
 - Include Timestamps
 
 ## User3 (object)
-- id: `3` (number) - The unique ID of the user
+- id: 3 (number) - The unique ID of the user
 - userName: `User3` - The username
+- firstName: `Bob` (string, required) - The firstname of the user
+- lastName: `Rob` (string) - The lastname of the user
 - type: `Person` - The user type
 - Include Timestamps
 
 ## User4 (object)
-- id: `4` (number) - The unique ID of the user
+- id: 4 (number) - The unique ID of the user
 - userName: `Hydro-Quebec` - The username
+- firstName: `Hydro-Quebec` (string, required) - The name of the Organisation
+- lastName: `` (string) - Should be null for an organisation
 - type: `Organisation` - The user type
 - Include Timestamps
 
+## User5 (object)
+- id: 5 (number) - The unique ID of the user
+- userName: `User5` - The username
+- firstName: `Lisa` (string, required) - The firstname of the user
+- lastName: `Simpson` (string) - The lastname of the user
+- type: `Person` - The user type
+- Include Timestamps
 
 ## UserFull (object)
-- id: `1` (number) - The unique ID of the user
-- userName: `User1` (string) - The username
-- type: `Person` - The user type
+- Include User
 - Include UserInfo
 - Include Timestamps
 
 ## UserFull2 (object)
-- id: `2` (number) - The unique ID of the user
-- userName: `User2` - The username
-- type: `Person` - The user type
+- Include User2
 - Include UserInfo2
 - Include Timestamps
 
 ## UserFull3 (object)
-- id: `3` (number) - The unique ID of the user
-- userName: `User3` - The username
-- type: `Person` - The user type
+- Include User3
 - Include UserInfo3
 - Include Timestamps
 
 ## UserFull4 (object)
-- id: `4` (number) - The unique ID of the user
-- userName: `Hydro-Quebec` - The username
-- type: `Organisation` - The user type
+- Include User4
 - Include UserInfoOrg
 - Include Timestamps
 
+## UserFull5 (object)
+- Include User5
+- Include UserInfo5
+- Include Timestamps
 
 ## UserInfo (object)
-- firstName: `John` (string, required) - The firstname of the user
-- lastName: `Doe` (string) - The lastname of the user
 - description: `` (string) - The description of the user
 - email: `John@Doe.com` (string) - The email of the user
 - avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50` (string) - The profile pic of the user
 
 ## UserInfo2 (object)
-- firstName: `Jane` (string, required) - The firstname of the user
-- lastName: `Doe` (string) - The lastname of the user
 - description: `` (string) - The description of the user
 - email: `Jane@Doe.com` (string) - The email of the user
 - avatarUrl: `` (string) - The profile pic of the user
 
 
 ## UserInfo3 (object)
-- firstName: `Bob` (string, required) - The firstname of the user
-- lastName: `Rob` (string) - The lastname of the user
 - description: `` (string) - The description of the user
 - email: `Bob@Rob.com` (string) - The email of the user
 - avatarUrl: `` (string) - The profile pic of the user
 
 ## UserInfoOrg (object)
-- firstName: `Hydro-Quebec` (string, required) - The name of the Organisation
-- lastName: `` (string) - Should be null for an organisation
 - description: `Electricity company` (string) - The description of the Organisation
 - email: `` (string) - The email of the Organisation
 - avatarUrl: `` (string) - The profile pic of the Organisation
 
+
+## UserInfo5 (object)
+- description: `` (string) - The description of the user
+- email: `Lisa@Simpson.com` (string) - The email of the user
+- avatarUrl: `` (string) - The profile pic of the user
+
+
 ## Payment101
-- paymentId: `1` (number) - unique ID of the payment
-- contractId: `1` (number) - contract ID for this payment
+- paymentId: 1 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
-- amount: `1000` (number) - payment amount (in cents)
+- amount: 1000 (number) - payment amount (in cents)
 - status: `paid` (string) - status of the payment (enum)
 - dueDate: `2017-08-01` (string) - due date
 - paidDate: `2017-07-31` (string) - paid date
 - Include Timestamps
 
 ## Payment102
-- paymentId: `2` (number) - unique ID of the payment
-- contractId: `1` (number) - contract ID for this payment
+- paymentId: 2 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment103
+- paymentId: 3 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-09-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment201
+- paymentId: 3 (number) - unique ID of the payment
+- contractId: 91 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: `1000` (number) - payment amount (in cents)
 - status: `live` (string) - status of the payment (enum)
 - dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment202
+- paymentId: 4 (number) - unique ID of the payment
+- contractId: 91 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment301
+- paymentId: 3 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment302
+- paymentId: 4 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment401
+- paymentId: 11 (number) - unique ID of the payment
+- contractId: 94 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 70000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-09-01` (string) - due date
 - paidDate: `` (string) - paid date
 - Include Timestamps
 
