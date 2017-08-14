@@ -4,47 +4,52 @@ FORMAT: 1A
 The IOU API allows the management of money owed between connections.
 
 ## Contracts [/contracts]
-A contract represents an IOU between 2 users
+A contract represents an IOU or fullly defined contract between 2 users
 
-### Retrieve a list of contracts for a user [GET /users/{id}/contracts]
+### Retrieve a list of contracts for a user [GET /contracts/users/{id}]
+Requires an `Athorization` session token
 
 + Parameters
     - id: `1` (number, required) - The user id 
 
 + Response 200 (application/json)
     + Attributes
-        - contracts (array[Contract])
+        - contracts (array[Contract, Contract2])
 
 
 ### Retrieve a single contract [GET /contracts/{id}]
+Requires a session token
 
 + Parameters
-    - id: `90` (number, required) - The ID of the desired board
+    - id: `90` (number, required) - The ID of the desired contract
 
 + Response 200 (application/json)
-    + Attributes (BoardWithId)
+    + Attributes (Contract)
+        + Payer (User)
+        + Payee (User2)
+        - payments (array[Payment101, Payment102])
 
 
-### Create a new board [POST]
-Creating a new board requires passing a session token
+### Create a new contract [POST]
+Requires a session token
 
 + Request (application/json)
     + Headers
 
             Authorization: token xyz
 
-    + Attributes (Board)
+    + Attributes (Contract)
 
 + Response 201 (application/json)
-    + Attributes (BoardWithId2)
+    + Attributes (Contract3)
 
 
 
-### Delete an owned board [DELETE /boards/{id}]
-Deleting one's boards requires passing a session token
+### Delete an owned contract [DELETE /contracts/{id}]
+Deleting one's contracts requires passing a session token
 
 + Parameters
-    - id: `124` (number, required) - The unique ID of the board to be deleted
+    - id: `90` (number, required) - The unique ID of the contract to be deleted
 
 + Request
     + Headers
@@ -53,23 +58,21 @@ Deleting one's boards requires passing a session token
 
 + Response 204
 
-
-
-### Modify an owned board [PATCH /boards/{id}]
-Updating one's boards requires passing a session token. This endpoint only requires passing the data that changes.
+### Modify an owned contract [PATCH /contracts/{id}]
+Updating one's contract requires passing a session token. This endpoint only requires passing the data that changes.
 
 + Parameters
-    - id: `12` (number, required) - The unique ID of the board to be updated
+    - id: `90` (number, required) - The unique ID of the contract to be updated
 
 + Request (application/json)
     + Headers
 
             Authorization: token xyz
 
-    + Attributes (Board)
+    + Attributes (Contract)
 
 + Response 200 (application/json)
-    + Attributes (BoardWithId3)
+    + Attributes (Contract3)
 
 ## Authentication [/auth]
 
@@ -78,7 +81,7 @@ Updating one's boards requires passing a session token. This endpoint only requi
     + Attributes (AuthData)
 
 + Response 201 (application/json)
-    + Attributes (UserWithId)
+    + Attributes (User)
 
 
 
@@ -112,96 +115,145 @@ Requesting this endpoint with an Authorization token will return the user that t
             Authorization: token xyz
 
 + Response 200 (application/json)
-    + Attributes (UserWithId)
+    + Attributes (User)
 
 
 
 
 # Data Structures
 
-## Timestamps (object)
-- createdAt: `2015-01-20T09:48:32.066Z` (string) - The creation date
-- updatedAt: `2017-05-04T14:29:42.490Z` (string) - The last update date
-
 ## Contract (object)
 - id: `90` (number, required) - The unique ID of the contract
 - title: `Test contract` (string, required) - Contract title
-- payerID: `1` (number, required) - The userID of the one paying
-- payeeID: `2` (number) - The userID of the one receiving
+- payeeId: `1` (number) - The userId of the payee
+- payerId: `2` (number) - The userId of the payer
 - Include Timestamps
 
 ## Contract2 (object)
 - id: `91` (number, required) - The unique ID of the contract
 - title: `Test contract` (string, required) - Contract title
-- payerID: `1` (number, required) - The userID of the one paying
-- payeeID: `3` (number) - The userID of the one receiving
+- payeeId: `1` (number) - The userId of the payee
+- payerId: `3` (number) - The userId of the payer
 - Include Timestamps
 
-## Board (object)
-- title: `Board for grandma` (string) - The name of the board
-- description: `TestBoard creation`
-
-## Board2 (object)
-- title: `Board for grandpa` (string) - The name of the board
-- description: `TestBoard creation2`
-
-## Board3 (object)
-- title: `We have updated the board` (string) - The name of the board
-- description: `TestBoard creation3`
-
-## Board4 (object)
-- title: `New board on the basic list` (string) - The name of the board
-- description: `Home Page Load`
-
-## BoardWithId (object)
-- id: `124` (number) - The unique ID of the board
-- ownerId: `123` (number, required) - The unique ID of the user who owns the board
-- Include Board
+## Contract3 (object)
+- id: `90` (number, required) - The unique ID of the contract
+- title: `Updated contract` (string, required) - Contract title
+- payeeId: `3` (number) - The userId of the payee
+- payerId: `2` (number) - The userId of the payer
 - Include Timestamps
 
-## BoardWithId2 (object)
-- id: `123` (number) - The unique ID of the board
-- ownerId: `7` (number, required) - The unique ID of the user who owns the board
-- Include Board2
+
+## User (object)
+- id: `1` (number) - The unique ID of the user
+- userName: `User1` (string) - The username
+- type: `Person` - The user type
 - Include Timestamps
 
-## BoardWithId3 (object)B
-- id: `124` (number) - The unique ID of the board
-- ownerId: `123` (number, required) - The unique ID of the user who owns the board
-- Include Board3
+## User2 (object)
+- id: `2` (number) - The unique ID of the user
+- userName: `User2` - The username
+- type: `Person` - The user type
 - Include Timestamps
 
-## BoardWithId4 (object)
-- id: `125` (number) - The unique ID of the board
-- ownerId: `7` (number, required) - The unique ID of the user who owns the board
-- Include Board4
+## User3 (object)
+- id: `3` (number) - The unique ID of the user
+- userName: `User3` - The username
+- type: `Person` - The user type
 - Include Timestamps
+
+## User4 (object)
+- id: `4` (number) - The unique ID of the user
+- userName: `Hydro-Quebec` - The username
+- type: `Organisation` - The user type
+- Include Timestamps
+
+
+## UserFull (object)
+- id: `1` (number) - The unique ID of the user
+- userName: `User1` (string) - The username
+- type: `Person` - The user type
+- Include UserInfo
+- Include Timestamps
+
+## UserFull2 (object)
+- id: `2` (number) - The unique ID of the user
+- userName: `User2` - The username
+- type: `Person` - The user type
+- Include UserInfo2
+- Include Timestamps
+
+## UserFull3 (object)
+- id: `3` (number) - The unique ID of the user
+- userName: `User3` - The username
+- type: `Person` - The user type
+- Include UserInfo3
+- Include Timestamps
+
+## UserFull4 (object)
+- id: `4` (number) - The unique ID of the user
+- userName: `Hydro-Quebec` - The username
+- type: `Organisation` - The user type
+- Include UserInfoOrg
+- Include Timestamps
+
+
+## UserInfo (object)
+- firstName: `John` (string, required) - The firstname of the user
+- lastName: `Doe` (string) - The lastname of the user
+- description: `` (string) - The description of the user
+- email: `John@Doe.com` (string) - The email of the user
+- avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50` (string) - The profile pic of the user
+
+## UserInfo2 (object)
+- firstName: `Jane` (string, required) - The firstname of the user
+- lastName: `Doe` (string) - The lastname of the user
+- description: `` (string) - The description of the user
+- email: `Jane@Doe.com` (string) - The email of the user
+- avatarUrl: `` (string) - The profile pic of the user
+
+
+## UserInfo3 (object)
+- firstName: `Bob` (string, required) - The firstname of the user
+- lastName: `Rob` (string) - The lastname of the user
+- description: `` (string) - The description of the user
+- email: `Bob@Rob.com` (string) - The email of the user
+- avatarUrl: `` (string) - The profile pic of the user
+
+## UserInfoOrg (object)
+- firstName: `Hydro-Quebec` (string, required) - The name of the Organisation
+- lastName: `` (string) - Should be null for an organisation
+- description: `Electricity company` (string) - The description of the Organisation
+- email: `` (string) - The email of the Organisation
+- avatarUrl: `` (string) - The profile pic of the Organisation
+
+## Payment101
+- paymentId: `1` (number) - unique ID of the payment
+- contractId: `1` (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: `1000` (number) - payment amount (in cents)
+- status: `paid` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `2017-07-31` (string) - paid date
+- Include Timestamps
+
+## Payment102
+- paymentId: `2` (number) - unique ID of the payment
+- contractId: `1` (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: `1000` (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Timestamps (object)
+- createdAt: `2015-01-20T09:48:32.066Z` (string) - The creation date
+- updatedAt: `2017-05-04T14:29:42.490Z` (string) - The last update date
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username
 - password: `Hunter2` (string) - The desired password for the new user
-
-## User (object)
-- email: `hunter@thompson.com` (string) - The email of the user
-- avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50` (string) - The profile pic of the user
-
-## UserWithId (object)
-- id: `1` (number) - The unique ID of the user
-- userName: `User1` (string) - The username
-- Include User
-- Include Timestamps
-
-## UserWithId2 (object)
-- id: `2` (number) - The unique ID of the user
-- userName: `User2` - The username
-- Include User
-- Include Timestamps
-
-## UserWithId3 (object)
-- id: `3` (number) - The unique ID of the user
-- userName: `User3` - The username
-- Include User
-- Include Timestamps
 
 ## Session (object)
 - token: `uep52qo8wfyh97b24fjafjewi9bb0r24` (string) - The session token
