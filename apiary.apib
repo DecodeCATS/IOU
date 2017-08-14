@@ -6,7 +6,7 @@ The IOU API allows the management of money owed between connections.
 ## Notifications [/notifications]
 List of notification events
 
-### Retrieve a list of notifications for the current user [GET /notifications]
+### GET list of notifications for the current user [GET /notifications]
 + Request (application/json)
     + Headers
 
@@ -15,7 +15,7 @@ List of notification events
 + Response 200 (application/json)
     + Attributes (array[Notification, Notification2])
 
-### Delete a notification [DELETE /notifications]
+### DELETE a notification [DELETE /notifications]
 + Request (application/json)
     + Headers
 
@@ -26,7 +26,7 @@ List of notification events
     
 + Response 204
 
-### Get notification blacklist for the current user [GET /notifications/blacklist]
+### GET notification blacklist for the current user [GET /notifications/blacklist]
 + Request (application/json)
     + Headers
 
@@ -47,7 +47,7 @@ List of notification events
 + Response 201 (application/json)
     + Attributes (User5)
 
-### Remove a user from the notification blacklist [DELETE /notifications/blacklist]
+### DELETE a user from the notification blacklist [DELETE /notifications/blacklist]
 + Request (application/json)
     + Headers
 
@@ -61,7 +61,7 @@ List of notification events
 ## Contracts [/contracts]
 A contract represents an IOU or fullly defined contract between 2 users
 
-### Retrieve a list of contracts for the current user [GET /contracts]
+### GET a list of contracts for the current user [GET /contracts]
 + Request (application/json)
     + Headers
 
@@ -72,7 +72,7 @@ A contract represents an IOU or fullly defined contract between 2 users
         - contracts (array[Contract, Contract2])
 
 
-### Retrieve a single contract [GET /contracts/{id}]
+### GET a single contract [GET /contracts/{id}]
 + Parameters
     - id: 90 (number, required) - The ID of the desired contract
 
@@ -82,7 +82,7 @@ A contract represents an IOU or fullly defined contract between 2 users
         + payee (User)
         - payments (array[Payment101, Payment102])
 
-### Retrieve the contract from the payment Id [GET /contracts/payments/{id}]
+### GET a contract from the payment Id [GET /contracts/payments/{id}]
 + Parameters
     - id: 101 (number, required) - The ID of the payment
 
