@@ -42,7 +42,7 @@ List of notification events
             Authorization: token xyz
             
 + Attributes
-    - userId: 5
+    - userId: 5 (number) - userId to blacklist
             
 + Response 201 (application/json)
     + Attributes (User5)
@@ -92,7 +92,7 @@ A contract represents an IOU or fullly defined contract between 2 users
         + payee (User)
         - payments (array[Payment101, Payment102])
 
-### Create a new contract [POST]
+### Create a new contract [POST /contracts]
 + Request (application/json)
     + Headers
 
@@ -452,7 +452,7 @@ Updating one's contract requires passing a session token. This endpoint only req
 - password: `js`
 - email: `John@Smith.com`
 - description: ``
-- avatar_url: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
+- avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username
