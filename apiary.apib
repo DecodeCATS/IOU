@@ -62,8 +62,6 @@ List of notification events
 A contract represents an IOU or fullly defined contract between 2 users
 
 ### Retrieve a list of contracts for the current user [GET /contracts]
-Requires an `Athorization` session token
-
 + Request (application/json)
     + Headers
 
@@ -75,8 +73,6 @@ Requires an `Athorization` session token
 
 
 ### Retrieve a single contract [GET /contracts/{id}]
-Requires a session token
-
 + Parameters
     - id: 90 (number, required) - The ID of the desired contract
 
@@ -86,9 +82,7 @@ Requires a session token
         + payee (User)
         - payments (array[Payment101, Payment102])
 
-### Retrieve the contract from paymentId [GET /contracts/payments/{id}]
-Requires a session token
-
+### Retrieve the contract from the payment Id [GET /contracts/payments/{id}]
 + Parameters
     - id: 101 (number, required) - The ID of the payment
 
@@ -99,8 +93,6 @@ Requires a session token
         - payments (array[Payment101, Payment102])
 
 ### Create a new contract [POST]
-Requires a session token
-
 + Request (application/json)
     + Headers
 
@@ -128,7 +120,6 @@ Deleting one's contracts requires passing a session token
 
 ### Modify an owned contract [PATCH /contracts/{id}]
 Updating one's contract requires passing a session token. This endpoint only requires passing the data that changes.
-
 + Parameters
     - id: 90 (number, required) - The unique ID of the contract to be updated
 
@@ -192,12 +183,9 @@ Updating one's contract requires passing a session token. This endpoint only req
 
 ### Create a new user (signup) [POST /auth/users]
 + Request (application/json)
-    + Attributes (AuthData)
+    + Attributes (UserCreate)
 
-+ Response 201 (application/json)
-    + Attributes (User)
-
-
++ Response 204 (application/json)
 
 ### Create a new session (login) [POST /auth/sessions]
 + Request (application/json)
@@ -218,7 +206,6 @@ Updating one's contract requires passing a session token. This endpoint only req
 
 
 ### Retrieve current user [GET /auth/me]
-
 + Request
     + Headers
     
@@ -457,6 +444,15 @@ Updating one's contract requires passing a session token. This endpoint only req
 ## Timestamps (object)
 - createdAt: `2015-01-20T09:48:32.066Z` (string) - The creation date
 - updatedAt: `2017-05-04T14:29:42.490Z` (string) - The last update date
+
+## UserCreate (object)
+- userName: `a@b.com`
+- firstName: `John`
+- lastName: `Smith`
+- password: `js`
+- email: `John@Smith.com`
+- description: ``
+- avatar_url: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username
