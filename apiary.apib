@@ -61,7 +61,7 @@ List of notification events
 ## Contracts [/contracts]
 A contract represents an IOU or fullly defined contract between 2 users
 
-### GET a list of contracts for the current user [GET /contracts]
+### GET a list of active contracts for the current user [GET /contracts]
 + Request (application/json)
     + Headers
 
@@ -72,7 +72,7 @@ A contract represents an IOU or fullly defined contract between 2 users
         - contracts (array[Contract, Contract2])
 
 
-### GET a single contract [GET /contracts/{id}]
+### GET a current contract [GET /contracts/{id}]
 + Parameters
     - id: 90 (number, required) - The ID of the desired contract
 
@@ -82,7 +82,7 @@ A contract represents an IOU or fullly defined contract between 2 users
         + payee (User)
         - payments (array[Payment101, Payment102])
 
-### GET a contract from the payment Id [GET /contracts/payments/{id}]
+### GET a current contract from the payment Id [GET /contracts/payments/{id}]
 + Parameters
     - id: 101 (number, required) - The ID of the payment
 
@@ -117,8 +117,6 @@ A contract represents an IOU or fullly defined contract between 2 users
 
 
 ### Delete an owned contract [DELETE /contracts/{id}]
-Deleting one's contracts requires passing a session token
-
 + Parameters
     - id: 90 (number, required) - The unique ID of the contract to be deleted
 
@@ -130,7 +128,6 @@ Deleting one's contracts requires passing a session token
 + Response 204
 
 ### Modify an owned contract [PATCH /contracts/{id}]
-Updating one's contract requires passing a session token. This endpoint only requires passing the data that changes.
 + Parameters
     - id: 90 (number, required) - The unique ID of the contract to be updated
 
@@ -143,6 +140,47 @@ Updating one's contract requires passing a session token. This endpoint only req
 
 + Response 200 (application/json)
     + Attributes (ContractUpdate)
+
+## Contract Payments [/contracts/payments]
+### Add a payment to a contract[POST /contracts/payments]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+            
++ Attributes
+    + payment (PaymentCreate)
+
++ Response 200 (application/json)
+    + Attributes (PaymentCreated)
+
+### Modify a payment of a contract[PATCH /contracts/payments/{id}]
++ Parameters
+    - id: 111 (number, required) - The unique ID of the payment to be updated
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+            
++ Attributes
+    - type: `payment` (string) - type of payment (enum)
+    - amount: 55555 (number) - payment amount (in cents)
+    - dueDate: `2017-08-01` - due date
+    - paidDate: `2017-07-31` - paid date
+
++ Response 200 (application/json)
+    + Attributes (Payment401Updated)
+
+### Remove a payment from a contract[DELETE /contracts/payments]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+            
++ Attributes
+    + paymentId: 401 (number, required)
+
++ Response 204 (application/json)
 
 ## Connections [/connections]
 
@@ -279,6 +317,13 @@ Updating one's contract requires passing a session token. This endpoint only req
 - payeeId: 4 (number) - The userId of the payee (money in)
 - Include Timestamps
 
+## Contract5 (object)
+- id: `94` (number, required) - The unique ID of the contract
+- title: `Test contract` (string, required) - Contract title
+- payerId: 1 (number) - The userId of the payer (money out)
+- payeeId: 6 (number) - The userId of the payee (money in) - Bell
+- Include Timestamps
+
 ## User (object)
 - id: 1 (number) - The unique ID of the user
 - userName: `User1` (string) - The username
@@ -319,6 +364,14 @@ Updating one's contract requires passing a session token. This endpoint only req
 - type: `Person` - The user type
 - Include Timestamps
 
+## User6 (object)
+- id: 6 (number) - The unique ID of the user
+- userName: `Bell` - The username
+- firstName: `Bell Canada` (string, required) - The name of the Organisation
+- lastName: `` (string) - Should be null for an organisation
+- type: `Organisation` - The user type
+- Include Timestamps
+
 ## UserFull (object)
 - Include User
 - Include UserInfo
@@ -342,6 +395,11 @@ Updating one's contract requires passing a session token. This endpoint only req
 ## UserFull5 (object)
 - Include User5
 - Include UserInfo5
+- Include Timestamps
+
+## UserFull6 (object)
+- Include User6
+- Include UserInfoOrg2
 - Include Timestamps
 
 ## UserInfo (object)
@@ -371,6 +429,10 @@ Updating one's contract requires passing a session token. This endpoint only req
 - email: `Lisa@Simpson.com` (string) - The email of the user
 - avatarUrl: `` (string) - The profile pic of the user
 
+## UserInfoOrg2 (object)
+- description: `Telecom company` (string) - The description of the Organisation
+- email: `` (string) - The email of the Organisation
+- avatarUrl: `` (string) - The profile pic of the Organisation
 
 ## Payment101
 - paymentId: 101 (number) - unique ID of the payment
@@ -446,7 +508,34 @@ Updating one's contract requires passing a session token. This endpoint only req
 - paymentId: 111 (number) - unique ID of the payment
 - contractId: 94 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
-- amount: 70000 (number) - payment amount (in cents)
+- amount: 63376 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment401Updated
+- paymentId: 111 (number) - unique ID of the payment
+- contractId: 94 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 55555 (number) - payment amount (in cents)
+- status: `paid` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `2017-07-31` (string) - paid date
+- Include Timestamps
+
+## PaymentCreate
+- contractId: 94 (number) - contract ID for this payment
+- amount: 47312 (number) - payment amount (in cents)
+- type: `payment` (string) - Payment type (payment, interest)
+- dueDate: `2017-09-01` (string) - due date
+- paidDate: `` (string) - paid date
+
+## PaymentCreated
+- paymentId: 201 (number) - unique ID of the payment
+- contractId: 94 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 47312 (number) - payment amount (in cents)
 - status: `live` (string) - status of the payment (enum)
 - dueDate: `2017-09-01` (string) - due date
 - paidDate: `` (string) - paid date
