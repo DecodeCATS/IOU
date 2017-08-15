@@ -93,6 +93,8 @@ A contract represents an IOU or fullly defined contract between 2 users
         - payments (array[Payment101, Payment102])
 
 ### Create a new contract [POST /contracts]
+Contract will be created automatically for a company is one of the counterparties.
+Contract will be proposed if a person is the counterparty or if payee is empty.
 + Request (application/json)
     + Headers
 
@@ -102,19 +104,6 @@ A contract represents an IOU or fullly defined contract between 2 users
 
 + Response 201 (application/json)
     + Attributes (Contract3)
-
-### Accept a contract proposal [GET /contracts/proposal]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-
-+ Attributes
-    - contractId: 92 (number, required) - contract id
-
-+ Response 201 (application/json)
-    + Attributes (Contract3)
-
 
 ### Delete an owned contract [DELETE /contracts/{id}]
 + Parameters
@@ -140,6 +129,27 @@ A contract represents an IOU or fullly defined contract between 2 users
 
 + Response 200 (application/json)
     + Attributes (ContractUpdate)
+
+## Contract Proposals [/contracts/proposals]
+### List contract proposals available to the user[GET /contracts/proposals]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
++ Response 201 (application/json)
+    + Attributes
+
+### Accept a contract proposal [POST /contracts/proposals]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Attributes
+    - contractId: 92 (number, required) - contract id
+
++ Response 201 (application/json)
+    + Attributes (Contract3)
 
 ## Contract Payments [/contracts/payments]
 ### Add a payment to a contract[POST /contracts/payments]
@@ -193,7 +203,22 @@ A contract represents an IOU or fullly defined contract between 2 users
 + Response 200 (application/json)
     + Attributes
         - users (array[User2, User3])
-        
+
+### Search for a connection [POST /connections/search]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Attributes
+    - userName: `` (string) - The username
+    - firstName: `` (string) - The firstname
+    - lastName: `` (string) - The lastname
+    - email: `` (string) - The email address of the connection
+
++ Response 200 (application/json)
+    + Attributes
+        - connections (array[User6])
 
 ### Request a new connection [POST /connections/request]
 + Request (application/json)
@@ -202,18 +227,18 @@ A contract represents an IOU or fullly defined contract between 2 users
             Authorization: token xyz
             
 + Attributes
-    - userId: 5 (number, required) - The ID of the desired connection
+    - userId: 5 (number) - The ID of the desired connection
 
 + Response 204 (application/json)
 
-### Accept a new connection [POST /connections/accept]
+### Accept a new connection [POST /connections/{userId}]
++ Parameters
+    - userId: 5 (number, required) - The ID of the desired connection
+    
 + Request (application/json)
     + Headers
 
             Authorization: token xyz
-            
-+ Attributes
-    - userId: 5 (number, required) - The ID of the desired connection
 
 + Response 204 (application/json)
 
@@ -322,6 +347,20 @@ A contract represents an IOU or fullly defined contract between 2 users
 - title: `Test contract` (string, required) - Contract title
 - payerId: 1 (number) - The userId of the payer (money out)
 - payeeId: 6 (number) - The userId of the payee (money in) - Bell
+- Include Timestamps
+
+## Contract6Proposal (object)
+- id: `95` (number, required) - The unique ID of the contract
+- title: `Requested contract proposal` (string, required) - Contract title
+- payerId: 1 (number) - The userId of the payer (money out)
+- payeeId: 2 (number) - The userId of the payee (money in)
+- Include Timestamps
+
+## Contract7Proposal (object)
+- id: `96` (number, required) - The unique ID of the contract
+- title: `Open contract proposal 2` (string, required) - Contract title
+- payerId: `` - The userId of the payer (money out)
+- payeeId: 5 (number) - The userId of the payee (money in)
 - Include Timestamps
 
 ## User (object)
