@@ -1,0 +1,51 @@
+.logoutbutton {
+  background:none!important;
+  color:inherit;
+  border:none;
+  padding:0!important;
+  font: inherit;
+  /*border is optional*/
+  border-bottom:1px solid #444;
+  cursor: pointer;
+  text-align: left;
+}
+
+.menu {
+  width: 270px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: lightgrey;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  transform: translateX(-270px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menu.show {
+  transform: translateX(0px);
+  opacity: 1;
+  visibility: visible;
+}
+
+.menu__header {
+  height: 160px;
+}
+
+.menu__avatar {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background: green;
+  margin: 1rem;
+}
+
+.menu__list {
+  display: flex;
+  flex-flow: column;
+}
+
