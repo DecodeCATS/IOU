@@ -15,13 +15,13 @@ export default class Home extends Component {
     // this._fetchBoards();
   }
   
-  _fetchBoards = () => {
-    api.getBoardsList()
-    .then(res => {
-      // this.setState({ boards: res.body.boards })
-    })
-    .catch(console.error);
-  }
+  // _fetchBoards = () => {
+  //   api.getBoardsList()
+  //   .then(res => {
+  //     // this.setState({ boards: res.body.boards })
+  //   })
+  //   .catch(console.error);
+  // }
 
   render() {
     // let { boards } = this.state

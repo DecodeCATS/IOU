@@ -19,7 +19,7 @@ class App extends Component {
           <i className="fa fa-bars fa-2x menu-icon"
             onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}
           />
-          <Link to="/" className="App-navbar__title">Dashboardly</Link>
+          <Link to="/" className="App-navbar__title">IOU</Link>
           <i className="fa fa-cog fa-2x settings-icon"/>
         </div>
 
