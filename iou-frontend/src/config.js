@@ -1,3 +1,7 @@
+// const ngrok = "";
+const Apiary = "https://private-6d0c6-decodecatsiouct.apiary-mock.com";
+// const Heroku = "";
+
 module.exports = {
-  API_HOST: "https://private-aee43-decodecatsiouct.apiary-mock.com"
-}
+  API_HOST: Apiary
+};

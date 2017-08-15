@@ -1,35 +1,29 @@
 import React, {Component} from 'react';
-import api from '../../api';
-import auth from '../../auth';
+// import api from '../../api';
+// import auth from '../../auth';
 import './Home.css';
+// import {browserHistory as history} from 'react-router';
 
 
 export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  
-  componentDidMount() {
-    // this._fetchBoards();
-  }
-  
-  // _fetchBoards = () => {
-  //   api.getBoardsList()
-  //   .then(res => {
-  //     // this.setState({ boards: res.body.boards })
-  //   })
-  //   .catch(console.error);
-  // }
+    constructor(props) {
+        super(props);
+        this.defaultProps = {
+        };
+        this.state = {
+        };
+    }
 
-  render() {
-    // let { boards } = this.state
-    return (
-      <div className="home">
 
-      </div>
-    );
-  }
+    render() {
+        // let {boards} = this.state;
+        //console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
+        return (
+            <div className="home">
+                <h1>Home Page!</h1>
+                <p>{this.props.location.state}</p>
+            </div>
+        );
+    }
 
 }

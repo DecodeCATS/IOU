@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import auth from '../../auth';
+import auth from '../../auth'
 import './Login.css';
 
 const ENTER = 13;
@@ -18,7 +18,10 @@ export default class Login extends Component {
         if (email && password) {
             auth.login(email, password)
                 .then(res => this.props.router.push('/'))
-                .catch(err => this.setState(console.error));
+                .catch(err => {
+                    // console.log(`Login Error=${err}`);
+                    this.setState({error: err.message});
+                });
         }
         else {
             this.setState({error: "Please enter an email and password"});
@@ -48,4 +51,5 @@ export default class Login extends Component {
             </div>
         );
     }
+
 }

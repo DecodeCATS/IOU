@@ -21,20 +21,12 @@ class Api {
             .set('Authorization', `token ${token}`)
     )
 
-    getBoardsList = (page, count) => (
+    getUser = (token) => (
         superagent
-            .get(`${API_HOST}/boards`)
+            .get(`${API_HOST}/auth/me`)
+            .set('Authorization', `token ${token}`)
     )
 
-    getBoard = (id) => (
-        superagent
-            .get(`${API_HOST}/boards/${id}`)
-    )
-
-    getBookmarks = (boardId) => (
-        superagent
-            .get(`${API_HOST}/boards/${boardId}/bookmarks`)
-    )
 
 }
 
