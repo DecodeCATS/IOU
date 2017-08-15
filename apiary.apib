@@ -81,21 +81,12 @@ A contract represents an IOU or fullly defined contract between 2 users
 
 + Response 200 (application/json)
     + Attributes
-        - contracts (Contract)
-            - payer (User2)
-            - payee (User)
-            - payments (array[Payment101, Payment102])
+        - contracts (array[
+            - (Contract)
+                - payer (User2)
+                - payee (User)
+                - payments (array[Payment101, Payment102])])
 
-### GET a current contract from the payment Id [GET /contracts/payments/{id}]
-+ Parameters
-    - id: 101 (number, required) - The ID of the payment
-
-+ Response 200 (application/json)
-    + Attributes
-        - contracts(Contract)
-            - payer (User2)
-            - payee (User)
-            - payments (array[Payment101, Payment102])
 
 ### Create a new contract [POST /contracts]
 Contract will be created automatically for a company is one of the counterparties.
