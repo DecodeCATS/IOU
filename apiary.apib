@@ -103,6 +103,17 @@ A contract represents an IOU or fullly defined contract between 2 users
 + Response 201 (application/json)
     + Attributes (Contract3)
 
+### Accept a contract proposal [GET /contracts/proposal]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Attributes
+    - contractId: 92 (number, required) - contract id
+
++ Response 201 (application/json)
+    + Attributes (Contract3)
 
 
 ### Delete an owned contract [DELETE /contracts/{id}]
