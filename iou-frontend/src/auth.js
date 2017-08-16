@@ -2,7 +2,7 @@ import api from './api';
 
 let localStorage = window.localStorage;
 
-var module = {
+var auth = {
 
     signup(email, pass) {
 
@@ -78,4 +78,4 @@ var module = {
     // }
 };
 
-export default module;
+export default auth;

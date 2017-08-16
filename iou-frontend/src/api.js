@@ -26,8 +26,6 @@ class Api {
             .get(`${API_HOST}/auth/me`)
             .set('Authorization', `token ${token}`)
     )
-
-
 }
 
 export default new Api();
