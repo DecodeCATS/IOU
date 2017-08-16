@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import auth from '../../auth'
+// import {withRouter} from 'react-router-dom';
+
+import auth from '../../auth';
 import './Login.css';
 
 const ENTER = 13;
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +19,7 @@ export default class Login extends Component {
         let {email: {value: email}, password: {value: password}} = this.refs;
         if (email && password) {
             auth.login(email, password)
-                .then(res => this.props.router.push('/'))
+                .then(res => this.props.history.push('/'))
                 .catch(err => {
                     // console.log(`Login Error=${err}`);
                     this.setState({error: err.message});
@@ -53,3 +55,5 @@ export default class Login extends Component {
     }
 
 }
+
+export default Login;

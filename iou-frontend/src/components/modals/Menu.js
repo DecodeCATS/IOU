@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
 import auth from '../../auth';
 // import {browserHistory as history} from 'react-router';
@@ -25,7 +25,7 @@ class Menu extends Component {
     _handleLogout(e) {
         e.preventDefault();
         auth.logout();
-        // this.props.router.push('/');
+        this.props.history.push('/');
         this.props.closeMenu();
         // history.push('/');
     }
@@ -102,4 +102,4 @@ class Menu extends Component {
 
 }
 
-export default onClickOutside(Menu);
+export default withRouter(onClickOutside(Menu));

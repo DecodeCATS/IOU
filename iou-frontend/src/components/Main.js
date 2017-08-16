@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Connection from './pages/Connection';
 import Contract from './pages/Contract';
+import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
 // The Main component renders one of the three provided
@@ -18,6 +19,7 @@ class Main extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/connections' component={Connection}/>
           <Route path='/contracts' component={Contract}/>
+          <Route path='/login' component={Login}/>
           <Route path='/signup' component={SignUp}/>
         </Switch>
       </main>
