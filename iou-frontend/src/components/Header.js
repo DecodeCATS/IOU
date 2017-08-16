@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+//Needed components
+import Menu from './modals/Menu';
+
+import './Header.css';
 
 class Header extends Component {
   constructor(){
@@ -9,6 +13,8 @@ class Header extends Component {
     };
   }
   
+  closeMenu = () => this.setState({isMenuOpen: false})
+  
   render(){
     let {isMenuOpen} = this.state;
     return (
@@ -17,6 +23,8 @@ class Header extends Component {
              onClick={() => this.setState({isMenuOpen: !isMenuOpen})}
           />
           <Link to="/" className="App-navbar__title">{this.state.title}</Link>
+          
+          <Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
       </div>
     );
   }
