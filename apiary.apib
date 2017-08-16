@@ -1,0 +1,598 @@
+FORMAT: 1A
+
+# IOU
+The IOU API allows the management of money owed between connections.
+
+## Notifications [/notifications]
+List of notification events
+
+### GET list of notifications for the current user [GET /notifications]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - notifications (array[Notification, Notification2])
+
+### DELETE a notification [DELETE /notifications]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Attributes
+    - notificationId: 1000
+    
++ Response 204
+
+### GET notification blacklist for the current user [GET /notifications/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - blacklist (array[User5])
+
+### Add a user to the notification blacklist [POST /notifications/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5 (number) - userId to blacklist
+            
++ Response 201 (application/json)
+    + Attributes
+        - blacklist (array[User5])
+
+### DELETE a user from the notification blacklist [DELETE /notifications/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5
+    
++ Response 204
+
+## Contracts [/contracts]
+A contract represents an IOU or fullly defined contract between 2 users
+
+### GET a list of active contracts for the current user [GET /contracts]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - contracts (array[ContractWithPayments, Contract2WithPayments])
+
+
+### GET a current contract [GET /contracts/{id}]
++ Parameters
+    - id: 90 (number, required) - The ID of the desired contract
+
++ Response 200 (application/json)
+    + Attributes
+        - contracts (array[
+            - (Contract)
+                - payer (User2)
+                - payee (User)
+                - payments (array[Payment101, Payment102])])
+
+
+### Create a new contract [POST /contracts]
+Contract will be created automatically for a company is one of the counterparties.
+Contract will be proposed if a person is the counterparty or if payee is empty.
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
+    + Attributes (Contract)
+
++ Response 201 (application/json)
+    + Attributes
+        - contract (Contract3)
+
+### Delete an owned contract [DELETE /contracts/{id}]
++ Parameters
+    - id: 90 (number, required) - The unique ID of the contract to be deleted
+
++ Request
+    + Headers
+
+            Authorization: token xyz
+
++ Response 204
+
+### Modify an owned contract [PATCH /contracts/{id}]
++ Parameters
+    - id: 90 (number, required) - The unique ID of the contract to be updated
+
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
+    + Attributes (Contract)
+
++ Response 200 (application/json)
+    + Attributes (ContractUpdate)
+
+## Contract Proposals [/contracts/proposals]
+### List contract proposals available to the user[GET /contracts/proposals]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
++ Response 201 (application/json)
+    + Attributes
+        - proposals (array[Contract6Proposal, Contract7Proposal])
+
+### Accept a contract proposal [POST /contracts/proposals]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Attributes
+    - contractId: 92 (number, required) - contract id
+
++ Response 201 (application/json)
+    + Attributes (Contract3)
+
+## Contract Payments [/contracts/payments]
+### List payments of a contract[GET /contracts/{contractId}/payments]
++ Parameters
+    - contractId: 90 (number) - The parent contract's ID
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes (array[Payment101, Payment102, Payment103])
+
+### Add a payment to a contract[POST /contracts/{contractId}/payments]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+            
++ Attributes
+    + payment (PaymentCreate)
+
++ Response 200 (application/json)
+    + Attributes (PaymentCreated)
+
+### Modify a payment of a contract[PATCH /contracts/{contractId}/payments/{paymentId}]
++ Parameters
+    - contractId: 94 (number) - The contract's ID
+    - paymentId: 111 (number, required) - The unique ID of the payment to be updated
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+            
++ Attributes
+    - type: `payment` (string) - type of payment (enum)
+    - amount: 55555 (number) - payment amount (in cents)
+    - dueDate: `2017-08-01` - due date
+    - paidDate: `2017-07-31` - paid date
+
++ Response 200 (application/json)
+    + Attributes (Payment401Updated)
+
+### Remove a payment from a contract[DELETE /contracts/{contractId}/payments/{paymentId}]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+            
++ Attributes
+    + paymentId: 401 (number, required)
+
++ Response 204 (application/json)
+
+## Connections [/connections]
+
+### Get the list of connections [GET /connections]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - users (array[User2, User3])
+
+### Search for a connection [POST /connections/search]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Attributes
+    - userName: `` (string) - The username
+    - firstName: `` (string) - The firstname
+    - lastName: `` (string) - The lastname
+    - email: `` (string) - The email address of the connection
+
++ Response 200 (application/json)
+    + Attributes
+        - connections (array[User6])
+
+### Request a new connection [POST /connections/request]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5 (number) - The ID of the desired connection
+
++ Response 204 (application/json)
+
+### Accept a new connection [POST /connections/{userId}]
++ Parameters
+    - userId: 5 (number, required) - The ID of the desired connection
+    
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 204 (application/json)
+
+### Remove a connection [DELETE /connections]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5
+            
++ Response 204
+
+## Authentication [/auth]
+
+### Create a new user (signup) [POST /auth/users]
++ Request (application/json)
+    + Attributes (UserCreate)
+
++ Response 204 (application/json)
+
+### Create a new session (login) [POST /auth/sessions]
++ Request (application/json)
+    + Attributes (AuthData)
+
++ Response 201 (application/json)
+    + Attributes (Session)
+
+
+### Delete a session (logout) [DELETE /auth/sessions]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 204
+
+
+
+### Retrieve current user [GET /auth/me]
++ Request
+    + Headers
+    
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes (UserFull)
+
+
+
+
+# Data Structures
+
+## Notification (object)
+- id: 1000 (number, required) - The unique ID of the notification
+- message: `Payment made` (string) - The message
+- contract (Contract) - The contract related to the notification
+- payment (Payment101) - The payment related to the notification
+- sender (User2) - the sender
+
+## Notification2 (object)
+- id: 1001 (number, required) - The unique ID of the notification
+- message: `Connection Request` (string) - The message
+- contract: {} - The contract related to the notification
+- payment: {} - The payment related to the notification
+- sender (User5) - the sender
+
+## ContractWithPayments (object)
+- Include Contract
+- payments (array[Payment101, Payment102, Payment103])
+
+## Contract2WithPayments (object)
+- Include Contract2
+- payments (array[Payment201, Payment202])
+
+## Contract (object)
+- id: 90 (number, required) - The unique ID of the contract
+- title: `Test contract between userId 2 and 1` (string, required) - Contract title
+- payer (User2) - The payer (money out)
+- payee (User) - The payee (money in)
+- Include Timestamps
+
+## ContractUpdate (object)
+- id: 94 (number, required) - The unique ID of the contract
+- title: `Consolidated contractId 90, userId 2 and 3` (string, required) - Contract title
+- payer (User2) - The payer (money out)
+- payee (User3) - The payee (money in)
+- Include Timestamps
+
+## Contract2 (object)
+- id: 91 (number, required) - The unique ID of the contract
+- title: `Test contract between userId 1 and 3` (string, required) - Contract title
+- payer (User) - The userId of the payer (money out)
+- payee (User3) - The userId of the payee (money in)
+- Include Timestamps
+
+## Contract3 (object)
+- id: 92 (number, required) - The unique ID of the contract
+- title: `Test contract proposal` (string, required) - Contract title
+- payer (User3) - The payer (money out)
+- payee: null - The payee (money in)
+- Include Timestamps
+
+## Contract4 (object)
+- id: 93 (number, required) - The unique ID of the contract
+- title: `Test contract with an Org` (string, required) - Contract title
+- payer (User) - The payer (money out)
+- payee (User4) - The payee (money in)
+- Include Timestamps
+
+## Contract5 (object)
+- id: 94 (number, required) - The unique ID of the contract
+- title: `Test contract` (string, required) - Contract title
+- payer (User) - The userId of the payer (money out)
+- payee (User6) - The userId of the payee (money in) - Bell
+- Include Timestamps
+
+## Contract6Proposal (object)
+- id: 95 (number, required) - The unique ID of the contract
+- title: `Requested contract proposal` (string, required) - Contract title
+- payer (User) - The userId of the payer (money out)
+- payee (User2) - The userId of the payee (money in)
+- Include Timestamps
+
+## Contract7Proposal (object)
+- id: 96 (number, required) - The unique ID of the contract
+- title: `Open contract proposal 2` (string, required) - Contract title
+- payer: `` - The payer (money out)
+- payee (User5) - The payee (money in)
+- Include Timestamps
+
+## User (object)
+- id: 1 (number) - The unique ID of the user
+- userName: `User1` (string) - The username
+- firstName: `John` (string, required) - The firstname of the user
+- lastName: `Doe` (string) - The lastname of the user
+- type: `Person` - The user type
+- Include Timestamps
+
+## User2 (object)
+- id: 2 (number) - The unique ID of the user
+- userName: `User2` - The username
+- firstName: `Jane` (string, required) - The firstname of the user
+- lastName: `Doe` (string) - The lastname of the user
+- type: `Person` - The user type
+- Include Timestamps
+
+## User3 (object)
+- id: 3 (number) - The unique ID of the user
+- userName: `User3` - The username
+- firstName: `Bob` (string, required) - The firstname of the user
+- lastName: `Rob` (string) - The lastname of the user
+- type: `Person` - The user type
+- Include Timestamps
+
+## User4 (object)
+- id: 4 (number) - The unique ID of the user
+- userName: `Hydro-Quebec` - The username
+- firstName: `Hydro-Quebec` (string, required) - The name of the Organisation
+- lastName: `` (string) - Should be null for an organisation
+- type: `Organisation` - The user type
+- Include Timestamps
+
+## User5 (object)
+- id: 5 (number) - The unique ID of the user
+- userName: `User5` - The username
+- firstName: `Lisa` (string, required) - The firstname of the user
+- lastName: `Simpson` (string) - The lastname of the user
+- type: `Person` - The user type
+- Include Timestamps
+
+## User6 (object)
+- id: 6 (number) - The unique ID of the user
+- userName: `Bell` - The username
+- firstName: `Bell Canada` (string, required) - The name of the Organisation
+- lastName: `` (string) - Should be null for an organisation
+- type: `Organisation` - The user type
+- Include Timestamps
+
+## UserFull (object)
+- Include User
+- Include UserInfo
+- Include Timestamps
+
+## UserFull2 (object)
+- Include User2
+- Include UserInfo2
+- Include Timestamps
+
+## UserFull3 (object)
+- Include User3
+- Include UserInfo3
+- Include Timestamps
+
+## UserFull4 (object)
+- Include User4
+- Include UserInfoOrg
+- Include Timestamps
+
+## UserFull5 (object)
+- Include User5
+- Include UserInfo5
+- Include Timestamps
+
+## UserFull6 (object)
+- Include User6
+- Include UserInfoOrg2
+- Include Timestamps
+
+## UserInfo (object)
+- description: `` (string) - The description of the user
+- email: `John@Doe.com` (string) - The email of the user
+- avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50` (string) - The profile pic of the user
+
+## UserInfo2 (object)
+- description: `` (string) - The description of the user
+- email: `Jane@Doe.com` (string) - The email of the user
+- avatarUrl: `` (string) - The profile pic of the user
+
+
+## UserInfo3 (object)
+- description: `` (string) - The description of the user
+- email: `Bob@Rob.com` (string) - The email of the user
+- avatarUrl: `` (string) - The profile pic of the user
+
+## UserInfoOrg (object)
+- description: `Electricity company` (string) - The description of the Organisation
+- email: `` (string) - The email of the Organisation
+- avatarUrl: `` (string) - The profile pic of the Organisation
+
+## UserInfo5 (object)
+- description: `` (string) - The description of the user
+- email: `Lisa@Simpson.com` (string) - The email of the user
+- avatarUrl: `` (string) - The profile pic of the user
+
+## UserInfoOrg2 (object)
+- description: `Telecom company` (string) - The description of the Organisation
+- email: `` (string) - The email of the Organisation
+- avatarUrl: `` (string) - The profile pic of the Organisation
+
+## Payment101
+- paymentId: 101 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `paid` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `2017-07-31` (string) - paid date
+- Include Timestamps
+
+## Payment102
+- paymentId: 102 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment103
+- paymentId: 103 (number) - unique ID of the payment
+- contractId: 90 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-09-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment201
+- paymentId: 201 (number) - unique ID of the payment
+- contractId: 91 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: `1000` (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-09-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment202
+- paymentId: 202 (number) - unique ID of the payment
+- contractId: 91 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 1000 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-10-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment401
+- paymentId: 111 (number) - unique ID of the payment
+- contractId: 94 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 63376 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Payment401Updated
+- paymentId: 111 (number) - unique ID of the payment
+- contractId: 94 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 55555 (number) - payment amount (in cents)
+- status: `paid` (string) - status of the payment (enum)
+- dueDate: `2017-08-01` (string) - due date
+- paidDate: `2017-07-31` (string) - paid date
+- Include Timestamps
+
+## PaymentCreate
+- contractId: 94 (number) - contract ID for this payment
+- amount: 47312 (number) - payment amount (in cents)
+- type: `payment` (string) - Payment type (payment, interest)
+- dueDate: `2017-09-01` (string) - due date
+- paidDate: `` (string) - paid date
+
+## PaymentCreated
+- paymentId: 121 (number) - unique ID of the payment
+- contractId: 94 (number) - contract ID for this payment
+- type: `payment` (string) - type of payment (enum)
+- amount: 47312 (number) - payment amount (in cents)
+- status: `live` (string) - status of the payment (enum)
+- dueDate: `2017-09-01` (string) - due date
+- paidDate: `` (string) - paid date
+- Include Timestamps
+
+## Timestamps (object)
+- createdAt: `2015-01-20T09:48:32.066Z` (string) - The creation date
+- updatedAt: `2017-05-04T14:29:42.490Z` (string) - The last update date
+
+## UserCreate (object)
+- userName: `a@b.com`
+- firstName: `John`
+- lastName: `Smith`
+- password: `js`
+- email: `John@Smith.com`
+- description: ``
+- avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
+
+## AuthData (object)
+- email: `hunter@thompson.com` (string) - The email that will be used as a login username
+- password: `Hunter2` (string) - The desired password for the new user
+
+## Session (object)
+- token: `uep52qo8wfyh97b24fjafjewi9bb0r24` (string) - The session token
