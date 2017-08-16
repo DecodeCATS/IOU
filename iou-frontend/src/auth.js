@@ -72,10 +72,27 @@ var auth = {
     getUserId() {
         return localStorage.id;
     
-    }
+    },
     // getAvatar() {
     //     return localStorage.avatarurl;
     // }
+    getConnections() {
+        // console.log("Getting Connections!!!");
+        localStorage.token = 'Test!'; //For testing
+        if(localStorage.token) {
+            return api.getConnections(localStorage.token)
+            .then(res => {
+                console.log(`Success, Connections=`,res.body);
+                return res.body; //Fix to send Connections
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
+    }
 };
 
 export default auth;
