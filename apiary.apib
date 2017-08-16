@@ -27,6 +27,8 @@ List of notification events
     
 + Response 204
 
+## Notification Blacklist [/notifications/blacklist]
+
 ### GET notification blacklist for the current user [GET /notifications/blacklist]
 + Request (application/json)
     + Headers
@@ -306,16 +308,16 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 ## Notification (object)
 - id: 1000 (number, required) - The unique ID of the notification
 - message: `Payment made` (string) - The message
-- contract (Contract) - The contract related to the notification
-- payment (Payment101) - The payment related to the notification
-- sender (User2) - the sender
+- objectId: 101 (number) - The unique id of the object
+- objectType: 'payments' (string) - The object source of the id
+- senderId: 2 (number) - the userID of the sender
 
 ## Notification2 (object)
 - id: 1001 (number, required) - The unique ID of the notification
 - message: `Connection Request` (string) - The message
-- contract: {} - The contract related to the notification
-- payment: {} - The payment related to the notification
-- sender (User5) - the sender
+- objectId: 5 (number) - The unique id of the object
+- objectType: 'users' (string) - The object source of the id
+- sender: 5 (number, required) - the userID of the sender
 
 ## ContractWithPayments (object)
 - Include Contract
