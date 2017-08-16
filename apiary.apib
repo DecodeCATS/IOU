@@ -74,17 +74,16 @@ A contract represents an IOU or fullly defined contract between 2 users
 
 + Response 200 (application/json)
     + Attributes
-        - contracts (array[Contract, Contract2])
+        - contracts (array[Contract2, Contract4, Contract5, Contract6Proposal, ContractUpdate])
 
 
-### GET a current contract [GET /contracts/{id}]
+### GET a contract history from a contractId [GET /contracts/{id}]
 + Parameters
-    - id: 90 (number, required) - The ID of the desired contract
+    - id: 98 (number, required) - The ID of the desired contract
 
 + Response 200 (application/json)
     + Attributes
-        - contracts (array[
-            - (Contract)])
+        - contracts (array[Contract, ContractUpdate])
 
 
 ### Create a new contract [POST /contracts]
@@ -333,9 +332,10 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - Include Timestamps
 
 ## ContractUpdate (object)
-- id: 94 (number, required) - The unique ID of the contract
+- id: 98 (number, required) - The unique ID of the contract
+- parentId: 90 (number) - The contractId of the parent
 - title: `Consolidated contractId 90, userId 2 and 3` (string, required) - Contract title
-- description: `` (string) - Description
+- description: `New description updated` (string) - Description
 - totalAmount: 1000 (number) - Total amount
 - remainingAmount: 1000 (number) - The remaining amount
 - numberOfPayments: 1 - Number of payments
@@ -344,11 +344,12 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - acceptedDate: '2017-04-01'
 - status: 'active' - Current status of the contract
 - payerId: 2 (number) - The payer (money out)
-- payeeId: 3 (number) - The payee (money in)
+- payeeId: 1 (number) - The payee (money in)
 - Include Timestamps
 
 ## Contract2 (object)
 - id: 91 (number, required) - The unique ID of the contract
+- parentId: 91
 - title: `Test contract between userId 1 and 3` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 1000 (number) - Total amount
@@ -364,6 +365,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract3 (object)
 - id: 92 (number, required) - The unique ID of the contract
+- parentId: 92
 - title: `Test contract proposal` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 5000 (number) - Total amount
@@ -379,6 +381,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract4 (object)
 - id: 93 (number, required) - The unique ID of the contract
+- parentId: 93
 - title: `Test contract with an Org` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
@@ -394,6 +397,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract5 (object)
 - id: 94 (number, required) - The unique ID of the contract
+- parentId: 94
 - title: `Test contract` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
@@ -409,6 +413,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract6Proposal (object)
 - id: 95 (number, required) - The unique ID of the contract
+- parentId: 95
 - title: `Requested contract proposal` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
@@ -424,6 +429,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract7Proposal (object)
 - id: 96 (number, required) - The unique ID of the contract
+- parentId: 96
 - title: `Open contract proposal 2` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
