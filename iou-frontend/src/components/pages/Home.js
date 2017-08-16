@@ -27,6 +27,7 @@ class Home extends Component {
             <div className="home">
                 <h1>Home Page!</h1>
                 <p>{this.props.location.state}</p>
+                <p>{this.props.connections.status}</p>
             </div>
         );
     }
