@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom';
+// import {withRouter} from 'react-router-dom';
 
 import auth from '../../auth';
 import './Login.css';
@@ -56,4 +56,4 @@ class Login extends Component {
 
 }
 
-export default withRouter(Login);
+export default Login;
