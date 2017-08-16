@@ -94,7 +94,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
             Authorization: token xyz
 
-    + Attributes (Contract)
+    + Attributes (ContractCreate)
 
 + Response 201 (application/json)
     + Attributes
@@ -660,6 +660,17 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - email: `John@Smith.com`
 - description: ``
 - avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
+
+## ContractCreate (object)
+- title: `Test contract between userId 2 and 1` (string, required) - Contract title
+- description: `` (string) - Description
+- totalAmount: 2000 (number) - Total amount
+- numberOfPayments: 2 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: ''
+- payerId: 2 (number) - The payer (money out)
+- payeeId: 1 (number) - The payee (money in)
+
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username
