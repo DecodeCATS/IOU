@@ -1,4 +1,8 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import logger from 'redux-logger';
+
+
 import connectionReducer from './reducers/connectionReducer';
 import contractReducer from './reducers/contractReducer';
 import notificationReducer from './reducers/notificationReducer';
@@ -13,6 +17,8 @@ const reducers = combineReducers({
   user: userReducer
 });
 
-const iouStore = createStore(reducers);
+const middleware = applyMiddleware(thunkMiddleware, logger);
+
+const iouStore = createStore(reducers, middleware);
 
 export default iouStore;

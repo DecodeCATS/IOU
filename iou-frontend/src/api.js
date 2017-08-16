@@ -2,7 +2,6 @@ import superagent from 'superagent'
 import {API_HOST} from './config'
 
 class Api {
-
     requestSignup = (email, password) => (
         superagent
             .post(`${API_HOST}/auth/users`)
@@ -24,6 +23,13 @@ class Api {
     getUser = (token) => (
         superagent
             .get(`${API_HOST}/auth/me`)
+            .set('Authorization', `token ${token}`)
+    )
+    
+    //Fetch all the connections for the logged user
+    getConnections = (token) => (
+        superagent
+            .get(`${API_HOST}/connections`)
             .set('Authorization', `token ${token}`)
     )
 }
