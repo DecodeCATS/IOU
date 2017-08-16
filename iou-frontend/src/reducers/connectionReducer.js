@@ -10,7 +10,7 @@ const connectionReducer = (state=[], action) => {
       //Basic case to set the connections after a server fetch
       //Assume action.value is the array of connections
       //return action.value;
-      state = {...state, status: action.status, error: action.error, data: action.value};
+      state = {...state, status: action.status, error: action.error, data: action.value.users, dataUpdated: Date()};
       break;
     }
     case "ADD_CONNECTION": {

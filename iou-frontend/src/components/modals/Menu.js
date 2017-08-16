@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
 import auth from '../../auth';
-import {browserHistory as history} from 'react-router';
+// import {browserHistory as history} from 'react-router';
 import './Menu.css';
 
 
@@ -27,7 +27,7 @@ class Menu extends Component {
         auth.logout();
         // this.props.router.push('/');
         this.props.closeMenu();
-        history.push('/');
+        // history.push('/');
     }
 
     fetchUser() {
