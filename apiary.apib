@@ -328,59 +328,124 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - payments (array[Payment201, Payment202])
 
 ## Contract (object)
-- id: 90 (number, required) - The unique ID of the contract
+- id: 90 (number, required) - The unique Id of the contract
+- parentId: 90 (number) - The contractId of the parent
 - title: `Test contract between userId 2 and 1` (string, required) - Contract title
-- payer (User2) - The payer (money out)
-- payee (User) - The payee (money in)
+- description: `` (string) - Description
+- totalAmount: 2000 (number) - Total amount
+- remainingAmount: 1000 (number) - The remaining amount
+- numberOfPayments: 2 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: ''
+- acceptedDate: '2017-01-01'
+- status: 'active' - Current status of the contract
+- payerId: 2 (number) - The payer (money out)
+- payeeId: 1 (number) - The payee (money in)
 - Include Timestamps
 
 ## ContractUpdate (object)
 - id: 94 (number, required) - The unique ID of the contract
 - title: `Consolidated contractId 90, userId 2 and 3` (string, required) - Contract title
-- payer (User2) - The payer (money out)
-- payee (User3) - The payee (money in)
+- description: `` (string) - Description
+- totalAmount: 1000 (number) - Total amount
+- remainingAmount: 1000 (number) - The remaining amount
+- numberOfPayments: 1 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: '2017-09-01'
+- acceptedDate: '2017-04-01'
+- status: 'active' - Current status of the contract
+- payerId: 2 (number) - The payer (money out)
+- payeeId: 3 (number) - The payee (money in)
 - Include Timestamps
 
 ## Contract2 (object)
 - id: 91 (number, required) - The unique ID of the contract
 - title: `Test contract between userId 1 and 3` (string, required) - Contract title
-- payer (User) - The userId of the payer (money out)
-- payee (User3) - The userId of the payee (money in)
+- description: `` (string) - Description
+- totalAmount: 1000 (number) - Total amount
+- remainingAmount: 1000 (number) - The remaining amount
+- numberOfPayments: 1 - Number of payments
+- paymentFrequency: 'one-time' - Frequency of payments
+- dueDate: '2017-09-01'
+- acceptedDate: '2017-04-01'
+- status: 'active' - Current status of the contract
+- payerId: 1 - The userId of the payer (money out)
+- payeeId: 3 - The userId of the payee (money in)
 - Include Timestamps
 
 ## Contract3 (object)
 - id: 92 (number, required) - The unique ID of the contract
 - title: `Test contract proposal` (string, required) - Contract title
-- payer (User3) - The payer (money out)
-- payee: null - The payee (money in)
+- description: `` (string) - Description
+- totalAmount: 5000 (number) - Total amount
+- remainingAmount: 5000 (number) - The remaining amount
+- numberOfPayments: 1 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: '2017-10-01'
+- acceptedDate: '2017-04-01'
+- status: 'pending' - Current status of the contract
+- payerId: 3 - The payer (money out)
+- payeeId: null - The payee (money in)
 - Include Timestamps
 
 ## Contract4 (object)
 - id: 93 (number, required) - The unique ID of the contract
 - title: `Test contract with an Org` (string, required) - Contract title
-- payer (User) - The payer (money out)
-- payee (User4) - The payee (money in)
+- description: `` (string) - Description
+- totalAmount: 000 (number) - Total amount
+- remainingAmount: 0 (number) - The remaining amount
+- numberOfPayments: 12 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: '2017-09-01'
+- acceptedDate: '2017-01-01'
+- status: 'active' - Current status of the contract
+- payerId: 1 - The payer (money out)
+- payeeId: 4 - The payee (money in)
 - Include Timestamps
 
 ## Contract5 (object)
 - id: 94 (number, required) - The unique ID of the contract
 - title: `Test contract` (string, required) - Contract title
-- payer (User) - The userId of the payer (money out)
-- payee (User6) - The userId of the payee (money in) - Bell
+- description: `` (string) - Description
+- totalAmount: 000 (number) - Total amount
+- remainingAmount: 0 (number) - The remaining amount
+- numberOfPayments: 12 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: '2017-09-01'
+- acceptedDate: '2017-01-01'
+- status: 'active' - Current status of the contract
+- payerId: 1 - The userId of the payer (money out)
+- payeeId: 6 - The userId of the payee (money in) - Bell
 - Include Timestamps
 
 ## Contract6Proposal (object)
 - id: 95 (number, required) - The unique ID of the contract
 - title: `Requested contract proposal` (string, required) - Contract title
-- payer (User) - The userId of the payer (money out)
-- payee (User2) - The userId of the payee (money in)
+- description: `` (string) - Description
+- totalAmount: 000 (number) - Total amount
+- remainingAmount: 0 (number) - The remaining amount
+- numberOfPayments: 12 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: '2017-09-01'
+- acceptedDate: '2017-01-01'
+- status: 'active' - Current status of the contract
+- payerId: 1 - The userId of the payer (money out)
+- payeeId: 2 - The userId of the payee (money in)
 - Include Timestamps
 
 ## Contract7Proposal (object)
 - id: 96 (number, required) - The unique ID of the contract
 - title: `Open contract proposal 2` (string, required) - Contract title
-- payer: `` - The payer (money out)
-- payee (User5) - The payee (money in)
+- description: `` (string) - Description
+- totalAmount: 000 (number) - Total amount
+- remainingAmount: 0 (number) - The remaining amount
+- numberOfPayments: 12 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: '2017-09-01'
+- acceptedDate: '2017-01-01'
+- status: 'pending' - Current status of the contract
+- payerId: `` - The payer (money out)
+- payeeId: 5 - The payee (money in)
 - Include Timestamps
 
 ## User (object)
