@@ -70,7 +70,7 @@ class Menu extends Component {
 
                 <div className="menu__header">
                     <img src={this.state.avatarUrl} alt="profile-pic" className="menu__avatar"/>
-                    {isLoggedIn ? <p className="menu__user">{this.state.email}</p>: null}
+                    {isLoggedIn ? <p className="menu__user">{this.state.email}</p> : null}
                 </div>
 
                 <div className="menu__list">
@@ -85,6 +85,18 @@ class Menu extends Component {
                         </Link>
                         : null}
 
+                    {isLoggedIn ?
+                        <Link to="/connections" className="menu__item" onClick={closeMenu}>
+                            Connections
+                        </Link>
+                        : null}
+
+                    {isLoggedIn ?
+                        <Link to="/contracts" className="menu__item" onClick={closeMenu}>
+                            Contracts
+                        </Link>
+                        : null}
+
                     {!isLoggedIn ?
                         <Link to="/signup" className="menu__item" onClick={closeMenu}>
                             Signup
@@ -94,6 +106,7 @@ class Menu extends Component {
                     {isLoggedIn ?
                         <button className="menu__item logoutbutton" onClick={this._handleLogout}>Logout</button>
                         : null}
+
                 </div>
 
             </div>

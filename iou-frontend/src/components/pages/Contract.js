@@ -5,7 +5,7 @@ import './Contract.css';
 class Contract extends Component {
  render() {
     return (
-      <div>Contract Page!
+      <div className="contracts">Contract Page!
       </div>
     );
  } 
