@@ -27,42 +27,6 @@ List of notification events
     
 + Response 204
 
-## Connections Blacklist [/connections/blacklist]
-
-### GET notification blacklist for the current user [GET /connections/blacklist]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-
-+ Response 200 (application/json)
-    + Attributes
-        - blacklist (array[User7])
-
-### Add a user to the notification blacklist [POST /connections/blacklist]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-            
-+ Attributes
-    - userId: 5 (number) - userId to blacklist
-            
-+ Response 201 (application/json)
-    + Attributes
-        - blacklist (array[User5])
-
-### DELETE a user from the notification blacklist [DELETE /connections/blacklist]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-            
-+ Attributes
-    - userId: 5
-    
-+ Response 204
-
 ## Contracts [/contracts]
 A contract represents an IOU or fullly defined contract between 2 users
 
@@ -261,6 +225,43 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Attributes
     - userId: 5
             
++ Response 204
+
+
+## Connections Blacklist [/connections/blacklist]
+
+### GET notification blacklist for the current user [GET /connections/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - blacklist (array[User7])
+
+### Add a user to the notification blacklist [POST /connections/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5 (number) - userId to blacklist
+            
++ Response 201 (application/json)
+    + Attributes
+        - blacklist (array[User5])
+
+### DELETE a user from the notification blacklist [DELETE /connections/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5
+    
 + Response 204
 
 ## Authentication [/auth]
