@@ -41,7 +41,10 @@ var auth = {
     logout() {
         return api.requestLogout(localStorage.getItem("token"))
             .then(res => localStorage.removeItem("token"))
-            .catch(err => localStorage.removeItem("token"));
+            .catch(err => {
+                localStorage.removeItem("token");
+                throw new Error(err);
+            });
     },
 
     isLoggedIn() {
@@ -62,6 +65,7 @@ var auth = {
             })
             .catch(err => {
                 delete localStorage.token;
+                throw new Error(err);
             });
         }
         else {

@@ -10,10 +10,18 @@ class Menu extends Component {
 
     constructor(props) {
         super(props);
+        this.defaultProps = {
+            userInfo: {
+                userId: 0,
+                email: '',
+                username: '',
+                firstName: '',
+                lastName: '',
+                avatarUrl: ''
+            }
+        };
         this.state = {
-            id: 0,
-            email: '',
-            avatarUrl: ''
+            userInfo: this.props.userInfo
         };
         this._handleLogout = this._handleLogout.bind(this);
     }
@@ -30,36 +38,36 @@ class Menu extends Component {
         // history.push('/');
     }
 
-    fetchUser() {
-        auth.getUser()
-            .then(res => {
-                //console.log(`Menu user = ${res}`);
-                this.updateUser(res);
-            });
-    }
+    // fetchUser() {
+    //     auth.getUser()
+    //         .then(res => {
+    //             //console.log(`Menu user = ${res}`);
+    //             this.updateUser(res);
+    //         });
+    // }
 
-    updateUser(user) {
-        if (this.state.id !== user.id) {
-            this.setState({
-                id: user.id,
-                email: user.email,
-                avatarUrl: user.avatarurl
-            });
-        }
-    }
+    // updateUser(user) {
+    //     if (this.state.id !== user.id) {
+    //         this.setState({
+    //             id: user.id,
+    //             email: user.email,
+    //             avatarUrl: user.avatarurl
+    //         });
+    //     }
+    // }
 
-    componentDidUpdate() {
-        const isLoggedIn = auth.isLoggedIn();
-        if (isLoggedIn && this.state.id === 0) {
-            this.fetchUser();
-        } else if (!isLoggedIn) {
-            this.updateUser({
-                id: 0,
-                email: '',
-                avatarUrl: ''
-            });
-        }
-    }
+    // componentDidUpdate() {
+    //     const isLoggedIn = auth.isLoggedIn();
+    //     if (isLoggedIn && this.state.id === 0) {
+    //         this.fetchUser();
+    //     } else if (!isLoggedIn) {
+    //         this.updateUser({
+    //             id: 0,
+    //             email: '',
+    //             avatarUrl: ''
+    //         });
+    //     }
+    // }
 
     render() {
         let {closeMenu, show} = this.props;
@@ -69,8 +77,8 @@ class Menu extends Component {
             <div className={`menu ${show ? "show" : ""}`}>
 
                 <div className="menu__header">
-                    <img src={this.state.avatarUrl} alt="profile-pic" className="menu__avatar"/>
-                    {isLoggedIn ? <p className="menu__user">{this.state.email}</p> : null}
+                    <img src={this.state.userInfo.avatarUrl} alt="profile-pic" className="menu__avatar"/>
+                    {isLoggedIn ? <p className="menu__user">{this.state.userInfo.username}</p> : null}
                 </div>
 
                 <div className="menu__list">
