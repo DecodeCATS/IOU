@@ -8,14 +8,6 @@ import './Home.css';
 // import {browserHistory as history} from 'react-router';
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.defaultProps = {
-        };
-        this.state = {
-        };
-    }
-    
     componentWillMount() {
         this.props.dispatch(Connections.fetchConnections());
     }

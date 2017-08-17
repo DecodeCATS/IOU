@@ -1,0 +1,17 @@
+.connectionCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.connectionCard .realName {
+  display: flex;
+  justify-content: space-between;
+}
+
+.connectionCard .realName p {
+  background-color: lightgrey;
+  width: 50%;
+}

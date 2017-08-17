@@ -1,0 +1,9 @@
+.App-navbar {
+  color: darkgrey;
+  padding: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}

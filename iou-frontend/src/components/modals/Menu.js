@@ -102,4 +102,5 @@ class Menu extends Component {
 
 }
 
+//withRouter is used to be able to history.push from a component that is not on the router list (see Main.js)
 export default withRouter(onClickOutside(Menu));

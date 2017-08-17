@@ -6,6 +6,7 @@ import Contract from './pages/Contract';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
+import './Main.css';
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
@@ -14,7 +15,7 @@ import SignUp from './pages/SignUp';
 class Main extends Component {
   render() {
     return (
-      <main>
+      <main className="main">
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/connections' component={Connection}/>
