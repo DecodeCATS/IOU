@@ -27,3 +27,20 @@
   border: 1px solid black;
   margin: 10px;
 }
+
+.connectionCards .connectionButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.connectionCards .connectionButtons button {
+  border: none;
+  background-color: transparent;
+  color: dimgrey;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.connectionCards .connectionButtons button:hover {
+  background-color: deepskyblue;
+}

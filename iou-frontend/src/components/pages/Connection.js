@@ -12,7 +12,9 @@ class Connection extends Component {
   componentWillMount() {
     if (this.props.user.isLoggedIn) {
       // console.log("Fetching connections");
-      this.props.dispatch(Connections.fetchConnections());
+      
+      // Done in App.js
+      // this.props.dispatch(Connections.fetchConnections());
     }
   }
 
@@ -39,7 +41,11 @@ class Connection extends Component {
                   <ConnectionCard
                     user={user}
                   />
-                  <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
+                  <div className="connectionButtons">
+                    <button>RequestFunds</button>
+                    <button>Mute</button>
+                    <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
+                  </div>
                 </div>
               )
             }

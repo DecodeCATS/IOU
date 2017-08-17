@@ -12,8 +12,11 @@ import './Notification.css';
 class Notification extends Component {
   componentWillMount() {
     if (this.props.user.isLoggedIn) {
-      console.log("Fetching connections");
-      this.props.dispatch(Notifications.fetchNotifications());
+      // Done in App.js
+      // this.props.dispatch(Notifications.fetchNotifications());
+      // if (this.props.connections.data.length === 0) {
+      //   this.props.dispatch(Connections.fetchConnections());
+      // }
     }
   }
   
@@ -58,4 +61,4 @@ class Notification extends Component {
   } 
 }
 
-export default connect(state => ({ user: state.user, notifications: state.notifications }))(Notification);
+export default connect(state => ({ user: state.user, connections: state.connections, notifications: state.notifications }))(Notification);

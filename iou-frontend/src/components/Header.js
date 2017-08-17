@@ -18,7 +18,7 @@ class Header extends Component {
   closeMenu = () => this.setState({isMenuOpen: false})
   
   logout = () => {
-    console.log("Logging out");
+    // console.log("Logging out");
     this.props.dispatch(User.logoutUser());
   }
   
@@ -31,10 +31,17 @@ class Header extends Component {
           />
           <Link to="/" className="App-navbar__title">{this.state.title}</Link>
           
-          <Menu show={isMenuOpen} closeMenu={this.closeMenu} logout={this.logout} user={this.props.user}/>
+          <Menu 
+            show={isMenuOpen}
+            closeMenu={this.closeMenu}
+            logout={this.logout}
+            user={this.props.user}
+            connections={this.props.connections}
+            notifications={this.props.notifications}
+          />
       </div>
     );
   }
 }
 
-export default withRouter(connect(state => ({ user: state.user }))(Header));
+export default withRouter(connect(state => ({ user: state.user, connections: state.connections, notifications: state.notifications }))(Header));

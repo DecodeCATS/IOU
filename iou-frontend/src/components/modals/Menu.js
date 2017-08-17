@@ -42,37 +42,6 @@ class Menu extends Component {
         // history.push('/');
     }
 
-    // fetchUser() {
-    //     auth.getUser()
-    //         .then(res => {
-    //             //console.log(`Menu user = ${res}`);
-    //             this.updateUser(res);
-    //         });
-    // }
-
-    // updateUser(user) {
-    //     if (this.state.id !== user.id) {
-    //         this.setState({
-    //             id: user.id,
-    //             email: user.email,
-    //             avatarUrl: user.avatarurl
-    //         });
-    //     }
-    // }
-
-    // componentDidUpdate() {
-    //     const isLoggedIn = auth.isLoggedIn();
-    //     if (isLoggedIn && this.state.id === 0) {
-    //         this.fetchUser();
-    //     } else if (!isLoggedIn) {
-    //         this.updateUser({
-    //             id: 0,
-    //             email: '',
-    //             avatarUrl: ''
-    //         });
-    //     }
-    // }
-
     render() {
         let {closeMenu, show} = this.props;
         const { isLoggedIn } = this.props.user;

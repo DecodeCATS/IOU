@@ -3,9 +3,13 @@
 //From the point of view of the application, a connection is simply a user, so even though we call this connection, we deal with a db(users) array
 const defaultState = {
   status: "",
+  statusType: "",
   error: "",
   dataUpdated: null,
   data: [],
+  blacklistUpdated: null,
+  blacklistData: [],
+  searchUpdated: null,
   searchData: []
 };
 
@@ -20,7 +24,7 @@ const connectionReducer = (state=defaultState, action) => {
       if (action.status === "success") {
         state = {...state, data: action.value.users, dataUpdated: Date()};
       }
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
     
@@ -29,13 +33,13 @@ const connectionReducer = (state=defaultState, action) => {
         //Need to dump search result in a separate array
         state = {...state, searchData: action.value.users};
       }
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
     
     case "REQUEST_CONNECTION": {
       //Does requesting a connection need to update the state???
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
     
@@ -43,7 +47,7 @@ const connectionReducer = (state=defaultState, action) => {
       if (action.status === "success") {
         state = {...state, data: action.value.users, dataUpdated: Date()};
       }
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
     
@@ -58,22 +62,17 @@ const connectionReducer = (state=defaultState, action) => {
         state = {...state, data: remainingData, dataUpdated: Date()};
       }
       //Update the rest of the info
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
-    // *** Don't need this scenario I think ***
-    // case "UPDATE_CONNECTION": {
-    //   state.data = state.map(connection => {
-    //     if (connection.id === action.value.id) {
-    //       //If the userId of the connection is the same as the one we want to modify, return the new user info
-    //       return action.value;
-    //     } else {
-    //       //Else, return the connection
-    //       return connection;
-    //     }
-    //   });
-    //   break;
-    // }
+    
+    case "FETCH_BLACKLIST": {
+      if (action.status === "success") {
+        state = {...state, blacklistData: action.value.users, blacklistUpdated: Date()};
+      }
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      break;
+    }
     default:
       break;
   }

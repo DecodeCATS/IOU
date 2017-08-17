@@ -2,6 +2,7 @@
 
 const defaultState = {
   status: "",
+  statusType: "",
   error: "",
   dataUpdated: null,
   data: []
@@ -17,7 +18,7 @@ const notificationReducer = (state=defaultState, action) => {
       if (action.status === "success") {
         state = {...state, data: action.value.notifications, dataUpdated: Date()};
       }
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
     
@@ -32,7 +33,7 @@ const notificationReducer = (state=defaultState, action) => {
         state = {...state, data: remainingData, dataUpdated: Date()};
       }
       //Update the rest of the info
-      state = {...state, status: action.status, error: action.error};
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
     
