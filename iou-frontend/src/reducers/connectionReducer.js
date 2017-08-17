@@ -26,24 +26,31 @@ const connectionReducer = (state=defaultState, action) => {
     }
     case "DELETE_CONNECTION": {
       //Filter returns a new array object
-      state.data = state.filter(connection => {
-        //If it's not the connection we want to delete, return true
-        return connection.id !== action.value.id;
-      });
+      if (action.status === 'success') {
+        let remainingData = state.data.filter(connection => {
+          //If it's not the connection we want to delete, return true
+          return connection.id !== action.value.id;
+        });
+        //Update the connections data and the update date
+        state = {...state, data: remainingData, dataUpdated: Date()};
+      }
+      //Update the rest of the info
+      state = {...state, status: action.status, error: action.error};
       break;
     }
-    case "UPDATE_CONNECTION": {
-      state.data = state.map(connection => {
-        if (connection.id === action.value.id) {
-          //If the userId of the connection is the same as the one we want to modify, return the new user info
-          return action.value;
-        } else {
-          //Else, return the connection
-          return connection;
-        }
-      });
-      break;
-    }
+    // *** Don't need this scenario I think ***
+    // case "UPDATE_CONNECTION": {
+    //   state.data = state.map(connection => {
+    //     if (connection.id === action.value.id) {
+    //       //If the userId of the connection is the same as the one we want to modify, return the new user info
+    //       return action.value;
+    //     } else {
+    //       //Else, return the connection
+    //       return connection;
+    //     }
+    //   });
+    //   break;
+    // }
     default:
       break;
   }

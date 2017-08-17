@@ -13,3 +13,16 @@ export function fetchConnections () {
   };
 }
 
+export function deleteConnection (userId) {
+  return function (dispatch) {
+    //Send a delete connection type, but send the current user data
+    dispatch({type: "DELETE_CONNECTION", status: "pending", error: ""});
+    Auth.deleteConnection(userId)
+    .then(res => {
+      dispatch({type: "DELETE_CONNECTION", status: "success", error: "", value: res});
+    })
+    .catch(err => {
+      dispatch({type: "DELETE_CONNECTION", status: "error", error: err, value: {users:[]}});
+    });
+  };
+}

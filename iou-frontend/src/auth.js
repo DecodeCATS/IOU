@@ -78,7 +78,7 @@ var auth = {
     // }
     getConnections() {
         // console.log("Getting Connections!!!");
-        localStorage.token = 'Test!'; //For testing
+        // localStorage.token = 'Test!'; //For testing
         if(localStorage.token) {
             return api.getConnections(localStorage.token)
             .then(res => {
@@ -93,6 +93,17 @@ var auth = {
             throw new Error(`Not logged in!`);
         }
     },
+    
+    deleteConnection(userId) {
+        return api.deleteConnection(localStorage.token, userId)
+        .then(res=> {
+            return res.body; //No body expected for delete
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
+
 
     getContracts() {
         // console.log("Getting Connections!!!");

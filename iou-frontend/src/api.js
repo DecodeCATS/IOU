@@ -33,6 +33,13 @@ class Api {
             .set('Authorization', `token ${token}`)
     )
 
+    //Delete a user from the users connections
+    deleteConnection = (token, userId) => (
+        superagent
+            .delete(`${API_HOST}/connections`)
+            .set('Authorization', `token ${token}`)
+            .send({userId})
+    )
     //Fetch all the contracts for the logged user
     getContracts = (token) => (
         superagent
