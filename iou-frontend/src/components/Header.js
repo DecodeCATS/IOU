@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 //Needed components
 import * as User from '../actions/userActions';
@@ -37,4 +37,4 @@ class Header extends Component {
   }
 }
 
-export default connect(state => ({ user: state.user }))(Header);
+export default withRouter(connect(state => ({ user: state.user }))(Header));

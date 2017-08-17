@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
 // import auth from '../../auth';
 // import {browserHistory as history} from 'react-router';
@@ -87,32 +87,32 @@ class Menu extends Component {
 
                 <div className="menu__list">
 
-                    <Link to="/" className="menu__item" onClick={closeMenu}>
+                    <NavLink exact to="/" className="menu__item" activeClassName="active" onClick={closeMenu}>
                         Home
-                    </Link>
+                    </NavLink>
 
                     {!isLoggedIn ?
-                        <Link to="/Login" className="menu__item" onClick={closeMenu}>
+                        <NavLink to="/Login" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Login
-                        </Link>
+                        </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/Connections" className="menu__item" onClick={closeMenu}>
+                        <NavLink to="/Connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Connections
-                        </Link>
+                        </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/Contracts" className="menu__item" onClick={closeMenu}>
+                        <NavLink to="/Contracts" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Contracts
-                        </Link>
+                        </NavLink>
                         : null}
 
                     {!isLoggedIn ?
-                        <Link to="/Signup" className="menu__item" onClick={closeMenu}>
+                        <NavLink to="/Signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Signup
-                        </Link>
+                        </NavLink>
                         : null}
 
                     {isLoggedIn ?
