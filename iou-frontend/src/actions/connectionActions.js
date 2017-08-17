@@ -13,7 +13,7 @@ export function deleteConnection (connectionUserId) {
     dispatch({type: "DELETE_CONNECTION", status: "pending", error: ""});
     Auth.deleteConnection(connectionUserId)
     .then(res => {
-      dispatch({type: "DELETE_CONNECTION", status: "success", error: "", value: res});
+      dispatch({type: "DELETE_CONNECTION", status: "success", error: "", value: connectionUserId});
     })
     .catch(err => {
       dispatch({type: "DELETE_CONNECTION", status: "error", error: err, value: {users:[]}});

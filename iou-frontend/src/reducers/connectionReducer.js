@@ -52,7 +52,7 @@ const connectionReducer = (state=defaultState, action) => {
       if (action.status === 'success') {
         let remainingData = state.data.filter(connection => {
           //If it's not the connection we want to delete, return true
-          return connection.id !== action.value.id;
+          return connection.id !== action.value;
         });
         //Update the connections data and the update date
         state = {...state, data: remainingData, dataUpdated: Date()};

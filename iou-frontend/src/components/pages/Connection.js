@@ -11,8 +11,17 @@ import './Connection.css';
 class Connection extends Component {
   componentWillMount() {
     if (this.props.user.isLoggedIn) {
-      console.log("Fetching connections");
+      // console.log("Fetching connections");
       this.props.dispatch(Connections.fetchConnections());
+    }
+  }
+
+  deleteConnection = (connectionUserId) => {
+    // console.log(connectionUserId);
+    // connectionUserId is provided by the bind's second argument of the button in render
+    if (this.props.user.isLoggedIn && connectionUserId) {
+      // console.log(`Deleting connection ${connectionUserId}`);
+      this.props.dispatch(Connections.deleteConnection(connectionUserId));
     }
   }
   
@@ -30,7 +39,7 @@ class Connection extends Component {
                   <ConnectionCard
                     user={user}
                   />
-                  <button>Delete</button>
+                  <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
                 </div>
               )
             }

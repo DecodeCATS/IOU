@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import * as Notifications from '../../actions/notificationActions';
 
 import NotificationCard from '../elements/NotificationCard';
-import ConnectionCard from '../elements/ConnectionCard';
+// import ConnectionCard from '../elements/ConnectionCard';
 import './Notification.css';
 
 //This is a smart component. It is aware of the store
@@ -18,14 +18,16 @@ class Notification extends Component {
   }
   
   deleteNotification = (notificationId) => {
-    if (this.props.user.isLoggedIn) {
-      console.log(`Deleting notification ${notificationId}`);
+    // console.log(notificationId);
+    // notificationId is provided by the bind's second argument of the button in render
+    if (this.props.user.isLoggedIn && notificationId) {
+      // console.log(`Deleting notification ${notificationId}`);
       this.props.dispatch(Notifications.deleteNotification(notificationId));
     }
   }
   
   render() {
-    console.log(`Notifications!!!!!=${JSON.stringify(this.props.notifications)}`);
+    // console.log(`Notifications!!!!!=${JSON.stringify(this.props.notifications)}`);
     let {data} = this.props.notifications;
     return (
       <div className="notificationContainer">
@@ -38,7 +40,7 @@ class Notification extends Component {
                   <NotificationCard
                     notification={notification}
                   />
-                  <button onClick={this.deleteNotification}>Delete</button>
+                  <button onClick={this.deleteNotification.bind(this,notification.id)}>Delete</button>
                 </div>
               )
             }

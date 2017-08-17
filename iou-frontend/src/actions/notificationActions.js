@@ -19,10 +19,10 @@ export function deleteNotification (notificationId) {
     dispatch({type: "DELETE_NOTIFICATION", status: "pending", error: ""});
     Auth.deleteNotification(notificationId)
     .then(res => {
-      dispatch({type: "DELETE_NOTIFICATION", status: "success", error: "", value: res});
+      dispatch({type: "DELETE_NOTIFICATION", status: "success", error: "", value: notificationId});
     })
     .catch(err => {
-      dispatch({type: "DELETE_NOTIFICATION", status: "error", error: err, value: {users:[]}});
+      dispatch({type: "DELETE_NOTIFICATION", status: "error", error: err});
     });
   };
 }

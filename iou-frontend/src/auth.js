@@ -101,7 +101,7 @@ var auth = {
     },
 
     deleteNotification(notificationId) {
-        return api.deleteConnection(localStorage.token, notificationId)
+        return api.deleteNotification(localStorage.token, notificationId)
         .then(res=> {
             return res.body; //No body expected for delete
         })
