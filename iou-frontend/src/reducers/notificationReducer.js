@@ -20,6 +20,22 @@ const notificationReducer = (state=defaultState, action) => {
       state = {...state, status: action.status, error: action.error};
       break;
     }
+    
+    case "DELETE_NOTIFICATION": {
+      //Filter returns a new array object
+      if (action.status === 'success') {
+        let remainingData = state.data.filter(notification => {
+          //If it's not the notification we want to delete, return true
+          return notification.id !== action.value.id;
+        });
+        //Update the notification data and the update date
+        state = {...state, data: remainingData, dataUpdated: Date()};
+      }
+      //Update the rest of the info
+      state = {...state, status: action.status, error: action.error};
+      break;
+    }
+    
     default:
       break;
   }

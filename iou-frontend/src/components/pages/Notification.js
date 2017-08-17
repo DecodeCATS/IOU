@@ -17,9 +17,16 @@ class Notification extends Component {
     }
   }
   
- render() {
-  console.log(`Notifications!!!!!=${JSON.stringify(this.props.notifications)}`);
-   let {data} = this.props.notifications;
+  deleteNotification = (notificationId) => {
+    if (this.props.user.isLoggedIn) {
+      console.log(`Deleting notification ${notificationId}`);
+      this.props.dispatch(Notifications.deleteNotification(notificationId));
+    }
+  }
+  
+  render() {
+    console.log(`Notifications!!!!!=${JSON.stringify(this.props.notifications)}`);
+    let {data} = this.props.notifications;
     return (
       <div className="notificationContainer">
         <div className="notificationSubContainer">
@@ -31,7 +38,7 @@ class Notification extends Component {
                   <NotificationCard
                     notification={notification}
                   />
-                  <button>Delete</button>
+                  <button onClick={this.deleteNotification}>Delete</button>
                 </div>
               )
             }
@@ -46,7 +53,7 @@ class Notification extends Component {
         </div>
       </div>
     );
- } 
+  } 
 }
 
 export default connect(state => ({ user: state.user, notifications: state.notifications }))(Notification);

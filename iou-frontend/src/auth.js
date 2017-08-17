@@ -98,7 +98,17 @@ var auth = {
         else {
             throw new Error(`Not logged in!`);
         }
-    },    
+    },
+
+    deleteNotification(notificationId) {
+        return api.deleteConnection(localStorage.token, notificationId)
+        .then(res=> {
+            return res.body; //No body expected for delete
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
     // =======================================================================
     // *** Connection API calls ***
     // =======================================================================

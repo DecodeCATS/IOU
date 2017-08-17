@@ -33,6 +33,13 @@ class Api {
             .get(`${API_HOST}/notifications`)
             .set('Authorization', `token ${token}`)
     )
+    //Delete a notification
+    deleteConnection = (token, notificationId) => (
+        superagent
+            .delete(`${API_HOST}/notifications`)
+            .set('Authorization', `token ${token}`)
+            .send({notificationId})
+    )
     // =======================================================================
     // *** Connection API calls ***
     // =======================================================================

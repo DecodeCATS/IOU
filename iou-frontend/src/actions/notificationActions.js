@@ -12,3 +12,17 @@ export function fetchNotifications () {
     });
   };
 }
+
+export function deleteNotification (notificationId) {
+  return function (dispatch) {
+    //Send a delete connection type, but send the current user data
+    dispatch({type: "DELETE_NOTIFICATION", status: "pending", error: ""});
+    Auth.deleteNotification(notificationId)
+    .then(res => {
+      dispatch({type: "DELETE_NOTIFICATION", status: "success", error: "", value: res});
+    })
+    .catch(err => {
+      dispatch({type: "DELETE_NOTIFICATION", status: "error", error: err, value: {users:[]}});
+    });
+  };
+}
