@@ -58,10 +58,11 @@ var auth = {
             return api.getUser(localStorage.token)
             .then(res => {
                 //console.log(`Me response=${JSON.stringify(res)}`);
-                localStorage.id = res.body.id;
-                localStorage.email = res.body.email;
-                localStorage.avatarurl = res.body.avatarUrl;
-                return localStorage;
+                // localStorage.id = res.body.id;
+                // localStorage.email = res.body.email;
+                // localStorage.avatarUrl = res.body.avatarUrl;
+                // return localStorage;
+                return res.body;
             })
             .catch(err => {
                 delete localStorage.token;

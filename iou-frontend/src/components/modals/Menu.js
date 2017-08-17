@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
-import auth from '../../auth';
+// import auth from '../../auth';
 // import {browserHistory as history} from 'react-router';
+// import * as User from '../actions/userActions';
 import './Menu.css';
 
 
@@ -10,19 +11,19 @@ class Menu extends Component {
 
     constructor(props) {
         super(props);
-        this.defaultProps = {
-            userInfo: {
-                userId: 0,
-                email: '',
-                username: '',
-                firstName: '',
-                lastName: '',
-                avatarUrl: ''
-            }
-        };
-        this.state = {
-            userInfo: this.props.userInfo
-        };
+        // this.defaultProps = {
+        //     userInfo: {
+        //         userId: 0,
+        //         email: '',
+        //         username: '',
+        //         firstName: '',
+        //         lastName: '',
+        //         avatarUrl: ''
+        //     }
+        // };
+        // this.state = {
+        //     userInfo: this.props.userInfo
+        // };
         this._handleLogout = this._handleLogout.bind(this);
     }
 
@@ -31,8 +32,11 @@ class Menu extends Component {
     }
 
     _handleLogout(e) {
-        e.preventDefault();
-        auth.logout();
+        // e.preventDefault();
+        // auth.logout();
+        //Call the parent function
+        this.props.logout();
+        //Needed?
         this.props.history.push('/');
         this.props.closeMenu();
         // history.push('/');
@@ -71,14 +75,14 @@ class Menu extends Component {
 
     render() {
         let {closeMenu, show} = this.props;
-        const isLoggedIn = auth.isLoggedIn();
-        //console.log(this.state.email);
+        const { isLoggedIn } = this.props.user;
+        console.log(`User: ${JSON.stringify(this.props.user)}`);
         return (
             <div className={`menu ${show ? "show" : ""}`}>
 
                 <div className="menu__header">
-                    <img src={this.state.userInfo.avatarUrl} alt="profile-pic" className="menu__avatar"/>
-                    {isLoggedIn ? <p className="menu__user">{this.state.userInfo.username}</p> : null}
+                    <img src={this.props.user.data.avatarUrl} alt="profile-pic" className="menu__avatar"/>
+                    {isLoggedIn ? <p className="menu__user">{this.props.user.data.username}</p> : null}
                 </div>
 
                 <div className="menu__list">

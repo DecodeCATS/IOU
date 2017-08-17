@@ -14,12 +14,12 @@ class Header extends Component {
       isMenuOpen: false
     };
   }
-  
+
   closeMenu = () => this.setState({isMenuOpen: false})
   
-  componentWillMount() {
-    console.log("Fetching connections");
-    this.props.dispatch(User.fetchUser());
+  logout = () => {
+    console.log("Logging out");
+    this.props.dispatch(User.logoutUser());
   }
   
   render(){
@@ -31,7 +31,7 @@ class Header extends Component {
           />
           <Link to="/" className="App-navbar__title">{this.state.title}</Link>
           
-          <Menu show={isMenuOpen} closeMenu={this.closeMenu} userInfo={this.props.user}/>
+          <Menu show={isMenuOpen} closeMenu={this.closeMenu} logout={this.logout} user={this.props.user}/>
       </div>
     );
   }

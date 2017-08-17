@@ -9,8 +9,10 @@ import './Home.css';
 
 class Home extends Component {
     componentWillMount() {
-        this.props.dispatch(Connections.fetchConnections());
-        this.props.dispatch(Contracts.fetchContracts());
+        if (this.props.user.isLoggedIn) {
+            this.props.dispatch(Connections.fetchConnections());
+            this.props.dispatch(Contracts.fetchContracts());
+        }
     }
 
     render() {
@@ -30,4 +32,4 @@ class Home extends Component {
 
 }
 
-export default connect(state => ({ connections: state.connections, contracts: state.contracts }))(Home);
+export default connect(state => ({ user: state.user, connections: state.connections, contracts: state.contracts }))(Home);
