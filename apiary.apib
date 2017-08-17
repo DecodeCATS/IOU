@@ -94,7 +94,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
             Authorization: token xyz
 
-    + Attributes (Contract)
+    + Attributes (ContractCreate)
 
 + Response 201 (application/json)
     + Attributes
@@ -445,7 +445,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User (object)
 - id: 1 (number) - The unique ID of the user
-- userName: `User1` (string) - The username
+- username: `User1` (string) - The username
 - firstName: `John` (string, required) - The firstname of the user
 - lastName: `Doe` (string) - The lastname of the user
 - type: `person` - The user type
@@ -453,7 +453,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User2 (object)
 - id: 2 (number) - The unique ID of the user
-- userName: `User2` - The username
+- username: `User2` - The username
 - firstName: `Jane` (string, required) - The firstname of the user
 - lastName: `Doe` (string) - The lastname of the user
 - type: `person` - The user type
@@ -461,7 +461,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User3 (object)
 - id: 3 (number) - The unique ID of the user
-- userName: `User3` - The username
+- username: `User3` - The username
 - firstName: `Bob` (string, required) - The firstname of the user
 - lastName: `Rob` (string) - The lastname of the user
 - type: `person` - The user type
@@ -469,7 +469,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User4 (object)
 - id: 4 (number) - The unique ID of the user
-- userName: `Hydro-Quebec` - The username
+- username: `Hydro-Quebec` - The username
 - firstName: `Hydro-Quebec` (string, required) - The name of the Organisation
 - lastName: `` (string) - Should be null for an organisation
 - type: `organisation` - The user type
@@ -477,7 +477,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User5 (object)
 - id: 5 (number) - The unique ID of the user
-- userName: `User5` - The username
+- username: `User5` - The username
 - firstName: `Lisa` (string, required) - The firstname of the user
 - lastName: `Simpson` (string) - The lastname of the user
 - type: `person` - The user type
@@ -485,7 +485,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User6 (object)
 - id: 6 (number) - The unique ID of the user
-- userName: `Bell` - The username
+- username: `Bell` - The username
 - firstName: `Bell Canada` (string, required) - The name of the Organisation
 - lastName: `` (string) - Should be null for an organisation
 - type: `organisation` - The user type
@@ -493,7 +493,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## User7 (object)
 - id: 7 (number) - The unique ID of the user
-- userName: `Tom` - The username
+- username: `Tom` - The username
 - firstName: `Jerry` (string, required) - The name of the Organisation
 - lastName: `` (string) - Should be null for an organisation
 - type: `person` - The user type
@@ -660,6 +660,17 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - email: `John@Smith.com`
 - description: ``
 - avatarUrl: `https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50`
+
+## ContractCreate (object)
+- title: `Test contract between userId 2 and 1` (string, required) - Contract title
+- description: `` (string) - Description
+- totalAmount: 5000 (number) - Total amount
+- numberOfPayments: 1 - Number of payments
+- paymentFrequency: 'monthly' - Frequency of payments
+- dueDate: ''
+- payerId: 3 (number) - The payer (money out)
+- payeeId: '' - The payee (money in)
+
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username

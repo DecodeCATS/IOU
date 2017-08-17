@@ -1,4 +1,7 @@
+// import config from '../config'
+
 //Reducer acting on the contracts
+
 
 //The reducer affecting the contract
 const contractReducer = (state=[], action) => {

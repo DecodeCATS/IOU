@@ -23,7 +23,7 @@ export default class SignUp extends Component {
         let {email: {value: email}, password: {value: password}} = this.refs;
         if (email && password) {
             auth.signup(email, password)
-                .then(res => this.props.router.push('/login'))
+                .then(res => this.props.history.push('/login'))
                 .catch(err => this.setState({error: err.message}))
         }
         else {
