@@ -5,7 +5,8 @@ const defaultState = {
   status: "",
   error: "",
   dataUpdated: null,
-  data: []
+  data: [],
+  searchData: []
 };
 
 //The reducer affecting the connections
@@ -22,11 +23,30 @@ const connectionReducer = (state=defaultState, action) => {
       state = {...state, status: action.status, error: action.error};
       break;
     }
-    case "ADD_CONNECTION": {
-      //Action.value has all the connection information.
-      state.data = [...state, action.value];
+    
+    case "SEARCH_CONNECTION": {
+      if (action.status === "success") {
+        //Need to dump search result in a separate array
+        state = {...state, searchData: action.value.users};
+      }
+      state = {...state, status: action.status, error: action.error};
       break;
     }
+    
+    case "REQUEST_CONNECTION": {
+      //Does requesting a connection need to update the state???
+      state = {...state, status: action.status, error: action.error};
+      break;
+    }
+    
+    case "ADD_CONNECTION": {
+      if (action.status === "success") {
+        state = {...state, data: action.value.users, dataUpdated: Date()};
+      }
+      state = {...state, status: action.status, error: action.error};
+      break;
+    }
+    
     case "DELETE_CONNECTION": {
       //Filter returns a new array object
       if (action.status === 'success') {

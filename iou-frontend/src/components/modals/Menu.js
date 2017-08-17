@@ -109,6 +109,12 @@ class Menu extends Component {
                         </NavLink>
                         : null}
 
+                    {isLoggedIn ?
+                        <NavLink to="/Notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            Notifications
+                        </NavLink>
+                        : null}
+                        
                     {!isLoggedIn ?
                         <NavLink to="/Signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Signup

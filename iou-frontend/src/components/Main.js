@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Connection from './pages/Connection';
 import Contract from './pages/Contract';
+import Notification from './pages/Notification';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -20,6 +21,7 @@ class Main extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/Connections' component={Connection}/>
           <Route path='/Contracts' component={Contract}/>
+          <Route path='/Notifications' component={Notification}/>
           <Route path='/Login' component={Login}/>
           <Route path='/Signup' component={SignUp}/>
         </Switch>

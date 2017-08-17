@@ -1,0 +1,30 @@
+.notificationContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 80vh;
+  width: 100vw;
+}
+
+.notificationSubContainer, .blacklistSubContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 45%;
+}
+
+.notificationCards {
+  border: 1px solid black;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.notificationCards .notificationCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}

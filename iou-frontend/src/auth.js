@@ -81,6 +81,27 @@ var auth = {
     // getAvatar() {
     //     return localStorage.avatarurl;
     // }
+    // =======================================================================
+    // *** Notification API calls ***
+    // =======================================================================
+    getNotifications() {
+        if(localStorage.token) {
+            return api.getNotifications(localStorage.token)
+            .then(res => {
+                console.log(`Success, Notifications=`,res.body);
+                return res.body; //Fix to send Notifications
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
+    },    
+    // =======================================================================
+    // *** Connection API calls ***
+    // =======================================================================
     getConnections() {
         // console.log("Getting Connections!!!");
         // localStorage.token = 'Test!'; //For testing
@@ -99,8 +120,28 @@ var auth = {
         }
     },
     
-    deleteConnection(userId) {
-        return api.deleteConnection(localStorage.token, userId)
+    requestConnection(connectionUserId) {
+        return api.requestConnection(localStorage.token, connectionUserId)
+        .then(res=> {
+            return res.body; //No body expected for delete
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
+    
+    addConnection(connectionUserId) {
+        return api.addConnection(localStorage.token, connectionUserId)
+        .then(res=> {
+            return res.body; //No body expected for delete
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
+    
+    deleteConnection(connectionUserId) {
+        return api.deleteConnection(localStorage.token, connectionUserId)
         .then(res=> {
             return res.body; //No body expected for delete
         })
@@ -109,7 +150,9 @@ var auth = {
         });
     },
 
-
+    // =======================================================================
+    // *** Contract API calls ***
+    // =======================================================================
     getContracts() {
         // console.log("Getting Connections!!!");
         localStorage.token = 'Test!'; //For testing

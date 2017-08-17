@@ -10,8 +10,10 @@ import './Connection.css';
 //This is a smart component. It is aware of the store
 class Connection extends Component {
   componentWillMount() {
-    console.log("Fetching connections");
-    this.props.dispatch(Connections.fetchConnections());
+    if (this.props.user.isLoggedIn) {
+      console.log("Fetching connections");
+      this.props.dispatch(Connections.fetchConnections());
+    }
   }
   
  render() {
@@ -44,4 +46,4 @@ class Connection extends Component {
  } 
 }
 
-export default connect(state => ({ connections: state.connections }))(Connection);
+export default connect(state => ({ user: state.user, connections: state.connections }))(Connection);
