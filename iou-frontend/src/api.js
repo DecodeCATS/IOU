@@ -32,6 +32,13 @@ class Api {
             .get(`${API_HOST}/connections`)
             .set('Authorization', `token ${token}`)
     )
+
+    //Fetch all the contracts for the logged user
+    getContracts = (token) => (
+        superagent
+            .get(`${API_HOST}/contracts`)
+            .set('Authorization', `token ${token}`)
+    )
 }
 
 export default new Api();
