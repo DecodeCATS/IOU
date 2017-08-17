@@ -23,7 +23,7 @@ List of notification events
             Authorization: token xyz
 
 + Attributes
-    - notificationId: 1000
+    - notificationId: 1000 (number)
     
 + Response 204
 
@@ -219,10 +219,10 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
             Authorization: token xyz
 
 + Attributes
-    - userName: `` (string) - The username
-    - firstName: `` (string) - The firstname
-    - lastName: `` (string) - The lastname
-    - email: `` (string) - The email address of the connection
+    - userName: `7` (string) - The username
+    - firstName: `John` (string) - The firstname
+    - lastName: `Doe` (string) - The lastname
+    - email: `@S` (string) - The email address of the connection
 
 + Response 200 (application/json)
     + Attributes
@@ -239,16 +239,18 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 + Response 204 (application/json)
 
-### Accept a new connection [POST /connections/{userId}]
-+ Parameters
-    - userId: 5 (number, required) - The ID of the desired connection
-    
+### Accept a new connection [POST /connections/accept]
 + Request (application/json)
     + Headers
 
             Authorization: token xyz
 
-+ Response 204 (application/json)
++ Attributes
+    - userId: 5 (number) - The ID of the desired connection
+    
++ Response 200 (application/json)
+    + Attributes
+        - users (array[User2, User3, User5])
 
 ### Remove a connection [DELETE /connections]
 + Request (application/json)
