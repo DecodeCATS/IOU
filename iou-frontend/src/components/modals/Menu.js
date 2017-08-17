@@ -76,7 +76,7 @@ class Menu extends Component {
     render() {
         let {closeMenu, show} = this.props;
         const { isLoggedIn } = this.props.user;
-        console.log(`User: ${JSON.stringify(this.props.user)}`);
+        // console.log(`User: ${JSON.stringify(this.props.user)}`);
         return (
             <div className={`menu ${show ? "show" : ""}`}>
 

@@ -5,7 +5,7 @@ export function fetchUser() {
     dispatch({type: "FETCH_USER", status: "pending", error: ""});
     Auth.getUser()
     .then(res => {
-      console.log(`UserInfo=${JSON.stringify(res)}`);
+      // console.log(`UserInfo=${JSON.stringify(res)}`);
       dispatch({type: "FETCH_USER", status: "success", error: "", value: res});
     })
     .catch(err => {
