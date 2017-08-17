@@ -17,17 +17,27 @@ class Connection extends Component {
   // console.log(`Connections!!!!!=${JSON.stringify(this.props.connections)}`);
    let {data} = this.props.connections;
     return (
-      <div>Connection Page!
-        <div className="connectionCards">
+      <div className="connectionContainer">
+        <div className="connectionSubContainer">
           <h2>Connections</h2>
-          {
-            data.map(user => 
-              <ConnectionCard
-                key={user.id}
-                user={user}
-              />
-            )
-          }
+          <div className="connectionCards">
+            {
+              data.map(user =>
+                <div className="connectionCard">
+                  <ConnectionCard
+                    key={user.id}
+                    user={user}
+                  />
+                  <button>Delete</button>
+                </div>
+              )
+            }
+          </div>
+        </div>
+        <div className="connectionSubContainer">
+          <h2>Muted Notifications</h2>
+          <div className="connectionCards">
+          </div>
         </div>
       </div>
     );

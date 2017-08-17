@@ -5,7 +5,7 @@ import './ConnectionCard.css';
 export default class ConnectionCard extends Component {
   render() {
     return (
-      <div className={`connectionCard ${this.props.user.type}`}>
+      <div className={`${this.props.user.type}`}>
         <div className="username">
           <h2>{this.props.user.username}</h2>
         </div>
