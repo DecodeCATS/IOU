@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import * as Connections from '../../actions/connectionActions';
@@ -23,9 +24,8 @@ class Connection extends Component {
           <div className="connectionCards">
             {
               data.map(user =>
-                <div className="connectionCard">
+                <div key={user.id} className="connectionCard">
                   <ConnectionCard
-                    key={user.id}
                     user={user}
                   />
                   <button>Delete</button>

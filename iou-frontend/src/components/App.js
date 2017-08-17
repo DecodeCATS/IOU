@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 //Needed components
 import * as User from '../actions/userActions';
@@ -22,6 +23,7 @@ class App extends Component {
       this.props.dispatch(User.fetchUser());
     }
   }
+  
   render() {
     return (
       <div>
@@ -32,4 +34,6 @@ class App extends Component {
   }
 }
 
-export default connect(state => ({ user: state.user }))(App);
+
+
+export default withRouter(connect(state => ({ user: state.user }))(App));

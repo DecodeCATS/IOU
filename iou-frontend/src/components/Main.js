@@ -18,10 +18,10 @@ class Main extends Component {
       <main className="main">
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/connections' component={Connection}/>
-          <Route path='/contracts' component={Contract}/>
-          <Route path='/login' component={Login}/>
-          <Route path='/signup' component={SignUp}/>
+          <Route path='/Connections' component={Connection}/>
+          <Route path='/Contracts' component={Contract}/>
+          <Route path='/Login' component={Login}/>
+          <Route path='/Signup' component={SignUp}/>
         </Switch>
       </main>
     );

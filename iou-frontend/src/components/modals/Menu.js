@@ -92,25 +92,25 @@ class Menu extends Component {
                     </Link>
 
                     {!isLoggedIn ?
-                        <Link to="/login" className="menu__item" onClick={closeMenu}>
+                        <Link to="/Login" className="menu__item" onClick={closeMenu}>
                             Login
                         </Link>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/connections" className="menu__item" onClick={closeMenu}>
+                        <Link to="/Connections" className="menu__item" onClick={closeMenu}>
                             Connections
                         </Link>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/contracts" className="menu__item" onClick={closeMenu}>
+                        <Link to="/Contracts" className="menu__item" onClick={closeMenu}>
                             Contracts
                         </Link>
                         : null}
 
                     {!isLoggedIn ?
-                        <Link to="/signup" className="menu__item" onClick={closeMenu}>
+                        <Link to="/Signup" className="menu__item" onClick={closeMenu}>
                             Signup
                         </Link>
                         : null}
