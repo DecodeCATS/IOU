@@ -92,7 +92,27 @@ var auth = {
         else {
             throw new Error(`Not logged in!`);
         }
+    },
+
+    getContracts() {
+        // console.log("Getting Connections!!!");
+        localStorage.token = 'Test!'; //For testing
+        if(localStorage.token) {
+            return api.getContracts(localStorage.token)
+                .then(res => {
+                    console.log(`Success, Contracts=`,res.body);
+                    return res.body; //Fix to send Contracts
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
     }
+
+
 };
 
 export default auth;
