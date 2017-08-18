@@ -68,7 +68,17 @@ const connectionReducer = (state=defaultState, action) => {
     
     case "FETCH_BLACKLIST": {
       if (action.status === "success") {
-        state = {...state, blacklistData: action.value.users, blacklistUpdated: Date()};
+        state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
+        // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
+      }
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      break;
+    }
+    
+    case "ADD_BLACKLIST": {
+      if (action.status === "success") {
+        state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
+        // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
       }
       state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;

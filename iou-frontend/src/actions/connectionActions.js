@@ -61,6 +61,20 @@ export function fetchBlacklist() {
   };
 }
 
+export function addBlacklist (connectionUserId) {
+  return function (dispatch) {
+    //Send a delete connection type, but send the current user data
+    dispatch({type: "ADD_BLACKLIST", status: "pending", error: ""});
+    Auth.addBlacklist(connectionUserId)
+    .then(res => {
+      dispatch({type: "ADD_BLACKLIST", status: "success", error: "", value: connectionUserId});
+    })
+    .catch(err => {
+      dispatch({type: "ADD_BLACKLIST", status: "error", error: err});
+    });
+  };
+}
+
 export function deleteBlacklist (connectionUserId) {
   return function (dispatch) {
     //Send a delete connection type, but send the current user data

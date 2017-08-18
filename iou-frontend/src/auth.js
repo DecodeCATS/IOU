@@ -166,7 +166,7 @@ var auth = {
         if(localStorage.token) {
             return api.getBlacklist(localStorage.token)
             .then(res => {
-                console.log(`Success, Blacklist=`,res.body);
+                // console.log(`Success, Blacklist=`,res.body);
                 return res.body; //Fix to send Connections
             })
             .catch(err => {

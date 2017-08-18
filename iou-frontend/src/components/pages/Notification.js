@@ -3,9 +3,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import * as Notifications from '../../actions/notificationActions';
+import * as Connections from '../../actions/connectionActions';
 
 import NotificationCard from '../elements/NotificationCard';
-// import ConnectionCard from '../elements/ConnectionCard';
+import ConnectionCard from '../elements/ConnectionCard';
 import './Notification.css';
 
 //This is a smart component. It is aware of the store
@@ -29,9 +30,17 @@ class Notification extends Component {
     }
   }
   
+  deleteBlacklist = (blacklistUserId) => {
+    if (this.props.user.isLoggedIn && blacklistUserId) {
+      this.props.dispatch(Connections.deleteBlacklist(blacklistUserId));
+    }
+  }
+  
   render() {
     // console.log(`Notifications!!!!!=${JSON.stringify(this.props.notifications)}`);
+    // console.log(`Connections!!!!!=${JSON.stringify(this.props.connections)}`);
     let {data} = this.props.notifications;
+    let {blacklistData} = this.props.connections;
     return (
       <div className="notificationContainer">
         <div className="notificationSubContainer">
@@ -43,7 +52,9 @@ class Notification extends Component {
                   <NotificationCard
                     notification={notification}
                   />
-                  <button onClick={this.deleteNotification.bind(this,notification.id)}>Delete</button>
+                  <div className="notificationButtons">
+                    <button onClick={this.deleteNotification.bind(this,notification.id)}>Delete</button>
+                  </div>
                 </div>
               )
             }
@@ -52,8 +63,18 @@ class Notification extends Component {
         <div className="blacklistSubContainer">
           <h2>Muted Connections</h2>
           <div className="notificationCards">
-            <div className="notificationCard">
-            </div>
+            {
+              blacklistData.map(blacklist =>
+                <div key={blacklist.id} className="connectionCard">
+                  <ConnectionCard
+                    user={blacklist}
+                  />
+                  <div className="connectionButtons">
+                    <button onClick={this.deleteBlacklist.bind(this,blacklist.id)}>UnMute</button>
+                  </div>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
