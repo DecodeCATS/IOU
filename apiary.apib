@@ -272,6 +272,14 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
     
 + Response 204
 
+## Currencies [/currencies]
+### Get currencies [GET /currencies]
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Attributes
+        - currencies (array[CurrencyCAD, CurrencyEUR, CurrencyJPY])
+
 ## Authentication [/auth]
 
 ### Create a new user (signup) [POST /auth/users]
@@ -316,7 +324,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - id: 1000 (number, required) - The unique ID of the notification
 - message: `Payment made` (string) - The message
 - objectId: 101 (number) - The unique id of the object
-- objectType: 'payments' (string) - The object source of the id
+- objectType: payments (string) - The object source of the id
 - senderId: 2 (number) - the userID of the sender
 - Include Timestamps
 
@@ -324,7 +332,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - id: 1001 (number, required) - The unique ID of the notification
 - message: `Connection Request` (string) - The message
 - objectId: 5 (number) - The unique id of the object
-- objectType: 'users' (string) - The object source of the id
+- objectType: users (string) - The object source of the id
 - senderId: 5 (number, required) - the userID of the sender
 - Include Timestamps
 
@@ -687,6 +695,20 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - payerId: 3 (number) - The payer (money out)
 - payeeId: '' - The payee (money in)
 
+## CurrencyCAD (object)
+- currencyID: 1 (number)
+- name: Canadian Dollar (string)
+- symbol: $ (string)
+
+## CurrencyEUR (object)
+- currencyID: 2 (number)
+- name: Euro (string)
+- symbol: € (string)
+
+## CurrencyJPY (object)
+- currencyID: 3 (number)
+- name: Japanese Yen (string)
+- symbol: ¥ (string)
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username
