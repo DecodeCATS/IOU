@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import * as User from '../actions/userActions';
 import * as Connections from '../actions/connectionActions';
 import * as Notifications from '../actions/notificationActions';
+import * as Contracts from '../actions/contractActions';
 
 import Header from './Header';
 import Main from './Main';
@@ -42,6 +43,10 @@ class App extends Component {
       if (this.props.notifications.dataUpdated === null && this.props.notifications.status==="") {
         this.props.dispatch(Notifications.fetchNotifications());
       }
+        // If notifications haven't been refreshed and it's not already fetching, fetch connections
+        if (this.props.notifications.dataUpdated === null && this.props.notifications.status==="") {
+            this.props.dispatch(Contracts.fetchContracts());
+        }
     }
   }
   

@@ -200,11 +200,25 @@ var auth = {
     // *** Contract API calls ***
     // =======================================================================
     getContracts() {
-        // console.log("Getting Connections!!!");
+        // localStorage.token = 'Test!'; //For testing
         if(localStorage.token) {
             return api.getContracts(localStorage.token)
                 .then(res => {
-                    // console.log(`Success, Contracts=`,res.body);
+                    return res.body;
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
+    },
+
+    getContract() {
+        if(localStorage.token) {
+            return api.getContract(localStorage.token)
+                .then(res => {
                     return res.body; //Fix to send Contracts
                 })
                 .catch(err => {
@@ -214,6 +228,26 @@ var auth = {
         else {
             throw new Error(`Not logged in!`);
         }
+    },
+    
+    addContract(contractId) {
+        return api.addContract(localStorage.token, contractId)
+            .then(res => {
+                return res.body;
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+    },
+
+    deleteContract(contractId) {
+        return api.deleteContract(localStorage.token, contractId)
+            .then(res=> {
+                return res.body;
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
     },
     // =======================================================================
     // *** Payment API calls ***

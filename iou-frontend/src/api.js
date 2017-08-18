@@ -102,6 +102,26 @@ class Api {
             .get(`${API_HOST}/contracts`)
             .set('Authorization', `token ${token}`)
     )
+
+    getContract = (token, contractId) => (
+        superagent
+            .get(`${API_HOST}/contracts/${contractId}`)
+            .set('Authorization', `token ${token}`)
+    )
+
+    addContract = (token, contractId) => (
+        superagent
+            .post(`${API_HOST}/contracts`)
+            .set('Authorization', `token ${token}`)
+            .send({contractId})
+    )
+
+    deleteContract = (token, contractId) => (
+        superagent
+            .delete(`${API_HOST}/contracts/${contractId}`)
+            .set('Authorization', `token ${token}`)
+            .send({contractId})
+    )
     // =======================================================================
     // *** Payment API calls ***
     // =======================================================================
