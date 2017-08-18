@@ -157,6 +157,14 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send({paymentId})
     )
+    
+    // =======================================================================
+    // *** Currency API calls ***
+    // =======================================================================
+    getCurrencies = () => (
+        superagent
+            .get(`${API_HOST}/currencies`)
+    )
 }
 
 export default new Api();

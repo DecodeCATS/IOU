@@ -318,6 +318,19 @@ var auth = {
             .catch(err => {
                 throw new Error(`Error from server: ${err.message}`);
             });
+    },
+    // =======================================================================
+    // *** Currency API calls ***
+    // =======================================================================
+    getCurrencies() {
+        return api.getCurrencies()
+        .then(res => {
+            // console.log(`Success, Connections=`,res.body);
+            return res.body; //Fix to send Connections
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
     }
 };
 
