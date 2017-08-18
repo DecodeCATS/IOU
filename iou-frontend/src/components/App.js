@@ -38,7 +38,7 @@ class App extends Component {
         this.props.dispatch(Connections.fetchConnections());
       }
       // If blacklist hasn't been refreshed and it's not already fetching, fetch connections
-      if (this.props.connections.blacklistUpdated === null && this.props.connections.status!=="pending") {
+      if (this.props.connections.blacklistUpdated === null && this.props.connections.blacklistStatus!=="pending") {
         this.props.dispatch(Connections.fetchBlacklist());
       }      
       // If notifications haven't been refreshed and it's not already fetching, fetch connections
