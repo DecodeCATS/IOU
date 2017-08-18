@@ -117,7 +117,7 @@ var auth = {
         if(localStorage.token) {
             return api.getConnections(localStorage.token)
             .then(res => {
-                console.log(`Success, Connections=`,res.body);
+                // console.log(`Success, Connections=`,res.body);
                 return res.body; //Fix to send Connections
             })
             .catch(err => {
@@ -298,6 +298,26 @@ var auth = {
         else {
             throw new Error(`Not logged in!`);
         }
+    },
+    
+    addPayment(payment) {
+        return api.addContract(localStorage.token, payment)
+            .then(res => {
+                return res.body;
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+    },
+
+    deletePayment(paymentId) {
+        return api.deleteContract(localStorage.token, paymentId)
+            .then(res=> {
+                return res.body;
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
     }
 };
 

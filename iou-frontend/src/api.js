@@ -140,8 +140,22 @@ class Api {
     
     getContractPayments = (token, contractId) => (
         superagent
-            .get(`${API_HOST}/contracts/${contractId}/payments`)
+            .get(`${API_HOST}/payments/contracts/${contractId}`)
             .set('Authorization', `token ${token}`)
+    )
+
+    addPayment = (token, payment) => (
+        superagent
+            .post(`${API_HOST}/payments`)
+            .set('Authorization', `token ${token}`)
+            .send({payment})
+    )
+
+    deleteContract = (token, paymentId) => (
+        superagent
+            .delete(`${API_HOST}/payments`)
+            .set('Authorization', `token ${token}`)
+            .send({paymentId})
     )
 }
 
