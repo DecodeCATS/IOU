@@ -122,7 +122,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
     + Attributes
         - payments (array[Payment102, Payment103, Payment201, Payment202, Payment401])
 
-### List payments of a contract[GET /contracts/{contractId}/payments]
+### List payments of a contract[GET /payments/contracts/{contractId}]
 + Parameter
     - contractId: 90 (number) - The parent contract's ID
 + Request (application/json)
@@ -134,7 +134,9 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
     + Attributes
         - payments (array[Payment101, Payment102, Payment103])
 
-### Add a payment to a contract[POST /contracts/{contractId}/payments]
+### Add a payment to a contract[POST /payments/contracts/{contractId}]
++ Parameter
+    - contractId: 90 (number) - The parent contract's ID
 + Request (application/json)
     + Headers
     
@@ -146,16 +148,14 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Response 200 (application/json)
     + Attributes (PaymentCreated)
 
-### Modify a payment of a contract[PATCH /contracts/{contractId}/payments/{paymentId}]
-+ Parameters
-    - contractId: 94 (number) - The contract's ID
-    - paymentId: 111 (number, required) - The unique ID of the payment to be updated
+### Modify a payment[PATCH /payments]
 + Request (application/json)
     + Headers
     
             Authorization: token xyz
             
 + Attributes
+    - paymentId: 111 (number, required) - The unique ID of the payment to be updated
     - type: `payment` (string) - type of payment (enum)
     - amount: 55555 (number) - payment amount (in cents)
     - dueDate: `2017-08-01` - due date
