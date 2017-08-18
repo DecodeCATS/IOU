@@ -143,7 +143,7 @@ var auth = {
     addConnection(connectionUserId) {
         return api.addConnection(localStorage.token, connectionUserId)
         .then(res=> {
-            return res.body; //No body expected for delete
+            return res.body;
         })
         .catch(err => {
             throw new Error(`Error from server: ${err.message}`);
@@ -160,6 +160,43 @@ var auth = {
         });
     },
 
+    getBlacklist() {
+        // console.log("Getting Connections!!!");
+        // localStorage.token = 'Test!'; //For testing
+        if(localStorage.token) {
+            return api.getBlacklist(localStorage.token)
+            .then(res => {
+                console.log(`Success, Blacklist=`,res.body);
+                return res.body; //Fix to send Connections
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
+    },
+    
+    addBlacklist(connectionUserId) {
+        return api.addBlacklist(localStorage.token, connectionUserId)
+        .then(res=> {
+            return res.body;
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
+    
+    deleteBlacklist(connectionUserId) {
+        return api.deleteBlacklist(localStorage.token, connectionUserId)
+        .then(res=> {
+            return res.body; //No body expected for delete
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
     // =======================================================================
     // *** Contract API calls ***
     // =======================================================================

@@ -73,6 +73,22 @@ const connectionReducer = (state=defaultState, action) => {
       state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
+    
+    case "DELETE_BLACKLIST": {
+      //Filter returns a new array object
+      if (action.status === 'success') {
+        let remainingData = state.blacklistData.filter(user => {
+          //If it's not the connection we want to delete, return true
+          return user.id !== action.value;
+        });
+        //Update the connections data and the update date
+        state = {...state, blacklistData: remainingData, blacklistUpdated: Date()};
+      }
+      //Update the rest of the info
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      break;
+    }
+    
     default:
       break;
   }

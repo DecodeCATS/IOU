@@ -30,12 +30,16 @@ class App extends Component {
         // console.log("Fetching connections");
         this.props.dispatch(User.fetchUser());
       }
-      // If there's no connection and it's not already fetching, fetch connections
-      if (this.props.connections.data.length === 0 && this.props.connections.status==="") {
+      // If connection hasn't been refreshed and it's not already fetching, fetch connections
+      if (this.props.connections.dataUpdated === null && this.props.connections.status!=="pending") {
         this.props.dispatch(Connections.fetchConnections());
       }
-      // If there's no connection and it's not already fetching, fetch connections
-      if (this.props.notifications.data.length === 0 && this.props.notifications.status==="") {
+      // If blacklist hasn't been refreshed and it's not already fetching, fetch connections
+      if (this.props.connections.blacklistUpdated === null && this.props.connections.status!=="pending") {
+        this.props.dispatch(Connections.fetchBlacklist());
+      }      
+      // If notifications haven't been refreshed and it's not already fetching, fetch connections
+      if (this.props.notifications.dataUpdated === null && this.props.notifications.status==="") {
         this.props.dispatch(Notifications.fetchNotifications());
       }
     }

@@ -47,3 +47,30 @@ export function requestConnection(connectionUserId) {
     });
   };
 }
+
+export function fetchBlacklist() {
+  return function (dispatch) {
+    dispatch({type: "FETCH_BLACKLIST", status: "pending", error: ""});
+    Auth.getBlacklist()
+    .then(res => {
+      dispatch({type: "FETCH_BLACKLIST", status: "success", error: "", value: res});
+    })
+    .catch(err => {
+      dispatch({type: "FETCH_BLACKLIST", status: "error", error: err});
+    });
+  };
+}
+
+export function deleteBlacklist (connectionUserId) {
+  return function (dispatch) {
+    //Send a delete connection type, but send the current user data
+    dispatch({type: "DELETE_BLACKLIST", status: "pending", error: ""});
+    Auth.deleteBlacklist(connectionUserId)
+    .then(res => {
+      dispatch({type: "DELETE_BLACKLIST", status: "success", error: "", value: connectionUserId});
+    })
+    .catch(err => {
+      dispatch({type: "DELETE_BLACKLIST", status: "error", error: err});
+    });
+  };
+}

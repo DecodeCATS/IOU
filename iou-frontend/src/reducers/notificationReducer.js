@@ -12,8 +12,8 @@ const notificationReducer = (state=defaultState, action) => {
   //The reducer cannot return the state directly after a transformation, or else it means that we have changed the original state (immutability)
   switch (action.type) {
     case "FETCH_NOTIFICATIONS": {
-      //Basic case to set the connections after a server fetch
-      //Assume action.value is the array of connections
+      //Basic case to set the notifications after a server fetch
+      //Assume action.value is the array of notifications
       //return action.value;
       if (action.status === "success") {
         state = {...state, data: action.value.notifications, dataUpdated: Date()};

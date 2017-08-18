@@ -40,6 +40,7 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send({notificationId})
     )
+
     // =======================================================================
     // *** Connection API calls ***
     // =======================================================================
@@ -72,6 +73,29 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send({connectionUserId})
     )
+
+    getBlacklist = (token) => (
+        superagent
+            .get(`${API_HOST}/connections/blacklist`)
+            .set('Authorization', `token ${token}`)
+    )
+
+    addBlacklist = (token, connectionUserId) => (
+        superagent
+            .post(`${API_HOST}/connections/blacklist`)
+            .set('Authorization', `token ${token}`)
+            .send({connectionUserId})
+    )
+
+    deleteBlacklist = (token, connectionUserId) => (
+        superagent
+            .delete(`${API_HOST}/connections/blacklist`)
+            .set('Authorization', `token ${token}`)
+            .send({connectionUserId})
+    )
+    // =======================================================================
+    // *** Contract API calls ***
+    // =======================================================================
     //Fetch all the contracts for the logged user
     getContracts = (token) => (
         superagent
