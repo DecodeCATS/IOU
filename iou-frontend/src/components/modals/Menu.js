@@ -67,6 +67,12 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
+                        <NavLink to="/Notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            Notifications
+                        </NavLink>
+                        : null}
+                        
+                    {isLoggedIn ?
                         <NavLink to="/Connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Connections
                         </NavLink>
@@ -79,11 +85,11 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
-                        <NavLink to="/Notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Notifications
+                        <NavLink to="/Payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            Payments
                         </NavLink>
                         : null}
-                        
+
                     {!isLoggedIn ?
                         <NavLink to="/Signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Signup

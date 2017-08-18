@@ -27,9 +27,17 @@ class Connection extends Component {
     }
   }
   
+  
+  deleteBlacklist = (blacklistUserId) => {
+    if (this.props.user.isLoggedIn && blacklistUserId) {
+      this.props.dispatch(Connections.deleteBlacklist(blacklistUserId));
+    }
+  }
+  
  render() {
   // console.log(`Connections!!!!!=${JSON.stringify(this.props.connections)}`);
    let {data} = this.props.connections;
+   let {blacklistData} = this.props.connections;
     return (
       <div className="connectionContainer">
         <div className="connectionSubContainer">
@@ -54,6 +62,18 @@ class Connection extends Component {
         <div className="connectionSubContainer">
           <h2>Muted Notifications</h2>
           <div className="connectionCards">
+            {
+              blacklistData.map(blacklist =>
+                <div key={blacklist.id} className="connectionCard">
+                  <ConnectionCard
+                    user={blacklist}
+                  />
+                  <div className="connectionButtons">
+                    <button onClick={this.deleteBlacklist.bind(this,blacklist.id)}>UnMute</button>
+                  </div>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>

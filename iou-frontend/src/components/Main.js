@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Connection from './pages/Connection';
 import Contract from './pages/Contract';
 import Notification from './pages/Notification';
+import Payment from './pages/Payment';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -22,6 +23,7 @@ class Main extends Component {
           <Route path='/Connections' component={Connection}/>
           <Route path='/Contracts' component={Contract}/>
           <Route path='/Notifications' component={Notification}/>
+          <Route path='/Payments' component={Payment}/>
           <Route path='/Login' component={Login}/>
           <Route path='/Signup' component={SignUp}/>
         </Switch>
