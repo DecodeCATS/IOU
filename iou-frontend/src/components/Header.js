@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 //Needed components
 import * as User from '../actions/userActions';
@@ -24,13 +24,24 @@ class Header extends Component {
   
   render(){
     let {isMenuOpen} = this.state;
+    // Fetch the path from locations
+    let {pathname} = this.props.location;
+    // If homepage
+    if (pathname==='/') {
+      pathname = "Home";
+    }
+    // Capitalize path
+    pathname = pathname.replace('/','');
+    pathname = pathname[0].toUpperCase() + pathname.slice(1);
+    // console.log(`Current path= ${pathname}`);
     return (
       <div className="App-navbar">
           <i className="fa fa-user-circle fa-4x menu-icon"
              onClick={() => this.setState({isMenuOpen: !isMenuOpen})}
           />
-          <Link to="/" className="App-navbar__title">{this.state.title}</Link>
-          
+          <div className="App-navbar__title">{pathname}</div>
+          <div>
+          </div>
           <Menu 
             show={isMenuOpen}
             closeMenu={this.closeMenu}
