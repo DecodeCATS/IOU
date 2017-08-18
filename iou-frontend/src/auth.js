@@ -216,9 +216,9 @@ var auth = {
         }
     },
 
-    getContract() {
+    getContract(contractId) {
         if(localStorage.token) {
-            return api.getContract(localStorage.token)
+            return api.getContract(localStorage.token, contractId)
                 .then(res => {
                     return res.body; //Fix to send Contracts
                 })
