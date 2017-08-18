@@ -61,37 +61,37 @@ class Menu extends Component {
                     </NavLink>
 
                     {!isLoggedIn ?
-                        <NavLink to="/Login" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                        <NavLink to="/login" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Login
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <NavLink to="/Notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                        <NavLink to="/notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Notifications
                         </NavLink>
                         : null}
                         
                     {isLoggedIn ?
-                        <NavLink to="/Connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                        <NavLink to="/connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Connections
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <NavLink to="/Contracts" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                        <NavLink to="/contracts" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Contracts
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <NavLink to="/Payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                        <NavLink to="/payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Payments
                         </NavLink>
                         : null}
 
                     {!isLoggedIn ?
-                        <NavLink to="/Signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                        <NavLink to="/signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Signup
                         </NavLink>
                         : null}
