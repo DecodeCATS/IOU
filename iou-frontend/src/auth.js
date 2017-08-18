@@ -116,7 +116,7 @@ var auth = {
         if(localStorage.token) {
             return api.getContracts(localStorage.token)
                 .then(res => {
-                    console.log(`Success, Contracts=`,res.body);
+                    //console.log(`Success, Contracts=`,res.body);
                     return res.body; //Fix to send Contracts
                 })
                 .catch(err => {

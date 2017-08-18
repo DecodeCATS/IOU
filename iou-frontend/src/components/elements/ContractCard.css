@@ -1,0 +1,10 @@
+
+.contractCard .realName {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contractCard .realName p {
+  background-color: lightgrey;
+  width: 50%;
+}

@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
-// import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-
 import * as Connections from '../../actions/connectionActions';
-
 import ConnectionCard from '../elements/ConnectionCard';
 import './Connection.css';
 
 //This is a smart component. It is aware of the store
 class Connection extends Component {
   componentWillMount() {
-    console.log("Fetching connections");
+    //console.log("Fetching connections");
     this.props.dispatch(Connections.fetchConnections());
   }
   

@@ -76,7 +76,7 @@ class Menu extends Component {
     render() {
         let {closeMenu, show} = this.props;
         const { isLoggedIn } = this.props.user;
-        console.log(`User: ${JSON.stringify(this.props.user)}`);
+        //console.log(`User: ${JSON.stringify(this.props.user)}`);
         return (
             <div className={`menu ${show ? "show" : ""}`}>
 
@@ -92,25 +92,25 @@ class Menu extends Component {
                     </Link>
 
                     {!isLoggedIn ?
-                        <Link to="/Login" className="menu__item" onClick={closeMenu}>
+                        <Link to="/login" className="menu__item" onClick={closeMenu}>
                             Login
                         </Link>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/Connections" className="menu__item" onClick={closeMenu}>
+                        <Link to="/connections" className="menu__item" onClick={closeMenu}>
                             Connections
                         </Link>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/Contracts" className="menu__item" onClick={closeMenu}>
+                        <Link to="/contracts" className="menu__item" onClick={closeMenu}>
                             Contracts
                         </Link>
                         : null}
 
                     {!isLoggedIn ?
-                        <Link to="/Signup" className="menu__item" onClick={closeMenu}>
+                        <Link to="/signup" className="menu__item" onClick={closeMenu}>
                             Signup
                         </Link>
                         : null}
