@@ -111,7 +111,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Response 201 (application/json)
     + Attributes (Contract3)
 
-## Contract Payments [/contracts/payments]
+## Contract Payments [/payments]
 ### List active payments for the user[GET /payments/active]
 + Request (application/json)
     + Headers
@@ -164,7 +164,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Response 200 (application/json)
     + Attributes (Payment401Updated)
 
-### Remove a payment from a contract[DELETE /contracts/{contractId}/payments/{paymentId}]
+### Remove a payment[DELETE /payments]
 + Request (application/json)
     + Headers
     
@@ -647,8 +647,9 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## PaymentCreate
 - contractId: 94 (number) - contract ID for this payment
-- amount: 47312 (number) - payment amount (in cents)
 - type: `payment` (string) - Payment type (payment, interest)
+- amount: 47312 (number) - payment amount (in cents)
+- currencyId: 1 (number) - payment currency
 - dueDate: `2017-09-01` (string) - due date
 - paidDate: `` (string) - paid date
 
@@ -657,6 +658,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 94 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 47312 (number) - payment amount (in cents)
+- currencyId: 1 (number) - payment currency
 - status: `live` (string) - status of the payment (enum)
 - dueDate: `2017-09-01` (string) - due date
 - paidDate: `` (string) - paid date
