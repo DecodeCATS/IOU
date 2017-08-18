@@ -88,7 +88,6 @@ var auth = {
         if(localStorage.token) {
             return api.getNotifications(localStorage.token)
             .then(res => {
-                console.log(`Success, Notifications=`,res.body);
                 return res.body; //Fix to send Notifications
             })
             .catch(err => {
@@ -202,11 +201,10 @@ var auth = {
     // =======================================================================
     getContracts() {
         // console.log("Getting Connections!!!");
-        localStorage.token = 'Test!'; //For testing
         if(localStorage.token) {
             return api.getContracts(localStorage.token)
                 .then(res => {
-                    console.log(`Success, Contracts=`,res.body);
+                    // console.log(`Success, Contracts=`,res.body);
                     return res.body; //Fix to send Contracts
                 })
                 .catch(err => {
@@ -216,9 +214,57 @@ var auth = {
         else {
             throw new Error(`Not logged in!`);
         }
+    },
+    // =======================================================================
+    // *** Payment API calls ***
+    // =======================================================================
+    getActivePayments() {
+        if(localStorage.token) {
+            return api.getActivePayments(localStorage.token)
+                .then(res => {
+                    // console.log(`Success, Payments=`,res.body);
+                    return res.body; //Fix to send Payments
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }        
+    },
+    
+    getLatestPayments(numDaysBefore, numDaysAfter) {
+        if(localStorage.token) {
+            return api.getLatestPayments(localStorage.token, numDaysBefore, numDaysAfter)
+                .then(res => {
+                    // console.log(`Success, Payments=`,res.body);
+                    return res.body; //Fix to send Payments
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }        
+    },
+    
+    getContractPayments(contractId) {
+        if(localStorage.token) {
+            return api.getContractPayments(localStorage.token, contractId)
+                .then(res => {
+                    // console.log(`Success, Payments=`,res.body);
+                    return res.body; //Fix to send Payments
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
     }
-
-
 };
 
 export default auth;

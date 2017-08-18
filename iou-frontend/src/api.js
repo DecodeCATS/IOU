@@ -102,6 +102,27 @@ class Api {
             .get(`${API_HOST}/contracts`)
             .set('Authorization', `token ${token}`)
     )
+    // =======================================================================
+    // *** Payment API calls ***
+    // =======================================================================
+    getActivePayments = (token) => (
+        superagent
+            .get(`${API_HOST}/payments/active`)
+            .set('Authorization', `token ${token}`)
+    )
+    
+    getLatestPayments = (token, numDaysBefore, numDaysAfter) => (
+        superagent
+            .get(`${API_HOST}/payments/range`)
+            .set('Authorization', `token ${token}`)
+            .send({numDaysBefore, numDaysAfter})
+    )
+    
+    getContractPayments = (token, contractId) => (
+        superagent
+            .get(`${API_HOST}/contracts/${contractId}/payments`)
+            .set('Authorization', `token ${token}`)
+    )
 }
 
 export default new Api();
