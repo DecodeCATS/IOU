@@ -16,6 +16,7 @@
 .notificationCards {
   border: 1px solid black;
   padding: 5px;
+  text-align: left;
   height: 100%;
   width: 100%;
 }

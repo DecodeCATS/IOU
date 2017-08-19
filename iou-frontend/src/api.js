@@ -122,6 +122,49 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send({contractId})
     )
+    // =======================================================================
+    // *** Payment API calls ***
+    // =======================================================================
+    getActivePayments = (token) => (
+        superagent
+            .get(`${API_HOST}/payments/active`)
+            .set('Authorization', `token ${token}`)
+    )
+    
+    getLatestPayments = (token, numDaysBefore, numDaysAfter) => (
+        superagent
+            .get(`${API_HOST}/payments/range`)
+            .set('Authorization', `token ${token}`)
+            .send({numDaysBefore, numDaysAfter})
+    )
+    
+    getContractPayments = (token, contractId) => (
+        superagent
+            .get(`${API_HOST}/payments/contracts/${contractId}`)
+            .set('Authorization', `token ${token}`)
+    )
+
+    addPayment = (token, payment) => (
+        superagent
+            .post(`${API_HOST}/payments`)
+            .set('Authorization', `token ${token}`)
+            .send({payment})
+    )
+
+    deleteContract = (token, paymentId) => (
+        superagent
+            .delete(`${API_HOST}/payments`)
+            .set('Authorization', `token ${token}`)
+            .send({paymentId})
+    )
+    
+    // =======================================================================
+    // *** Currency API calls ***
+    // =======================================================================
+    getCurrencies = () => (
+        superagent
+            .get(`${API_HOST}/currencies`)
+    )
 }
 
 export default new Api();

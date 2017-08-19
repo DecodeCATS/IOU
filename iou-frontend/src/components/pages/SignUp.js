@@ -20,26 +20,40 @@ export default class SignUp extends Component {
         //console.log("UserName " + this.refs.email.value, "Password " + this.refs.password.value);
         // fetch(`https://private-aa273-dashboardlyfrontend1.apiary-mock.com/auth/users`, {
 
-        let {email: {value: email}, password: {value: password}} = this.refs;
-        if (email && password) {
-            auth.signup(email, password)
+        let {
+            username: {value: username},
+            password: {value: password},
+            email: {value: email},
+            firstName: {value: firstName},
+            lastName: {value: lastName},
+            avatarUrl: {value: avatarUrl},
+            description: {value: description}
+        } = this.refs;
+        if (username && email && password && firstName && lastName) {
+            auth.signup(username, email, password, firstName, lastName, avatarUrl, description)
                 .then(res => this.props.history.push('/login'))
-                .catch(err => this.setState({error: err.message}))
+                .catch(err => this.setState({error: err.message}));
         }
         else {
-            this.setState({error: "Please enter an email and password"})
+            this.setState({error: `Field required: username, password, email, firstName, lastName`});
         }
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this._handleSubmit}>
-                    <input ref="email" type="text"></input>
+            <div className="signup">
+                <h2 className="error">{this.state.error}</h2>
+                <form className="signupForm" onSubmit={this._handleSubmit}>
+                    <input ref="username" type="text"></input>
                     <input ref="password" type="password"></input>
+                    <input ref="email" type="text"></input>
+                    <input ref="firstName" type="text"></input>
+                    <input ref="lastName" type="text"></input>
+                    <input ref="avatarUrl" type="text"></input>
+                    <textarea ref="description"></textarea>
+                    
                     <button>SignUp</button>
                 </form>
-                <h2 className="error">{this.state.error}</h2>
             </div>
         );
     }

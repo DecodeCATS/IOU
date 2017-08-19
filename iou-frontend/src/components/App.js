@@ -6,6 +6,7 @@ import * as User from '../actions/userActions';
 import * as Connections from '../actions/connectionActions';
 import * as Notifications from '../actions/notificationActions';
 import * as Contracts from '../actions/contractActions';
+import * as Currencies from '../actions/currencyActions';
 
 import Header from './Header';
 import Main from './Main';
@@ -21,6 +22,7 @@ class App extends Component {
       // this.props.dispatch(Connections.fetchConnections());
       // this.props.dispatch(Notifications.fetchNotifications());
     }
+    this.props.dispatch(Currencies.fetchCurrencies());
   }
   
   componentDidUpdate() {
@@ -36,7 +38,7 @@ class App extends Component {
         this.props.dispatch(Connections.fetchConnections());
       }
       // If blacklist hasn't been refreshed and it's not already fetching, fetch connections
-      if (this.props.connections.blacklistUpdated === null && this.props.connections.status!=="pending") {
+      if (this.props.connections.blacklistUpdated === null && this.props.connections.blacklistStatus!=="pending") {
         this.props.dispatch(Connections.fetchBlacklist());
       }      
       // If notifications haven't been refreshed and it's not already fetching, fetch connections
@@ -62,4 +64,9 @@ class App extends Component {
 
 
 
-export default withRouter(connect(state => ({ user: state.user, connections: state.connections, notifications: state.notifications }))(App));
+export default withRouter(connect(state => ({
+  user: state.user,
+  connections: state.connections,
+  notifications: state.notifications,
+  currencies: state.currencies
+}))(App));

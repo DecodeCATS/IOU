@@ -22,7 +22,6 @@ class Notification extends Component {
   }
   
   deleteNotification = (notificationId) => {
-    // console.log(notificationId);
     // notificationId is provided by the bind's second argument of the button in render
     if (this.props.user.isLoggedIn && notificationId) {
       // console.log(`Deleting notification ${notificationId}`);
@@ -31,9 +30,29 @@ class Notification extends Component {
   }
   
   deleteBlacklist = (blacklistUserId) => {
+    // notificationId is provided by the bind's second argument of the button in render
     if (this.props.user.isLoggedIn && blacklistUserId) {
       this.props.dispatch(Connections.deleteBlacklist(blacklistUserId));
     }
+  }
+  
+  renderNotificationCard = (notification) => {
+    // console.log(`NotificationId=${notification.id} connectionsInfo=${JSON.stringify(this.props.connections.data)}`)
+    let sender = this.props.connections.data.filter(user => {
+      return notification.senderId === user.id;
+    });
+    // console.log(`Sender=${JSON.stringify(sender)}`);
+    return (
+      <div key={notification.id} className="notificationCard">
+        <NotificationCard
+          notification={notification}
+          sender={sender.length > 0 ? sender[0] : null}
+        />
+        <div className="notificationButtons">
+          <button onClick={this.deleteNotification.bind(this, notification.id)}>Delete</button>
+        </div>
+      </div>
+    );
   }
   
   render() {
@@ -47,16 +66,7 @@ class Notification extends Component {
           <h2>Notifications</h2>
           <div className="notificationCards">
             {
-              data.map(notification =>
-                <div key={notification.id} className="notificationCard">
-                  <NotificationCard
-                    notification={notification}
-                  />
-                  <div className="notificationButtons">
-                    <button onClick={this.deleteNotification.bind(this,notification.id)}>Delete</button>
-                  </div>
-                </div>
-              )
+              data.map(notification => this.renderNotificationCard(notification))
             }
           </div>
         </div>

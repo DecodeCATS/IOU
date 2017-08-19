@@ -88,7 +88,6 @@ var auth = {
         if(localStorage.token) {
             return api.getNotifications(localStorage.token)
             .then(res => {
-                console.log(`Success, Notifications=`,res.body);
                 return res.body; //Fix to send Notifications
             })
             .catch(err => {
@@ -118,7 +117,7 @@ var auth = {
         if(localStorage.token) {
             return api.getConnections(localStorage.token)
             .then(res => {
-                console.log(`Success, Connections=`,res.body);
+                // console.log(`Success, Connections=`,res.body);
                 return res.body; //Fix to send Connections
             })
             .catch(err => {
@@ -230,7 +229,7 @@ var auth = {
             throw new Error(`Not logged in!`);
         }
     },
-
+    
     addContract(contractId) {
         return api.addContract(localStorage.token, contractId)
             .then(res => {
@@ -249,6 +248,89 @@ var auth = {
             .catch(err => {
                 throw new Error(`Error from server: ${err.message}`);
             });
+    },
+    // =======================================================================
+    // *** Payment API calls ***
+    // =======================================================================
+    getActivePayments() {
+        if(localStorage.token) {
+            return api.getActivePayments(localStorage.token)
+                .then(res => {
+                    // console.log(`Success, Payments=`,res.body);
+                    return res.body; //Fix to send Payments
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }        
+    },
+    
+    getLatestPayments(numDaysBefore, numDaysAfter) {
+        if(localStorage.token) {
+            return api.getLatestPayments(localStorage.token, numDaysBefore, numDaysAfter)
+                .then(res => {
+                    // console.log(`Success, Payments=`,res.body);
+                    return res.body; //Fix to send Payments
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }        
+    },
+    
+    getContractPayments(contractId) {
+        if(localStorage.token) {
+            return api.getContractPayments(localStorage.token, contractId)
+                .then(res => {
+                    // console.log(`Success, Payments=`,res.body);
+                    return res.body; //Fix to send Payments
+                })
+                .catch(err => {
+                    throw new Error(`Error from server: ${err.message}`);
+                });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
+    },
+    
+    addPayment(payment) {
+        return api.addContract(localStorage.token, payment)
+            .then(res => {
+                return res.body;
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+    },
+
+    deletePayment(paymentId) {
+        return api.deleteContract(localStorage.token, paymentId)
+            .then(res=> {
+                return res.body;
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+    },
+    // =======================================================================
+    // *** Currency API calls ***
+    // =======================================================================
+    getCurrencies() {
+        return api.getCurrencies()
+        .then(res => {
+            // console.log(`Success, Connections=`,res.body);
+            return res.body; //Fix to send Connections
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
     }
 };
 
