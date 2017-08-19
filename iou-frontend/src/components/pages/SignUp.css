@@ -1,10 +1,114 @@
 .signup {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+}
+
+.signup h2 {
+  text-align: left;
+  width: 90vw;
+}
+
+.signupItem.username {
+  align-self: stretch;
+  justify-self: stretch;
+  grid-area: username;
+}
+.signupItem.password{grid-area: password;}
+.signupItem.email{grid-area: email;}
+.signupItem.firstName{grid-area: firstName;}
+.signupItem.lastName{grid-area: lastName;}
+.signupItem.avatarUrl{grid-area: avatarUrl;}
+.signupItem.description{grid-area: description;}
+.signupItem.button{grid-area: button;}
+
+.signupItem div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  
+  font-size: 1.2rem;
+}
+
+.signupItem p {
+  display: block;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 100%;
+  padding: 5px;
+}
+
+.signupItem input, .signupItem textarea {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1.2rem;
+  resize: none;
+  /*height: 100%;*/
+  padding: 5px;
+  width: 100%;
+}
+
+.signupItem.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signupItem.button button{
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  color: darkblue;
+  width: 50%;
 }
 
 .signupForm {
-  display: flex;
-  flex-direction: column;
-  width: 80vw;
+  width: 90vw;
+}
+
+.signupForm {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: .5rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "username"
+    "password"
+    "firstName"
+    "lastName"
+    "email"
+    "description"
+    "avatarUrl"
+    "button";
+}
+
+@media only screen and (min-width: 600px)  {
+  .signupForm {
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "username password"
+    "firstName lastName"
+    "avatarUrl email"
+    "description description"
+    " . button";
+  }
+}
+
+
+@media only screen and (min-width: 1024px)  {
+  .signupForm {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "username email email"
+      "password firstName lastName"
+      "avatarUrl avatarUrl avatarUrl"
+      "description description description"
+      " . . button";
+  }
 }

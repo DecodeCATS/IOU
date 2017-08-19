@@ -44,15 +44,15 @@ export default class SignUp extends Component {
             <div className="signup">
                 <h2 className="error">{this.state.error}</h2>
                 <form className="signupForm" onSubmit={this._handleSubmit}>
-                    <input ref="username" type="text"></input>
-                    <input ref="password" type="password"></input>
-                    <input ref="email" type="text"></input>
-                    <input ref="firstName" type="text"></input>
-                    <input ref="lastName" type="text"></input>
-                    <input ref="avatarUrl" type="text"></input>
-                    <textarea ref="description"></textarea>
+                    <div className="signupItem username"><p>UserName:</p><input ref="username" type="text"></input></div>
+                    <div className="signupItem password"><p>Password:</p><input ref="password" type="password"></input></div>
+                    <div className="signupItem email"><p>Email:</p><input ref="email" type="text"></input></div>
+                    <div className="signupItem firstName"><p>First Name:</p><input ref="firstName" type="text"></input></div>
+                    <div className="signupItem lastName"><p>Last Name:</p><input ref="lastName" type="text"></input></div>
+                    <div className="signupItem avatarUrl"><p>Avatar URL:</p><input ref="avatarUrl" type="text"></input></div>
+                    <div className="signupItem description"><p>Description:</p><textarea ref="description"></textarea></div>
                     
-                    <button>SignUp</button>
+                    <div className="signupItem button"><button>SignUp</button></div>
                 </form>
             </div>
         );
