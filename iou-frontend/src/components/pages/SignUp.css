@@ -19,7 +19,6 @@
 .signupItem.email{grid-area: email;}
 .signupItem.firstName{grid-area: firstName;}
 .signupItem.lastName{grid-area: lastName;}
-.signupItem.avatarUrl{grid-area: avatarUrl;}
 .signupItem.description{grid-area: description;}
 .signupItem.button{grid-area: button;}
 
@@ -40,13 +39,27 @@
   padding: 5px;
 }
 
-.signupItem input, .signupItem textarea {
+.signupItem .limitCounter {
+  color: green;
+  text-align: right;
+}
+
+.signupItem input {
   display: block;
   border: 1px solid darkgrey;
   font-size: 1.2rem;
-  resize: none;
   /*height: 100%;*/
   padding: 5px;
+  width: 100%;
+}
+
+.signupItem textarea {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1rem;
+  padding: 5px;
+  resize: none;
+  height: 80px;
   width: 100%;
 }
 
@@ -65,6 +78,10 @@
   width: 50%;
 }
 
+.signupItem.button button:disabled{
+  color: #ffcccc;
+}
+
 .signupForm {
   width: 90vw;
 }
@@ -81,7 +98,6 @@
     "lastName"
     "email"
     "description"
-    "avatarUrl"
     "button";
 }
 
@@ -93,9 +109,9 @@
   grid-template-areas:
     "username password"
     "firstName lastName"
-    "avatarUrl email"
+    "email email"
     "description description"
-    " . button";
+    "... button";
   }
 }
 
@@ -107,8 +123,15 @@
     grid-template-areas:
       "username email email"
       "password firstName lastName"
-      "avatarUrl avatarUrl avatarUrl"
       "description description description"
-      " . . button";
+      "... ... button";
   }
+}
+
+.inputGood {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.inputBad {
+  background-color: #ffcccc;
 }

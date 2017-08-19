@@ -55,3 +55,9 @@ export function logoutUser() {
     });
   };
 }
+
+export function signupUser(userInfo) {
+  return function (dispatch) {
+    
+  };
+}
