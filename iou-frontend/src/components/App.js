@@ -29,7 +29,7 @@ class App extends Component {
     // If the user is logged
     if (this.props.user.isLoggedIn) {
       // If there's no data on the user and it's not fetching, fetch user info
-      if (this.props.user.data.userId === 0 && this.props.user.status==="") {
+      if (this.props.user.data.userId === 0 && this.props.user.status!=="pending") {
         // console.log("Fetching connections");
         this.props.dispatch(User.fetchUser());
       }
