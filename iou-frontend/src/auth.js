@@ -4,15 +4,16 @@ let localStorage = window.localStorage;
 
 var auth = {
 
-    signup(email, pass) {
+    signup(username, email, password, firstName, lastName, description) {
 
         if (localStorage.token) {
             throw new Error('Already logged in'); //revise it later
         }
         else {
-            return api.requestSignup(email, pass)
+            return api.requestSignup(username, email, password, firstName, lastName, description)
             .catch(err => {
-                throw new Error(`Error from server: ${err.message}`);
+                // console.log(`Auth Error=${JSON.stringify(err)}`);
+                throw new Error(`Error from server: ${err.text}`);
             });
         }
     },
@@ -28,8 +29,9 @@ var auth = {
                 localStorage.token = res.body.token;
             })
             .catch(err => {
-                // console.log(`Auth Error=${err}`);
-                throw new Error(`Error from server: ${err.message}`);
+                // console.log("ERROR!!!!");
+                // console.log(err);
+                throw new Error(`Error from server: ${err}`);
             });
         }
     },

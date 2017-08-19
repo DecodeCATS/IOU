@@ -19,6 +19,7 @@ export default class NotificationCard extends Component {
       }
     };
   }
+  
   render() {
     // console.log(`Default Sender=${JSON.stringify(defaultSender)}`);
     // Check if my parent sent me a valid sender

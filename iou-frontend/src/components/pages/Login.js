@@ -64,8 +64,12 @@ class Login extends Component {
     }
 
     render() {
-        // console.log("TestLogin!");
-        let {email, password, error} = this.state;
+        let {email, password} = this.state;
+        let error="";
+        if (this.props.user.error) {
+            error=this.props.error;
+        }
+        
         return (
             <div className="loginContainer">
                 <div className="loginItem email">

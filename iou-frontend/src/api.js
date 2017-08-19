@@ -2,10 +2,10 @@ import superagent from 'superagent'
 import {API_HOST} from './config'
 
 class Api {
-    requestSignup = (username, password, email, firstName, lastName, description) => (
+    requestSignup = (username, email, password, firstName, lastName, description) => (
         superagent
             .post(`${API_HOST}/auth/users`)
-            .send({username, password, email, firstName, lastName, description})
+            .send({username, email, password, firstName, lastName, description})
     )
 
     requestLogin = (email, password) => (

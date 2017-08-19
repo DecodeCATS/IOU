@@ -14,9 +14,9 @@ const reducers = combineReducers({
   connections: connectionReducer,
   contracts: contractReducer,
   notifications: notificationReducer,
-  payment: paymentReducer,
+  payments: paymentReducer,
   user: userReducer,
-  currency: currencyReducer
+  currencies: currencyReducer
 });
 
 const middleware = applyMiddleware(thunkMiddleware, logger);

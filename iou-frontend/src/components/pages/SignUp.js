@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 // import {browserHistory as history} from 'react-router';
 import {connect} from 'react-redux';
 
-import * as User from '../../actions/userActions';
+// import * as User from '../../actions/userActions';
 import auth from '../../auth';
 import './SignUp.css';
 
-const MAX_USERNAME_LENGTH = 50;
+// const MAX_USERNAME_LENGTH = 50;
 const MAX_DESCRIPTION_LENGTH = 255;
 
 class SignUp extends Component {

@@ -34,7 +34,9 @@ export function loginUser(email, password) {
         dispatch({type: "LOGIN_USER", status: "success", error: ""});
       })
       .catch(err => {
-        dispatch({type: "LOGIN_USER", status: "error", error: err});
+        // console.log("USERACTIONS!!!!!!");
+        // console.log(err);
+        dispatch({type: "LOGIN_USER", status: "error", error: err.toString()});
       });
     } else {
       //User is already logged in!
