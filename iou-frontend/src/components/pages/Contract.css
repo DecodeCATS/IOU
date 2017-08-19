@@ -32,10 +32,8 @@
 .contractContainer .contractButtons {
     display: flex;
     flex-flow: wrap;
-
     justify-content: space-around;
     padding: 10px 10px 30px 10px;
-    width: 100%;
 }
 
 .contractContainer .contractButtons button {
@@ -47,8 +45,6 @@
     color: white;
     font-size: 1rem;
     font-weight: bold;
-    width: 30%;
-    height: 5vh;
     justify-content: center;
 }
 

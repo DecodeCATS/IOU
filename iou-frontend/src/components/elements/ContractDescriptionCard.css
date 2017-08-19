@@ -1,8 +1,8 @@
 .contract .parent {
     display: flex;
-    flex-wrap: wrap;
     flex-flow: column;
     justify-content: flex-start;
     font-style: normal;
     text-align: left;
+    flex-wrap: wrap;
 }
