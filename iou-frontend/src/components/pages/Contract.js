@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 // import * as Contracts from '../../actions/contractActions';
 // import { Button, Grid, Col, Alert } from 'react-bootstrap';
 // import ReactDOM from 'react-dom'
+import ContractHistoryCard from '../elements/ContractHistoryCard';
 import './Contract.css';
 import {connect} from 'react-redux';
 
 class Contract extends Component {
  render() {
+     let {data} = this.props.contracts;
     return (
       <div className="contractContainer">
           <div className="textContainer">
@@ -19,8 +21,15 @@ class Contract extends Component {
                   <div className="contractColumn">
                       <h3>History of the Contract</h3>
                       <hr/>
-                      <p></p>
-                      <p></p>
+                      {
+                          data.map(contract =>
+                              <div key={contract.id} className="contractHistoryCard">
+                                  <ContractHistoryCard
+                                      contract={contract}
+                                  />
+                              </div>
+                          )
+                      }
                   </div>
                   <div className="contractColumn">
                       <h3>Details of the Contract</h3>
