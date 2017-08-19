@@ -75,6 +75,12 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
+                        <NavLink to="/profile" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Profile</p>
+                        </NavLink>
+                        : null}
+
+                    {isLoggedIn ?
                         <NavLink to="/notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             <p className="menuItemName">Notifications</p>
                             <p className="menuItemInfo">{notificationCount}</p>

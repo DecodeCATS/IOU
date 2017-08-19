@@ -53,6 +53,10 @@
   width: 100%;
 }
 
+.signupItem input:disabled {
+  background-color: lightgrey;
+}
+
 .signupItem textarea {
   display: block;
   border: 1px solid darkgrey;

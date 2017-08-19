@@ -19,7 +19,9 @@ class SignUp extends Component {
             email: '',
             firstName: '',
             lastName: '',
-            description: ''
+            description: '',
+            isUpdateProfile: false,
+            buttonText: 'SignUp'
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +31,21 @@ class SignUp extends Component {
         this.handleFirstNameInput = this.handleFirstNameInput.bind(this);
         this.handleLastNameInput = this.handleLastNameInput.bind(this);
         this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
+    }
+    
+    componentWillMount() {
+        if (this.props.user.isLoggedIn && this.props.user.data.id > 0 && this.state.username !== this.props.user.data.username) {
+            this.setState({
+                username: this.props.user.data.username,
+                email: this.props.user.data.email,
+                firstName: this.props.user.data.firstName,
+                lastName: this.props.user.data.lastName,
+                description: this.props.user.data.description,
+                password: '',
+                isUpdateProfile: true,
+                buttonText: "Update Info"
+            });
+        }
     }
 
     handleUsernameInput(e) {
@@ -98,14 +115,14 @@ class SignUp extends Component {
     }
 
     render() {
-        let {username, password, email, firstName, lastName, description, error} = this.state;
+        let {username, password, email, firstName, lastName, description, error, isUpdateProfile, buttonText} = this.state;
         return (
             <div className="signup">
                 <h2 className="error">{error}</h2>
                 <form className="signupForm" onSubmit={this.handleSubmit}>
                     <div className="signupItem username">
                         <p>UserName:</p>
-                        <input ref="username" type="text" placeholder="MyUsername"
+                        <input ref="username" type="text" placeholder="MyUsername" disabled={isUpdateProfile}
                             className={`${username.length > 0 ? "inputGood":"inputBad"}`}
                             onInput={this.handleUsernameInput}
                             value={username}
@@ -113,7 +130,7 @@ class SignUp extends Component {
                     </div>
                     <div className="signupItem password">
                         <p>Password:</p>
-                        <input ref="password" type="password"
+                        <input ref="password" type="password" disabled={isUpdateProfile}
                             className={`${password.length > 0 ? "inputGood":"inputBad"}`}
                             onInput={this.handlePasswordInput}
                             value={password}
@@ -152,7 +169,7 @@ class SignUp extends Component {
                         <p className="limitCounter">{`${description.length}/${MAX_DESCRIPTION_LENGTH}`}</p>
                     </div>
                     <div className="signupItem button">
-                        <button disabled={!username || !password || !email || !firstName || !lastName}>SignUp</button>
+                        <button disabled={(!email || !firstName || !lastName) || (isUpdateProfile ? false : (!username || !password))}>{buttonText}</button>
                     </div>
                 </form>
             </div>
