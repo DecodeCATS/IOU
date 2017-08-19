@@ -43,9 +43,17 @@ class Menu extends Component {
     }
 
     render() {
-        let {closeMenu, show} = this.props;
+        let {closeMenu, show, connections, notifications} = this.props;
         const { isLoggedIn } = this.props.user;
         // console.log(`User: ${JSON.stringify(this.props.user)}`);
+        let connectionCount = 0, notificationCount = 0;
+        if (connections.data) {
+            connectionCount = connections.data.length;
+        }
+        if (notifications.data) {
+            notificationCount = notifications.data.length;
+        }
+        
         return (
             <div className={`menu ${show ? "show" : ""}`}>
 
@@ -67,14 +75,22 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
+                        <NavLink to="/profile" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Profile</p>
+                        </NavLink>
+                        : null}
+
+                    {isLoggedIn ?
                         <NavLink to="/notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Notifications
+                            <p className="menuItemName">Notifications</p>
+                            <p className="menuItemInfo">{notificationCount}</p>
                         </NavLink>
                         : null}
                         
                     {isLoggedIn ?
                         <NavLink to="/connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Connections
+                            <p className="menuItemName">Connections</p>
+                            <p className="menuItemInfo">{connectionCount}</p>
                         </NavLink>
                         : null}
 

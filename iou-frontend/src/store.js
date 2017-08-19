@@ -5,6 +5,7 @@ import logger from 'redux-logger';
 
 import connectionReducer from './reducers/connectionReducer';
 import contractReducer from './reducers/contractReducer';
+import currencyReducer from './reducers/currencyReducer';
 import notificationReducer from './reducers/notificationReducer';
 import paymentReducer from './reducers/paymentReducer';
 import userReducer from './reducers/userReducer';
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   contracts: contractReducer,
   notifications: notificationReducer,
   payment: paymentReducer,
-  user: userReducer
+  user: userReducer,
+  currency: currencyReducer
 });
 
 const middleware = applyMiddleware(thunkMiddleware, logger);

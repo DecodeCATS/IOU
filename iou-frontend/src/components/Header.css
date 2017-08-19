@@ -7,3 +7,16 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.App-navbar__title {
+  margin: 0;
+  color: DarkBlue;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.settings-icon, .menu-icon {
+  transition: 0.5s;
+  cursor: pointer;
+}

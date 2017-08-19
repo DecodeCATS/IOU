@@ -3,10 +3,11 @@
 //From the point of view of the application, a connection is simply a user, so even though we call this connection, we deal with a db(users) array
 const defaultState = {
   status: "",
-  statusType: "",
   error: "",
   dataUpdated: null,
   data: [],
+  blacklistStatus: "",
+  blacklistError: "",
   blacklistUpdated: null,
   blacklistData: [],
   searchUpdated: null,
@@ -24,7 +25,7 @@ const connectionReducer = (state=defaultState, action) => {
       if (action.status === "success") {
         state = {...state, data: action.value.users, dataUpdated: Date()};
       }
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     
@@ -33,13 +34,13 @@ const connectionReducer = (state=defaultState, action) => {
         //Need to dump search result in a separate array
         state = {...state, searchData: action.value.users};
       }
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     
     case "REQUEST_CONNECTION": {
       //Does requesting a connection need to update the state???
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     
@@ -47,7 +48,7 @@ const connectionReducer = (state=defaultState, action) => {
       if (action.status === "success") {
         state = {...state, data: action.value.users, dataUpdated: Date()};
       }
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     
@@ -62,7 +63,7 @@ const connectionReducer = (state=defaultState, action) => {
         state = {...state, data: remainingData, dataUpdated: Date()};
       }
       //Update the rest of the info
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     
@@ -71,7 +72,7 @@ const connectionReducer = (state=defaultState, action) => {
         state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
         // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
       }
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, blacklistStatus: action.status, blacklistError: action.error};
       break;
     }
     
@@ -80,7 +81,7 @@ const connectionReducer = (state=defaultState, action) => {
         state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
         // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
       }
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, blacklistStatus: action.status, blacklistError: action.error};
       break;
     }
     
@@ -95,7 +96,7 @@ const connectionReducer = (state=defaultState, action) => {
         state = {...state, blacklistData: remainingData, blacklistUpdated: Date()};
       }
       //Update the rest of the info
-      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      state = {...state, blacklistStatus: action.status, blacklistError: action.error};
       break;
     }
     
