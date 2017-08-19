@@ -151,8 +151,8 @@ class SignUp extends Component {
                         ></textarea>
                         <p className="limitCounter">{`${description.length}/${MAX_DESCRIPTION_LENGTH}`}</p>
                     </div>
-                        <div className="signupItem button">
-                    <button disabled={!username || !password || !email || !firstName || !lastName}>SignUp</button>
+                    <div className="signupItem button">
+                        <button disabled={!username || !password || !email || !firstName || !lastName}>SignUp</button>
                     </div>
                 </form>
             </div>
