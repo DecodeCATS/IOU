@@ -30,3 +30,22 @@
   text-align: center;
   margin: 0;
 }
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.buttons button {
+  background-color: transparent;
+  border: none;
+  font-size: .7rem;
+  font-weight: bold;
+  text-align: center;
+  color: darkblue;
+}
+
+.buttons button:hover {
+  background-color: yellow;
+}

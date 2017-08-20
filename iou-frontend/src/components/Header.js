@@ -3,6 +3,11 @@ import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 //Needed components
 import * as User from '../actions/userActions';
+import * as Connections from '../actions/connectionActions';
+import * as Notifications from '../actions/notificationActions';
+import * as Contracts from '../actions/contractActions';
+import * as Payments from '../actions/paymentActions';
+import * as Currencies from '../actions/currencyActions';
 import Menu from './modals/Menu';
 
 import './Header.css';
@@ -13,6 +18,12 @@ class Header extends Component {
     this.state = {
       isMenuOpen: false
     };
+    
+    this.fetchUser = this.fetchUser.bind(this);
+    this.fetchContracts = this.fetchContracts.bind(this);
+    this.fetchPayments = this.fetchPayments.bind(this);
+    this.fetchConnections = this.fetchConnections.bind(this);
+    this.fetchNotifications = this.fetchNotifications.bind(this);
   }
 
   closeMenu = () => this.setState({isMenuOpen: false})
@@ -20,6 +31,28 @@ class Header extends Component {
   logout = () => {
     // console.log("Logging out");
     this.props.dispatch(User.logoutUser());
+  }
+  
+  fetchUser(e){
+    this.props.dispatch(User.fetchUser());
+  }
+  
+  fetchContracts(e){
+    this.props.dispatch(Contracts.fetchContracts());
+  }
+  
+  fetchPayments(e){
+    this.props.dispatch(Payments.fetchActivePayments());
+    this.props.dispatch(Currencies.fetchCurrencies());
+  }
+  
+  fetchConnections(e){
+    this.props.dispatch(Connections.fetchConnections());
+    this.props.dispatch(Connections.fetchBlacklist());
+  }
+  
+  fetchNotifications(e){
+    this.props.dispatch(Notifications.fetchNotifications());
   }
   
   renderAvatar = () => {
@@ -60,23 +93,35 @@ class Header extends Component {
     pathname = pathname[0].toUpperCase() + pathname.slice(1);
     // console.log(`Current path= ${pathname}`);
     return (
-      <div className="App-navbar">
-          <div>
-            {this.renderAvatar()}
+      <div className="header">
+        <div className="App-navbar">
+            <div>
+              {this.renderAvatar()}
+            </div>
+            <div className="App-navbar__title">{pathname}</div>
+            <div>
+            </div>
+            <Menu 
+              show={isMenuOpen}
+              closeMenu={this.closeMenu}
+              logout={this.logout}
+              user={this.props.user}
+              connections={this.props.connections}
+              notifications={this.props.notifications}
+              contracts={this.props.contracts}
+              payments={this.props.payments}
+            />
+        </div>
+        <div className="developper">
+          <p>Developper Mode:</p>
+          <div className="buttons">
+            <button type="button" onClick={this.fetchUser}>Fetch User Info</button>
+            <button type="button" onClick={this.fetchContracts}>Fetch Contracts</button>
+            <button type="button" onClick={this.fetchPayments}>Fetch Payments</button>
+            <button type="button" onClick={this.fetchConnections}>Fetch Connections</button>
+            <button type="button" onClick={this.fetchNotifications}>Fetch Notifications</button>
           </div>
-          <div className="App-navbar__title">{pathname}</div>
-          <div>
-          </div>
-          <Menu 
-            show={isMenuOpen}
-            closeMenu={this.closeMenu}
-            logout={this.logout}
-            user={this.props.user}
-            connections={this.props.connections}
-            notifications={this.props.notifications}
-            contracts={this.props.contracts}
-            payments={this.props.payments}
-          />
+        </div>
       </div>
     );
   }

@@ -242,8 +242,8 @@ var auth = {
         }
     },
     
-    addContract(contractId) {
-        return api.addContract(localStorage.token, contractId)
+    addContract(contract) {
+        return api.addContract(localStorage.token, contract)
             .then(res => {
                 return res.body;
             })

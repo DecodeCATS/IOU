@@ -109,11 +109,11 @@ class Api {
             .set('Authorization', `token ${token}`)
     )
 
-    addContract = (token, contractId) => (
+    addContract = (token, contract) => (
         superagent
             .post(`${API_HOST}/contracts`)
             .set('Authorization', `token ${token}`)
-            .send({contractId})
+            .send(contract)
     )
 
     deleteContract = (token, contractId) => (
