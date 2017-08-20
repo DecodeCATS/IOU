@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Connection from './pages/Connection';
-import Contract from './pages/Contract';
+import Contract from './pages/ContractV2';
 import CreateContract from './pages/CreateContract';
 import Notification from './pages/Notification';
 import Payment from './pages/Payment';

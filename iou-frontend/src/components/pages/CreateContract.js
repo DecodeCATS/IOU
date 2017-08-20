@@ -118,10 +118,10 @@ class CreateContract extends Component {
     }
   }
   
-  renderCounterparty(connection) {
+  renderCounterparty(connection, isOrg=0) {
     // console.log(connection);
     return (
-      <option key={connection.id} value={connection.id}>{connection.username}</option>
+      <option key={connection.id} value={connection.id}>{isOrg? '(ORG)-' : null}{connection.username}</option>
     );
   }
   
@@ -136,6 +136,7 @@ class CreateContract extends Component {
                 <option value="payee">Payee</option>
               </select>
               <select ref="counterparty" value={counterpartyUserId} onChange={this.handleCounterparty} required>
+                {this.props.organisations.data.map(connection => this.renderCounterparty(connection,1))}
                 {this.props.connections.data.map(connection => this.renderCounterparty(connection))}
               </select>
             </div>
@@ -182,6 +183,7 @@ class CreateContract extends Component {
 
 export default connect(state => ({ 
   connections: state.connections,
+  organisations: state.organisations,
   contracts: state.contracts, 
   payments: state.payments,
   user: state.user
