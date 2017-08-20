@@ -70,7 +70,7 @@ export default class PaymentCard extends Component {
     
     return (
       <div className={`${type}`}>
-        <p className="amount">{amount}</p>
+        <p className="amount">{+amount/100}</p>
         <p className="dueDate">{dueDate}</p>
         <p className="status">{status}</p>
         <p className="direction">{paymentDirection}</p>

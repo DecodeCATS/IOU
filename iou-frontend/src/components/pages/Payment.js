@@ -24,30 +24,39 @@ class Payment extends Component {
   }
   
   renderPaymentCard(payment){
-    let contract = this.props.contracts.data.filter(contract => {
-      return payment.contractId === contract.id;
+    let contracts = this.props.contracts.data.filter(contract => {
+      // console.log(`Contract = ${JSON.stringify(contract)}`);
+      return +payment.contractId === +contract.id;
     });
     
-    let counterparty = this.props.connections.data.filter(user => {
-      if (contract.payerId === user.id) {
-        payment = {...payment, counterpartyDirection: "payer"};
-        return true;
-      }
-      else if (contract.payeeId === user.id) {
-        payment = {...payment, counterpartyDirection: "payee"};
-        return true;
-      }
-      return false;
+    let counterparties = this.props.connections.data.filter(user => {
+      //console.log(`User = ${JSON.stringify(user)}`);
+      let flag = false;
+      contracts.forEach(contract => {
+        // console.log(`Payer=${contract.payerId}`);
+        // console.log(`Payee=${contract.payeeId}`);
+        // console.log(`User=${user.id}`);
+        if (+contract.payerId === +user.id) {
+          payment = {...payment, counterpartyDirection: "payer"};
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          payment = {...payment, counterpartyDirection: "payee"};
+          flag = true;
+        }
+        // return false;
+      });
+      return flag;
     });
     
-    console.log(`Payment=${payment.paymentId}, contract=${contract.id}, counterparty=${counterparty.id}`);
+    console.log(`Payment=${JSON.stringify(payment)}, contract=${JSON.stringify(contracts)}, counterparty=${JSON.stringify(counterparties)}`);
     
     return (
       <div key={payment.paymentId} className="paymentCard">
         <PaymentCard
           payment={payment}
-          contract={contract.length > 0 ? contract[0]: null}
-          counterparty={counterparty.length > 0 ? counterparty[0]: null}
+          contract={contracts.length > 0 ? contracts[0]: null}
+          counterparty={counterparties.length > 0 ? counterparties[0]: null}
         />
       </div>
     );
