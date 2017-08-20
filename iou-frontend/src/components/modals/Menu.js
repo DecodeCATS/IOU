@@ -43,15 +43,28 @@ class Menu extends Component {
     }
 
     render() {
-        let {closeMenu, show, connections, notifications} = this.props;
+        let {closeMenu, show, connections, notifications, contracts, payments} = this.props;
         const { isLoggedIn } = this.props.user;
         // console.log(`User: ${JSON.stringify(this.props.user)}`);
         let connectionCount = 0, notificationCount = 0, contractCount=0, paymentCount=0;
         if (connections.data) {
             connectionCount = connections.data.length;
         }
+        
         if (notifications.data) {
             notificationCount = notifications.data.length;
+        }
+        
+        if (contracts.data) {
+            contracts.data.forEach(contract => {
+                if (contract.id === contract.parentId && contract.status === "active") {
+                    contractCount += 1;
+                }
+            });
+        }
+        
+        if (payments.data) {
+            paymentCount = payments.data.length;
         }
         
         return (
@@ -97,13 +110,15 @@ class Menu extends Component {
 
                     {isLoggedIn ?
                         <NavLink to="/contracts" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Contracts
+                            <p className="menuItemName">Contracts</p>
+                            <p className="menuItemInfo">{contractCount}</p>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Payments
+                            <p className="menuItemName">Payments</p>
+                            <p className="menuItemInfo">{paymentCount}</p>
                         </NavLink>
                         : null}
 

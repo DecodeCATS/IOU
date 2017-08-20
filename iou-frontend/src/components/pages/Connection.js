@@ -163,6 +163,8 @@ class Connection extends Component {
             </form>
           </div>
         </div>
+        <div className="resultContainer">
+        </div>
       </div>
     );
  } 

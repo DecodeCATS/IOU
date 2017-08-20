@@ -74,10 +74,18 @@ class Header extends Component {
             user={this.props.user}
             connections={this.props.connections}
             notifications={this.props.notifications}
+            contracts={this.props.contracts}
+            payments={this.props.payments}
           />
       </div>
     );
   }
 }
 
-export default withRouter(connect(state => ({ user: state.user, connections: state.connections, notifications: state.notifications }))(Header));
+export default withRouter(connect(state => ({ 
+  user: state.user, 
+  connections: state.connections, 
+  notifications: state.notifications,
+  contracts: state.contracts,
+  payments: state.payments
+}))(Header));
