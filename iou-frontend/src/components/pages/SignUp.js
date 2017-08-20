@@ -103,10 +103,7 @@ class SignUp extends Component {
             if (username && password && email && firstName && lastName) {
                 auth.signup(username, email, password, firstName, lastName, description)
                 .then(res => this.props.history.push('/login'))
-                .catch(err => {
-                    let strErr = err.toString();
-                    this.setState({error: strErr});
-                });
+                .catch(err => {this.setState({error: err})});
             }
             else {
                 this.setState({error: `Field required: username, password, email, firstName, lastName`});
@@ -180,12 +177,12 @@ class SignUp extends Component {
                         <p>Description:</p>
                         <textarea ref="description" placeholder="Description optional"
                             onChange={this.handleDescriptionInput}
-                            value={description!==null? description : ""}
+                            value={description}
                         ></textarea>
                         <p className="limitCounter">{`${description? description.length : 0}/${MAX_DESCRIPTION_LENGTH}`}</p>
                     </div>
                     <div className="signupItem button">
-                        <button disabled={(!email || !firstName || !lastName) || (isUpdateProfile ? false : (!username || !password))}>{buttonText}</button>
+                        <button type="submit" disabled={(!email || !firstName || !lastName) || (isUpdateProfile ? false : (!username || !password))}>{buttonText}</button>
                     </div>
                 </form>
             </div>

@@ -87,10 +87,6 @@
 }
 
 .signupForm {
-  width: 90vw;
-}
-
-.signupForm {
   display: grid;
   justify-content: stretch;
   grid-gap: .5rem;
@@ -103,6 +99,7 @@
     "email"
     "description"
     "button";
+  width: 90vw;
 }
 
 @media only screen and (min-width: 600px)  {

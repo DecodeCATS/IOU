@@ -198,6 +198,16 @@ var auth = {
             throw new Error(`Error from server: ${err.message}`);
         });
     },
+    
+    searchConnections(username, email, firstName, lastName) {
+        return api.searchConnections(localStorage.token, username, email, firstName, lastName)
+        .then(res=> {
+            return res.body;
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
     // =======================================================================
     // *** Contract API calls ***
     // =======================================================================

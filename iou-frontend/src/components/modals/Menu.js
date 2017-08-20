@@ -46,7 +46,7 @@ class Menu extends Component {
         let {closeMenu, show, connections, notifications} = this.props;
         const { isLoggedIn } = this.props.user;
         // console.log(`User: ${JSON.stringify(this.props.user)}`);
-        let connectionCount = 0, notificationCount = 0;
+        let connectionCount = 0, notificationCount = 0, contractCount=0, paymentCount=0;
         if (connections.data) {
             connectionCount = connections.data.length;
         }

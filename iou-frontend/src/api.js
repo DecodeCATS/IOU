@@ -122,6 +122,13 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send({contractId})
     )
+    
+    searchConnections = (token, username, email, firstName, lastName) => (
+        superagent
+            .post(`${API_HOST}/connections/search`)
+            .set('Authorization', `token ${token}`)
+            .send({username, email, firstName, lastName})
+    )
     // =======================================================================
     // *** Payment API calls ***
     // =======================================================================

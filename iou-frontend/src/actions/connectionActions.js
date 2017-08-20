@@ -88,3 +88,17 @@ export function deleteBlacklist (connectionUserId) {
     });
   };
 }
+
+// export function searchConnections (username, email, firstName, lastName) {
+//   return function (dispatch) {
+//     
+//     dispatch({type: "DELETE_BLACKLIST", status: "pending", error: ""});
+//     Auth.searchConnections(username, email, firstName, lastName)
+//     .then(res => {
+//       dispatch({type: "DELETE_BLACKLIST", status: "success", error: "", value: connectionUserId});
+//     })
+//     .catch(err => {
+//       dispatch({type: "DELETE_BLACKLIST", status: "error", error: err});
+//     });
+//   };
+// }

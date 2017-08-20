@@ -1,16 +1,20 @@
 .connectionContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
   min-height: 80vh;
   min-width: 100vw;
 }
 
+.connectionSubContainer, .searchContainer {
+  text-align: center;
+  width: 45%;
+}
+
 .connectionSubContainer {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  width: 45%;
 }
 
 .connectionCards {
@@ -44,4 +48,67 @@
 
 .connectionCards .connectionButtons button:hover {
   background-color: deepskyblue;
+}
+
+.searchItem.username {grid-area: username;}
+.searchItem.firstName {grid-area: firstName;}
+.searchItem.lastName {grid-area: lastName;}
+.searchItem.email {grid-area: email;}
+.searchItem.button {grid-area: button;}
+
+.searchItem div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  
+  font-size: 1.2rem;
+}
+
+.searchItem p {
+  display: block;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1.2rem;
+  line-height: 100%;
+  padding: 5px;
+}
+
+.searchItem input {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1.2rem;
+  /*height: 100%;*/
+  padding: 5px;
+  width: 100%;
+}
+
+.searchItem.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchItem.button button{
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  color: darkblue;
+  width: 50%;
+}
+
+.searchItem.button button:disabled{
+  color: #ffcccc;
+}
+
+.searchContainer {
+  display: grid;
+  grid-gap: .5rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "username"
+  "firstName"
+  "lastName"
+  "email"
+  "button";
 }

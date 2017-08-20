@@ -5,10 +5,27 @@ import {connect} from 'react-redux';
 import * as Connections from '../../actions/connectionActions';
 
 import ConnectionCard from '../elements/ConnectionCard';
+import auth from '../../auth';
 import './Connection.css';
 
 //This is a smart component. It is aware of the store
 class Connection extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: "",
+      username: "",
+      firstName: "",
+      lastName: "",
+      searchResult: [],
+      email:""
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handleFirstNameInput = this.handleFirstNameInput.bind(this);
+    this.handleLastNameInput = this.handleLastNameInput.bind(this);
+  }
   componentWillMount() {
     if (this.props.user.isLoggedIn) {
       // console.log("Fetching connections");
@@ -34,10 +51,71 @@ class Connection extends Component {
     }
   }
   
+  // =======================================================================
+  // *** Event handler for form Info ***
+  // =======================================================================
+  handleUsernameInput(e) {
+    if (e.target.value !== this.state.username) {
+        this.setState({
+            username: e.target.value
+        });
+    }
+  }
+  
+  handleFirstNameInput(e) {
+      if (e.target.value !== this.state.firstName) {
+          this.setState({
+              firstName: e.target.value
+          });
+      }
+  }
+
+  handleLastNameInput(e) {
+      if (e.target.value !== this.state.lastName) {
+          this.setState({
+              lastName: e.target.value
+          });
+      }
+  }
+
+  handleEmailInput(e) {
+      if (e.target.value !== this.state.email) {
+          this.setState({
+              email: e.target.value
+          });
+      }
+  }
+  
+  handleSubmit(e) {
+      e.preventDefault();
+      if(this.props.user.isLoggedIn) {
+          let {username, email, firstName, lastName} = this.state;
+          console.log(this.state);
+          if (username || email || firstName || lastName) {
+              auth.searchConnections(username, email, firstName, lastName)
+              .then(res => {
+                console.log(res);
+                this.setState({searchResult: res});
+              })
+              .catch(err => {this.setState({error: err})});
+          }
+          else {
+              this.setState({error: `Field required: username, password, email, firstName, lastName`});
+          }
+      }
+      else {
+          this.setState({error: `You're already logged in!`});
+      }
+  }
+
+  // =======================================================================
+  // *** Render! ***
+  // =======================================================================
  render() {
   // console.log(`Connections!!!!!=${JSON.stringify(this.props.connections)}`);
    let {data} = this.props.connections;
-   let {blacklistData} = this.props.connections;
+  // let {blacklistData} = this.props.connections;
+  let {username, firstName, lastName, email} = this.state;
     return (
       <div className="connectionContainer">
         <div className="connectionSubContainer">
@@ -59,21 +137,30 @@ class Connection extends Component {
             }
           </div>
         </div>
-        <div className="connectionSubContainer">
-          <h2>Muted Notifications</h2>
+        <div className="searchContainer">
+          <h2>Search Connections</h2>
           <div className="connectionCards">
-            {
-              blacklistData.map(blacklist =>
-                <div key={blacklist.id} className="connectionCard">
-                  <ConnectionCard
-                    user={blacklist}
-                  />
-                  <div className="connectionButtons">
-                    <button onClick={this.deleteBlacklist.bind(this,blacklist.id)}>UnMute</button>
-                  </div>
-                </div>
-              )
-            }
+            <form className="searchUserForm" onSubmit={this.handleSubmit}>
+              <div className="searchItem username">
+                  <p>UserName:</p>
+                  <input ref="username" type="text" placeholder="Username" onChange={this.handleUsernameInput} value={username}></input>
+              </div>
+              <div className="searchItem firstName">
+                  <p>UserName:</p>
+                  <input ref="firstName" type="text" placeholder="First Name" onChange={this.handleFirstNameInput} value={firstName}></input>
+              </div>
+              <div className="searchItem lastName">
+                  <p>UserName:</p>
+                  <input ref="lastName" type="text" placeholder="Last Name" onChange={this.handleLastNameInput} value={lastName}></input>
+              </div>
+              <div className="searchItem email">
+                  <p>UserName:</p>
+                  <input ref="email" type="text" placeholder="Email Address" onChange={this.handleEmailInput} value={email}></input>
+              </div>
+              <div className="searchItem button">
+                  <button disabled={(!email && !firstName && !lastName && !username)}>Search!</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
