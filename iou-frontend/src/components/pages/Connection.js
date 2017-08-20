@@ -45,10 +45,14 @@ class Connection extends Component {
   }
   
   
-  deleteBlacklist = (blacklistUserId) => {
-    if (this.props.user.isLoggedIn && blacklistUserId) {
-      this.props.dispatch(Connections.deleteBlacklist(blacklistUserId));
-    }
+  // deleteBlacklist = (blacklistUserId) => {
+  //   if (this.props.user.isLoggedIn && blacklistUserId) {
+  //     this.props.dispatch(Connections.deleteBlacklist(blacklistUserId));
+  //   }
+  // }
+  
+  addConnection = (connectionUserId) => {
+    this.props.dispatch(Connections.addConnection(connectionUserId));
   }
   
   // =======================================================================
@@ -181,6 +185,9 @@ class Connection extends Component {
                     <ConnectionCard
                       user={result}
                     />
+                    <div className="resultItem button">
+                      <button onClick={this.addConnection.bind(this,result.id)}>Add</button>
+                    </div>
                   </div>
                 );
               })

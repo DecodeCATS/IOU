@@ -27,11 +27,11 @@ class Login extends Component {
         let {email: {value: email}, password: {value: password}} = this.refs;
         if (this.props.user.isLoggedIn) {
             this.setState({error: "You're already logged in!"});
-            this.props.history.push('/');
+            // this.props.history.push('/');
         }
         else if (email && password) {
             this.props.dispatch(User.loginUser(email, password));
-            this.props.history.push('/');
+            // this.props.history.push('/');
         }
         else {
             this.setState({error: "Please enter an email and password"});

@@ -59,11 +59,11 @@ class Api {
             .send({connectionUserId})
     )
     
-    addConnection = (token, connectionUserId) => (
+    addConnection = (token, userId) => (
         superagent
-            .post(`${API_HOST}/connections/`)
+            .post(`${API_HOST}/connections/accept`)
             .set('Authorization', `token ${token}`)
-            .send({connectionUserId})
+            .send({userId})
     )
     
     //Delete a user from the users connections

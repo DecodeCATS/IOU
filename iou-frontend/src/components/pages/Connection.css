@@ -106,12 +106,12 @@
   width: 100%;
 }
 
-.searchItem.button {
+.searchItem.button, .resultItem.button {
   display: flex;
   justify-content: flex-end;
 }
 
-.searchItem.button button{
+.searchItem.button button, .resultItem.button button{
   background-color: transparent;
   border: none;
   font-size: 1.5rem;
@@ -121,7 +121,7 @@
   width: 50%;
 }
 
-.searchItem.button button:disabled{
+.searchItem.button button:disabled, .resultItem.button button:disabled{
   color: #ffcccc;
 }
 

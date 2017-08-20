@@ -2,8 +2,27 @@ import Auth from '../auth';
 
 export function acceptConnection (connectionUserId) {
   return function (dispatch) {
+    dispatch({type: "ACCEPT_CONNECTION", status: "pending", error: ""});
+    Auth.addConnection(connectionUserId)
+    .then(res => {
+      dispatch({type: "ACCEPT_CONNECTION", status: "success", error: "", value: connectionUserId});
+    })
+    .catch(err => {
+      dispatch({type: "DELETE_CONNECTION", status: "error", error: err});
+    });
+  };
+}
+
+export function addConnection (connectionUserId) {
+  return function (dispatch) {
     dispatch({type: "ADD_CONNECTION", status: "pending", error: ""});
     Auth.addConnection(connectionUserId)
+    .then(res => {
+      dispatch({type: "ADD_CONNECTION", status: "success", error: "", value: res});
+    })
+    .catch(err => {
+      dispatch({type: "ADD_CONNECTION", status: "error", error: err});
+    });
   };
 }
 
