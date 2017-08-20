@@ -74,11 +74,11 @@ class Api {
             .send({userId})
     )
 
-    getBlacklist = (token) => (
-        superagent
-            .get(`${API_HOST}/connections/blacklist`)
-            .set('Authorization', `token ${token}`)
-    )
+    // getBlacklist = (token) => (
+    //     superagent
+    //         .get(`${API_HOST}/connections/blacklist`)
+    //         .set('Authorization', `token ${token}`)
+    // )
 
     addBlacklist = (token, userId) => (
         superagent
@@ -164,7 +164,15 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send({paymentId})
     )
-    
+
+    // =======================================================================
+    // *** Organisation API calls ***
+    // =======================================================================
+    getOrganisations = (token) => (
+        superagent
+            .get(`${API_HOST}/connections/organisations`)
+            .set('Authorization', `token ${token}`)
+    )
     // =======================================================================
     // *** Currency API calls ***
     // =======================================================================

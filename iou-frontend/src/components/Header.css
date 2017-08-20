@@ -49,3 +49,15 @@
 .buttons button:hover {
   background-color: yellow;
 }
+
+.buttons .success {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.buttons .pending {
+  background-color: #ffdb99; /* 80% orange */
+}
+
+.buttons .error {
+  background-color: #ffcccc;
+}

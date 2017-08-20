@@ -7,6 +7,7 @@ import * as Connections from '../actions/connectionActions';
 import * as Notifications from '../actions/notificationActions';
 import * as Contracts from '../actions/contractActions';
 import * as Payments from '../actions/paymentActions';
+import * as Organisations from '../actions/organisationActions';
 import * as Currencies from '../actions/currencyActions';
 
 import Header from './Header';
@@ -49,9 +50,9 @@ class App extends Component {
           this.props.dispatch(Connections.fetchConnections());
         }
         // If blacklist hasn't been refreshed and it's not already fetching, fetch connections
-        if (this.props.connections.blacklistUpdated=== null && (this.props.connections.blacklistStatus!=="pending" && this.props.connections.blacklistStatus!=="error")) {
-          this.props.dispatch(Connections.fetchBlacklist());
-        }      
+        // if (this.props.connections.blacklistUpdated=== null && (this.props.connections.blacklistStatus!=="pending" && this.props.connections.blacklistStatus!=="error")) {
+        //   this.props.dispatch(Connections.fetchBlacklist());
+        // }      
         // If notifications haven't been refreshed and it's not already fetching, fetch connections
         if (this.props.notifications.dataUpdated=== null && (this.props.notifications.status!=="pending" && this.props.notifications.status!=="error")) {
           this.props.dispatch(Notifications.fetchNotifications());
@@ -63,6 +64,9 @@ class App extends Component {
         // If payments haven't been refreshed and it's not already fetching, fetch connections
         if (this.props.payments.dataUpdated=== null && (this.props.payments.status!=="pending" && this.props.payments.status!=="error")) {
             this.props.dispatch(Payments.fetchActivePayments());
+        }
+        if (this.props.organisations.dataUpdated=== null && (this.props.organisations.status!=="pending" && this.props.organisations.status!=="error")) {
+            this.props.dispatch(Organisations.fetchOrganisations());
         }
         if (this.props.currencies.dataUpdated=== null && (this.props.currencies.status!=="pending" && this.props.currencies.status!=="error")) {
             this.props.dispatch(Currencies.fetchCurrencies());
@@ -89,5 +93,6 @@ export default withRouter(connect(state => ({
   notifications: state.notifications,
   contracts: state.contracts,
   payments: state.payments,
+  organisations: state.organisations,
   currencies: state.currencies
 }))(App));

@@ -6,10 +6,10 @@ const defaultState = {
   error: "",
   dataUpdated: null,
   data: [],
-  blacklistStatus: "",
-  blacklistError: "",
-  blacklistUpdated: null,
-  blacklistData: [],
+  // blacklistStatus: "",
+  // blacklistError: "",
+  // blacklistUpdated: null,
+  // blacklistData: [],
   searchUpdated: null,
   searchData: []
 };
@@ -68,36 +68,36 @@ const connectionReducer = (state=defaultState, action) => {
       break;
     }
     
-    case "FETCH_BLACKLIST": {
-      if (action.status === "success") {
-        state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
-        // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
-      }
-      state = {...state, blacklistStatus: action.status, blacklistError: action.error};
-      break;
-    }
+    // case "FETCH_BLACKLIST": {
+    //   if (action.status === "success") {
+    //     state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
+    //     // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
+    //   }
+    //   state = {...state, blacklistStatus: action.status, blacklistError: action.error};
+    //   break;
+    // }
     
     case "ADD_BLACKLIST": {
       if (action.status === "success") {
-        state = {...state, blacklistData: action.value.blacklist, blacklistUpdated: Date()};
+        state = {...state, data: action.value.blacklist, dataUpdated: Date()};
         // console.log(`BlacklistData=${JSON.stringify(state.blacklistData)}`);
       }
-      state = {...state, blacklistStatus: action.status, blacklistError: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     
     case "DELETE_BLACKLIST": {
       //Filter returns a new array object
       if (action.status === 'success') {
-        let remainingData = state.blacklistData.filter(user => {
+        let remainingData = state.data.filter(user => {
           //If it's not the connection we want to delete, return true
           return user.id !== action.value;
         });
         //Update the connections data and the update date
-        state = {...state, blacklistData: remainingData, blacklistUpdated: Date()};
+        state = {...state, data: remainingData, dataUpdated: Date()};
       }
       //Update the rest of the info
-      state = {...state, blacklistStatus: action.status, blacklistError: action.error};
+      state = {...state, status: action.status, error: action.error};
       break;
     }
     

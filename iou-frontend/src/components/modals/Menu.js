@@ -57,7 +57,8 @@ class Menu extends Component {
         
         if (contracts.data) {
             contracts.data.forEach(contract => {
-                if (contract.id === contract.parentId && contract.status === "active") {
+                if ((contract.id === contract.parentId && contract.status === "active")
+                ||(contract.parentId === null && contract.status === "pending")) {
                     contractCount += 1;
                 }
             });

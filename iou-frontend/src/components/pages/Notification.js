@@ -55,11 +55,34 @@ class Notification extends Component {
     );
   }
   
+  renderBlackList = () => {
+    // console.log("BLACKLIST!!");
+    // console.log(this.props.connections);
+    let blacklistData = this.props.connections.data.filter(connection=>{
+      return connection.isBlacklisted;
+    });
+    
+    return (
+      blacklistData.map(blacklist => {
+        return (
+          <div key={blacklist.id} className="connectionCard">
+            <ConnectionCard
+              user={blacklist}
+            />
+            <div className="connectionButtons">
+              <button onClick={this.deleteBlacklist.bind(this,blacklist.id)}>UnMute</button>
+            </div>
+          </div>
+        );
+      })
+    );
+  }
+  
   render() {
     // console.log(`Notifications!!!!!=${JSON.stringify(this.props.notifications)}`);
     // console.log(`Connections!!!!!=${JSON.stringify(this.props.connections)}`);
     let {data} = this.props.notifications;
-    let {blacklistData} = this.props.connections;
+    // let {blacklistData} = this.props.connections;
     return (
       <div className="notificationContainer">
         <div className="notificationSubContainer">
@@ -73,18 +96,7 @@ class Notification extends Component {
         <div className="blacklistSubContainer">
           <h2>Muted Connections</h2>
           <div className="notificationCards">
-            {
-              blacklistData.map(blacklist =>
-                <div key={blacklist.id} className="connectionCard">
-                  <ConnectionCard
-                    user={blacklist}
-                  />
-                  <div className="connectionButtons">
-                    <button onClick={this.deleteBlacklist.bind(this,blacklist.id)}>UnMute</button>
-                  </div>
-                </div>
-              )
-            }
+            {this.renderBlackList()}
           </div>
         </div>
       </div>

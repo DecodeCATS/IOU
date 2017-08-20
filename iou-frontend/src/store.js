@@ -7,6 +7,7 @@ import connectionReducer from './reducers/connectionReducer';
 import contractReducer from './reducers/contractReducer';
 import currencyReducer from './reducers/currencyReducer';
 import notificationReducer from './reducers/notificationReducer';
+import organisationReducer from './reducers/organisationReducer';
 import paymentReducer from './reducers/paymentReducer';
 import userReducer from './reducers/userReducer';
 
@@ -16,6 +17,7 @@ const reducers = combineReducers({
   notifications: notificationReducer,
   payments: paymentReducer,
   user: userReducer,
+  organisations: organisationReducer,
   currencies: currencyReducer
 });
 

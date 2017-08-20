@@ -23,7 +23,7 @@ const contractReducer = (state=defaultState, action) => {
 
         case "ADD_CONTRACT": {
             if (action.status === "success") {
-                state = {...state, data: action.value.contract, dataUpdated: Date()};
+                state = {...state, data: action.value.contracts, dataUpdated: Date()};
             }
             state = {...state, status: action.status, statusType: action.type, error: action.error};
             break;

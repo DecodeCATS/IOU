@@ -13,6 +13,11 @@ class CreateContract extends Component {
     // let month = 
     // let monthStr = 
     // let tomorrowStr = [''+tomorrow.getFullYear(),''+(tomorrow.getMonth()+1),''+(tomorrow.getDate()+1)].join('-');
+    this.defaultProps = {
+      counterpartyUserName: 0
+    };
+    
+    // let counterpartyUser
     this.state={
       title: "",
       description: "",
@@ -89,7 +94,7 @@ class CreateContract extends Component {
     if(this.props.user.isLoggedIn && this.props.user.data.id > 0) {
       let payerId = 0;
       let payeeId = 0;
-      if (this.state.userPaySide == "payer") {
+      if (this.state.userPaySide === "payer") {
         payerId = this.props.user.data.id;
         payeeId = this.state.counterpartyUserId;
       }

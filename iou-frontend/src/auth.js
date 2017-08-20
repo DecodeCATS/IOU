@@ -161,23 +161,23 @@ var auth = {
         });
     },
 
-    getBlacklist() {
-        // console.log("Getting Connections!!!");
-        // localStorage.token = 'Test!'; //For testing
-        if(localStorage.token) {
-            return api.getBlacklist(localStorage.token)
-            .then(res => {
-                // console.log(`Success, Blacklist=`,res.body);
-                return res.body; //Fix to send Connections
-            })
-            .catch(err => {
-                throw new Error(`Error from server: ${err.message}`);
-            });
-        }
-        else {
-            throw new Error(`Not logged in!`);
-        }
-    },
+    // getBlacklist() {
+    //     // console.log("Getting Connections!!!");
+    //     // localStorage.token = 'Test!'; //For testing
+    //     if(localStorage.token) {
+    //         return api.getBlacklist(localStorage.token)
+    //         .then(res => {
+    //             // console.log(`Success, Blacklist=`,res.body);
+    //             return res.body; //Fix to send Connections
+    //         })
+    //         .catch(err => {
+    //             throw new Error(`Error from server: ${err.message}`);
+    //         });
+    //     }
+    //     else {
+    //         throw new Error(`Not logged in!`);
+    //     }
+    // },
     
     addBlacklist(connectionUserId) {
         return api.addBlacklist(localStorage.token, connectionUserId)
@@ -331,6 +331,28 @@ var auth = {
                 throw new Error(`Error from server: ${err.message}`);
             });
     },
+    
+    // =======================================================================
+    // *** Organisation API calls ***
+    // =======================================================================
+    getOrganisations() {
+        // console.log("Getting Connections!!!");
+        // localStorage.token = 'Test!'; //For testing
+        if(localStorage.token) {
+            return api.getOrganisations(localStorage.token)
+            .then(res => {
+                // console.log(`Success, Connections=`,res.body);
+                return res.body; //Fix to send Connections
+            })
+            .catch(err => {
+                throw new Error(`Error from server: ${err.message}`);
+            });
+        }
+        else {
+            throw new Error(`Not logged in!`);
+        }
+    },
+    
     // =======================================================================
     // *** Currency API calls ***
     // =======================================================================
