@@ -325,7 +325,7 @@ var auth = {
     // *** Currency API calls ***
     // =======================================================================
     getCurrencies() {
-        return api.getCurrencies()
+        return api.getCurrencies(localStorage.token)
         .then(res => {
             // console.log(`Success, Connections=`,res.body);
             return res.body; //Fix to send Connections

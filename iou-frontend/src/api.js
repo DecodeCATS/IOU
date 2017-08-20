@@ -99,7 +99,7 @@ class Api {
     //Fetch all the contracts for the logged user
     getContracts = (token) => (
         superagent
-            .get(`${API_HOST}/contracts`)
+            .get(`${API_HOST}/contracts/all`)
             .set('Authorization', `token ${token}`)
     )
 
@@ -161,9 +161,10 @@ class Api {
     // =======================================================================
     // *** Currency API calls ***
     // =======================================================================
-    getCurrencies = () => (
+    getCurrencies = (token) => (
         superagent
             .get(`${API_HOST}/currencies`)
+            .set('Authorization', `token ${token}`)
     )
 }
 

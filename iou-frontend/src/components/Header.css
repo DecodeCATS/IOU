@@ -20,3 +20,13 @@
   transition: 0.5s;
   cursor: pointer;
 }
+
+.menu__avatar.menu-icon {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background: green;
+  line-height: 60px;
+  text-align: center;
+  margin: 0;
+}

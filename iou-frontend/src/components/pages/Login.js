@@ -31,7 +31,7 @@ class Login extends Component {
         }
         else if (email && password) {
             this.props.dispatch(User.loginUser(email, password));
-            // this.props.history.push('/');
+            this.props.history.push('/');
         }
         else {
             this.setState({error: "Please enter an email and password"});

@@ -35,29 +35,39 @@ class App extends Component {
         // console.log("Fetching connections");
         this.props.dispatch(User.fetchUser());
       }
-      // If connection hasn't been refreshed and it's not already fetching, fetch connections
-      if (this.props.connections.dataUpdated && (this.props.connections.status!=="pending" && this.props.connections.status!=="error")) {
-        this.props.dispatch(Connections.fetchConnections());
-      }
-      // If blacklist hasn't been refreshed and it's not already fetching, fetch connections
-      if (this.props.connections.blacklistUpdated && (this.props.connections.blacklistStatus!=="pending" && this.props.connections.blacklistStatus!=="error")) {
-        this.props.dispatch(Connections.fetchBlacklist());
-      }      
-      // If notifications haven't been refreshed and it's not already fetching, fetch connections
-      if (this.props.notifications.dataUpdated && (this.props.notifications.status!=="pending" && this.props.notifications.status!=="error")) {
-        this.props.dispatch(Notifications.fetchNotifications());
-      }
-      // If contracts haven't been refreshed and it's not already fetching, fetch connections
-      if (this.props.contracts.dataUpdated && (this.props.contracts.status!=="pending" && this.props.contracts.status!=="error")) {
-          this.props.dispatch(Contracts.fetchContracts());
-      }
-      // If payments haven't been refreshed and it's not already fetching, fetch connections
-      if (this.props.payments.dataUpdated && (this.props.payments.status!=="pending" && this.props.payments.status!=="error")) {
-          this.props.dispatch(Payments.fetchActivePayments());
-      }
-      if (this.props.currencies.dataUpdated && (this.props.currencies.status!=="pending" && this.props.currencies.status!=="error")) {
-          this.props.dispatch(Currencies.fetchCurrencies());
-      }
+      
+      // Console logs
+      // console.log("outputting ifs!")
+      // console.log(this.props.connections.dataUpdated=== null && (this.props.connections.status!=="pending" && this.props.connections.status!=="error"));
+      // console.log(this.props.connections.blacklistUpdated=== null && (this.props.connections.blacklistStatus!=="pending" && this.props.connections.blacklistStatus!=="error"));
+      // console.log(this.props.notifications.dataUpdated=== null && (this.props.notifications.status!=="pending" && this.props.notifications.status!=="error"));
+      // console.log(this.props.contracts.dataUpdated=== null && (this.props.contracts.status!=="pending" && this.props.contracts.status!=="error"));
+
+      // if (this.props.user.data.userId > 0) {
+        // If connection hasn't been refreshed and it's not already fetching, fetch connections
+        if (this.props.connections.dataUpdated=== null && (this.props.connections.status!=="pending" && this.props.connections.status!=="error")) {
+          this.props.dispatch(Connections.fetchConnections());
+        }
+        // If blacklist hasn't been refreshed and it's not already fetching, fetch connections
+        if (this.props.connections.blacklistUpdated=== null && (this.props.connections.blacklistStatus!=="pending" && this.props.connections.blacklistStatus!=="error")) {
+          this.props.dispatch(Connections.fetchBlacklist());
+        }      
+        // If notifications haven't been refreshed and it's not already fetching, fetch connections
+        if (this.props.notifications.dataUpdated=== null && (this.props.notifications.status!=="pending" && this.props.notifications.status!=="error")) {
+          this.props.dispatch(Notifications.fetchNotifications());
+        }
+        // If contracts haven't been refreshed and it's not already fetching, fetch connections
+        if (this.props.contracts.dataUpdated=== null && (this.props.contracts.status!=="pending" && this.props.contracts.status!=="error")) {
+            this.props.dispatch(Contracts.fetchContracts());
+        }
+        // If payments haven't been refreshed and it's not already fetching, fetch connections
+        if (this.props.payments.dataUpdated=== null && (this.props.payments.status!=="pending" && this.props.payments.status!=="error")) {
+            this.props.dispatch(Payments.fetchActivePayments());
+        }
+        if (this.props.currencies.dataUpdated=== null && (this.props.currencies.status!=="pending" && this.props.currencies.status!=="error")) {
+            this.props.dispatch(Currencies.fetchCurrencies());
+        }
+      // }
     }
   }
   

@@ -14,7 +14,7 @@
 
 .loginContainer {
   display: grid;
-  justify-content: stretch;
+  justify-content: center;
   grid-gap: .5rem;
   grid-template-rows: max-content;
   grid-template-areas:
@@ -70,6 +70,33 @@
       "error error"
       "email password"
       ". button";
+  }
+  
+  .loginItem p {
+    font-size: 1.2rem;
+  }
+  
+  .loginItem input {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+  .loginContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "error error"
+      "email password"
+      ". button";
+  }
+  
+  .loginItem p {
+    font-size: 1.5rem;
+  }
+  
+  .loginItem input {
+    font-size: 2rem;
   }
 }
 

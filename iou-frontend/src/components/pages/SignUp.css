@@ -117,6 +117,18 @@
     "description description"
     "... button";
   }
+  
+  .signupItem p {
+    font-size: 1.2rem;
+  }
+  
+  .signupItem input, .signupItem textarea {
+    font-size: 1.5rem;
+  }
+  
+  .signupItem.button button {
+    font-size: 2rem;
+  }
 }
 
 
@@ -129,6 +141,18 @@
       "password firstName lastName"
       "description description description"
       "... ... button";
+  }
+  
+  .signupItem p {
+    font-size: 1.5rem;
+  }
+  
+  .signupItem input, .signupItem textarea {
+    font-size: 2rem;
+  }
+  
+  .signupItem.button button {
+    font-size: 2.5rem;
   }
 }
 

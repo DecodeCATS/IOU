@@ -103,7 +103,10 @@ class SignUp extends Component {
             if (username && password && email && firstName && lastName) {
                 auth.signup(username, email, password, firstName, lastName, description)
                 .then(res => this.props.history.push('/login'))
-                .catch(err => {this.setState({error: err})});
+                .catch(err => {
+                    let strErr = err.toString();
+                    this.setState({error: strErr});
+                });
             }
             else {
                 this.setState({error: `Field required: username, password, email, firstName, lastName`});
@@ -116,6 +119,19 @@ class SignUp extends Component {
 
     render() {
         let {username, password, email, firstName, lastName, description, error, isUpdateProfile, buttonText} = this.state;
+        
+        // let user = {
+        //     error: '',
+        //     username: '',
+        //     password: '',
+        //     email: '',
+        //     firstName: '',
+        //     lastName: '',
+        //     description: '',
+        //     isUpdateProfile: false,
+        //     buttonText: 'SignUp'
+        // };
+        
         return (
             <div className="signup">
                 <h2 className="error">{error}</h2>
@@ -123,50 +139,50 @@ class SignUp extends Component {
                     <div className="signupItem username">
                         <p>UserName:</p>
                         <input ref="username" type="text" placeholder="MyUsername" disabled={isUpdateProfile}
-                            className={`${username.length > 0 ? "inputGood":"inputBad"}`}
-                            onInput={this.handleUsernameInput}
+                            className={`${username ? (username.length > 0 ? "inputGood":"inputBad"): "inputBad"}`}
+                            onChange={this.handleUsernameInput}
                             value={username}
                         ></input>
                     </div>
                     <div className="signupItem password">
                         <p>Password:</p>
                         <input ref="password" type="password" disabled={isUpdateProfile}
-                            className={`${password.length > 0 ? "inputGood":"inputBad"}`}
-                            onInput={this.handlePasswordInput}
+                            className={`${password? (password.length > 0 ? "inputGood":"inputBad"):"inputBad"}`}
+                            onChange={this.handlePasswordInput}
                             value={password}
                         ></input>
                     </div>
                     <div className="signupItem email">
                         <p>Email:</p>
                         <input ref="email" type="text" placeholder="email@address.com"
-                            className={`${email.length > 0 ? "inputGood":"inputBad"}`}
-                            onInput={this.handleEmailInput}
+                            className={`${email? (email.length > 0 ? "inputGood":"inputBad") : "inputBad"}`}
+                            onChange={this.handleEmailInput}
                             value={email}
                         ></input>
                     </div>
                     <div className="signupItem firstName">
                         <p>First Name:</p>
                         <input ref="firstName" type="text"
-                            className={`${firstName.length > 0 ? "inputGood":"inputBad"}`}
-                            onInput={this.handleFirstNameInput}
+                            className={`${firstName? (firstName.length > 0 ? "inputGood":"inputBad") : "inputBad"}`}
+                            onChange={this.handleFirstNameInput}
                             value={firstName}
                         ></input>
                     </div>
                     <div className="signupItem lastName">
                         <p>Last Name:</p>
                         <input ref="lastName" type="text"
-                            className={`${lastName.length > 0 ? "inputGood":"inputBad"}`}
-                            onInput={this.handleLastNameInput}
+                            className={`${lastName? (lastName.length > 0 ? "inputGood": "inputBad") : "inputBad"}`}
+                            onChange={this.handleLastNameInput}
                             value={lastName}
                         ></input>
                     </div>
                     <div className="signupItem description">
                         <p>Description:</p>
                         <textarea ref="description" placeholder="Description optional"
-                            onInput={this.handleDescriptionInput}
-                            value={description}
+                            onChange={this.handleDescriptionInput}
+                            value={description!==null? description : ""}
                         ></textarea>
-                        <p className="limitCounter">{`${description.length}/${MAX_DESCRIPTION_LENGTH}`}</p>
+                        <p className="limitCounter">{`${description? description.length : 0}/${MAX_DESCRIPTION_LENGTH}`}</p>
                     </div>
                     <div className="signupItem button">
                         <button disabled={(!email || !firstName || !lastName) || (isUpdateProfile ? false : (!username || !password))}>{buttonText}</button>

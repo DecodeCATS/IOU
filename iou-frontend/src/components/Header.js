@@ -22,6 +22,31 @@ class Header extends Component {
     this.props.dispatch(User.logoutUser());
   }
   
+  renderAvatar = () => {
+    let {isMenuOpen} = this.state;
+    // console.log(this.props.user.isLoggedIn);
+    if(this.props.user.isLoggedIn) {
+      if (this.props.user.data.avatarUrl) {
+        return (
+          <img src={this.props.user.data.avatarUrl} alt="profile-pic" className="menu__avatar menu-icon" onClick={() => this.setState({isMenuOpen: !isMenuOpen})}/>
+        );
+      }
+      else {
+        return (
+          <i className="fa fa-id-card fa-5x menu-icon"
+               onClick={() => this.setState({isMenuOpen: !isMenuOpen})}
+          />
+        );
+      }
+    } else {
+      return (
+        <i className="fa fa-user-circle fa-5x menu-icon"
+             onClick={() => this.setState({isMenuOpen: !isMenuOpen})}
+        />
+      );
+    }
+  }
+  
   render(){
     let {isMenuOpen} = this.state;
     // Fetch the path from locations
@@ -36,9 +61,9 @@ class Header extends Component {
     // console.log(`Current path= ${pathname}`);
     return (
       <div className="App-navbar">
-          <i className="fa fa-user-circle fa-4x menu-icon"
-             onClick={() => this.setState({isMenuOpen: !isMenuOpen})}
-          />
+          <div>
+            {this.renderAvatar()}
+          </div>
           <div className="App-navbar__title">{pathname}</div>
           <div>
           </div>
