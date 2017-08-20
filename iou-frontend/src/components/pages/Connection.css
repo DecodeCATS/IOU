@@ -1,30 +1,54 @@
-.connectionContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 20px;
+.container {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: 1rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "search"
+  "connection"
+  "result";
+  /*flex-wrap: wrap;*/
+  /*justify-content: space-between;*/
+  /*padding: 20px;*/
   min-height: 80vh;
-  min-width: 100vw;
+  width: 90vw;
 }
 
-.connectionSubContainer, .searchContainer {
+.connectionContainer, .searchContainer, .resultContainer {
   text-align: center;
-  width: 45%;
+  width: 100%;
 }
 
-.connectionSubContainer {
+.container .connectionContainer {
+  grid-area: connection;
   display: flex;
   flex-direction: column;
 }
 
-.connectionCards {
-  border: 1px solid black;
-  padding: 5px;
-  height: 100%;
-  width: 100%;
+.container .searchContainer .searchForm{
+  grid-area: search;
+  display: inline-grid;
+  grid-gap: .5rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "username"
+  "firstName"
+  "lastName"
+  "email"
+  "button";
 }
 
-.connectionCards .connectionCard {
+.container .resultContainer {
+  grid-area: result;
+}
+
+.connectionCards, .searchCards, .resultCards {
+  border: 1px solid black;
+  padding: 5px;
+  min-height: 5vh;
+}
+
+.connectionCards .connectionCard, .resultCards .connectionCard  {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -101,14 +125,32 @@
   color: #ffcccc;
 }
 
-.searchContainer {
-  display: grid;
-  grid-gap: .5rem;
-  grid-template-rows: max-content;
-  grid-template-areas:
-  "username"
-  "firstName"
-  "lastName"
-  "email"
-  "button";
+
+@media only screen and (min-width: 600px)  {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "connection search"
+      "connection result";
+  }
+  
+  .container .searchContainer .searchForm {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "username button"
+      "firstName lastName"
+      "email email";
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+    .container {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "connection search"
+      "connection result";
+  }
 }

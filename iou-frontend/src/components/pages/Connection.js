@@ -94,8 +94,9 @@ class Connection extends Component {
           if (username || email || firstName || lastName) {
               auth.searchConnections(username, email, firstName, lastName)
               .then(res => {
+                console.log("Search Result:");
                 console.log(res);
-                this.setState({searchResult: res});
+                this.setState({searchResult: res.users});
               })
               .catch(err => {this.setState({error: err})});
           }
@@ -117,54 +118,76 @@ class Connection extends Component {
   // let {blacklistData} = this.props.connections;
   let {username, firstName, lastName, email} = this.state;
     return (
-      <div className="connectionContainer">
-        <div className="connectionSubContainer">
+      <div className="container">
+      
+        <div className="connectionContainer">
           <h2>Connections</h2>
           <div className="connectionCards">
             {
-              data.map(user =>
-                <div key={user.id} className="connectionCard">
-                  <ConnectionCard
-                    user={user}
-                  />
-                  <div className="connectionButtons">
-                    <button>RequestFunds</button>
-                    <button>Mute</button>
-                    <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
+              data.map(user => {
+                return (
+                  <div key={user.id} className="connectionCard">
+                    <ConnectionCard
+                      user={user}
+                    />
+                    <div className="connectionButtons">
+                      <button>RequestFunds</button>
+                      <button>Mute</button>
+                      <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
+                    </div>
                   </div>
-                </div>
-              )
+                );
+              })
             }
           </div>
         </div>
+        
         <div className="searchContainer">
-          <h2>Search Connections</h2>
-          <div className="connectionCards">
+          <h2>Search Connections by one of the following:</h2>
+          <div className="searchCards">
             <form className="searchUserForm" onSubmit={this.handleSubmit}>
               <div className="searchItem username">
-                  <p>UserName:</p>
+                  <p>Username:</p>
                   <input ref="username" type="text" placeholder="Username" onChange={this.handleUsernameInput} value={username}></input>
               </div>
+              {/*
               <div className="searchItem firstName">
-                  <p>UserName:</p>
+                  <p>First Name:</p>
                   <input ref="firstName" type="text" placeholder="First Name" onChange={this.handleFirstNameInput} value={firstName}></input>
               </div>
               <div className="searchItem lastName">
-                  <p>UserName:</p>
+                  <p>Last Name:</p>
                   <input ref="lastName" type="text" placeholder="Last Name" onChange={this.handleLastNameInput} value={lastName}></input>
               </div>
               <div className="searchItem email">
-                  <p>UserName:</p>
+                  <p>Email Address:</p>
                   <input ref="email" type="text" placeholder="Email Address" onChange={this.handleEmailInput} value={email}></input>
               </div>
+              */}
               <div className="searchItem button">
                   <button disabled={(!email && !firstName && !lastName && !username)}>Search!</button>
               </div>
             </form>
           </div>
         </div>
+        
         <div className="resultContainer">
+          <h2>Search Result:</h2>
+          <div className="resultCards">
+            {
+              this.state.searchResult.map(result => {
+                return(
+                  <div key={result.id} className="connectionCard">
+                    <ConnectionCard
+                      user={result}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
         </div>
+
       </div>
     );
  } 
