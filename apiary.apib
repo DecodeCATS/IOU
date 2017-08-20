@@ -30,6 +30,16 @@ List of notification events
 ## Contracts [/contracts]
 A contract represents an IOU or fullly defined contract between 2 users
 
+### GET a list of all contracts for the current user [GET /contracts/all]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - contracts (array[Contract, Contract2, Contract4, Contract5, Contract6Proposal, ContractUpdate])
+
 ### GET a list of active contracts for the current user [GET /contracts]
 + Request (application/json)
     + Headers
@@ -346,7 +356,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - numberOfPayments: 2 - Number of payments
 - paymentFrequency: 'monthly' - Frequency of payments
 - dueDate: ''
-- acceptedDate: '2017-01-01'
+- acceptedDate: `2017-01-01`
 - status: 'active' - Current status of the contract
 - payerId: 2 (number) - The payer (money out)
 - payeeId: 1 (number) - The payee (money in)
@@ -361,8 +371,8 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - remainingAmount: 1000 (number) - The remaining amount
 - numberOfPayments: 1 - Number of payments
 - paymentFrequency: 'monthly' - Frequency of payments
-- dueDate: '2017-09-01'
-- acceptedDate: '2017-04-01'
+- dueDate: `2017-09-01`
+- acceptedDate: `2017-04-01`
 - status: 'active' - Current status of the contract
 - payerId: 2 (number) - The payer (money out)
 - payeeId: 1 (number) - The payee (money in)
@@ -370,15 +380,15 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract2 (object)
 - id: 91 (number, required) - The unique ID of the contract
-- parentId: 91
+- parentId: 91 (number)
 - title: `Test contract between userId 1 and 3` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 1000 (number) - Total amount
 - remainingAmount: 1000 (number) - The remaining amount
 - numberOfPayments: 1 - Number of payments
 - paymentFrequency: 'one-time' - Frequency of payments
-- dueDate: '2017-09-01'
-- acceptedDate: '2017-04-01'
+- dueDate: `2017-09-01`
+- acceptedDate: `2017-04-01`
 - status: 'active' - Current status of the contract
 - payerId: 1 (number) - The userId of the payer (money out)
 - payeeId: 3 (number) - The userId of the payee (money in)
@@ -386,15 +396,15 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract3 (object)
 - id: 92 (number, required) - The unique ID of the contract
-- parentId: 92
+- parentId: 92 (number)
 - title: `Test contract proposal` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 5000 (number) - Total amount
 - remainingAmount: 5000 (number) - The remaining amount
 - numberOfPayments: 1 - Number of payments
 - paymentFrequency: 'monthly' - Frequency of payments
-- dueDate: '2017-10-01'
-- acceptedDate: '2017-04-01'
+- dueDate: `2017-10-01`
+- acceptedDate: `2017-04-01`
 - status: 'pending' - Current status of the contract
 - payerId: 3 (number) - The payer (money out)
 - payeeId: null - The payee (money in)
@@ -402,15 +412,15 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract4 (object)
 - id: 93 (number, required) - The unique ID of the contract
-- parentId: 93
+- parentId: 93 (number)
 - title: `Test contract with an Org` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
 - remainingAmount: 0 (number) - The remaining amount
 - numberOfPayments: 12 - Number of payments
 - paymentFrequency: 'monthly' - Frequency of payments
-- dueDate: '2017-09-01'
-- acceptedDate: '2017-01-01'
+- dueDate: `2017-09-01`
+- acceptedDate: `2017-01-01`
 - status: 'active' - Current status of the contract
 - payerId: 1 (number) - The payer (money out)
 - payeeId: 4 (number) - The payee (money in)
@@ -418,15 +428,15 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract5 (object)
 - id: 94 (number, required) - The unique ID of the contract
-- parentId: 94
+- parentId: 94 (number)
 - title: `Test contract` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
 - remainingAmount: 0 (number) - The remaining amount
 - numberOfPayments: 12 - Number of payments
 - paymentFrequency: 'monthly' - Frequency of payments
-- dueDate: '2017-09-01'
-- acceptedDate: '2017-01-01'
+- dueDate: `2017-09-01` (string)
+- acceptedDate: `2017-01-01` (string)
 - status: 'active' - Current status of the contract
 - payerId: 1 (number) - The userId of the payer (money out)
 - payeeId: 6 (number) - The userId of the payee (money in) - Bell
@@ -434,7 +444,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract6Proposal (object)
 - id: 95 (number, required) - The unique ID of the contract
-- parentId: 95
+- parentId: 95 (number)
 - title: `Requested contract proposal` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
@@ -450,7 +460,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Contract7Proposal (object)
 - id: 96 (number, required) - The unique ID of the contract
-- parentId: 96
+- parentId: 96 (number)
 - title: `Open contract proposal 2` (string, required) - Contract title
 - description: `` (string) - Description
 - totalAmount: 000 (number) - Total amount
@@ -677,7 +687,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - updatedAt: `2017-05-04T14:29:42.490Z` (string) - The last update date
 
 ## UserCreate (object)
-- userName: `a@b.com`
+- username: `a@b.com`
 - firstName: `John`
 - lastName: `Smith`
 - password: `js`
