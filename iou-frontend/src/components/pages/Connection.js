@@ -55,6 +55,10 @@ class Connection extends Component {
     this.props.dispatch(Connections.addConnection(connectionUserId));
   }
   
+  addBlacklist = (blacklistUserId) => {
+    this.props.dispatch(Connections.addBlacklist(blacklistUserId));
+  }
+  
   // =======================================================================
   // *** Event handler for form Info ***
   // =======================================================================
@@ -135,8 +139,8 @@ class Connection extends Component {
                       user={user}
                     />
                     <div className="connectionButtons">
-                      <button>RequestFunds</button>
-                      <button>Mute</button>
+                      <button disabled={true}>RequestFunds</button>
+                      <button onClick={this.addBlacklist.bind(this,user.id)}>Mute</button>
                       <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
                     </div>
                   </div>

@@ -86,7 +86,7 @@ export function addBlacklist (connectionUserId) {
     dispatch({type: "ADD_BLACKLIST", status: "pending", error: ""});
     Auth.addBlacklist(connectionUserId)
     .then(res => {
-      dispatch({type: "ADD_BLACKLIST", status: "success", error: "", value: connectionUserId});
+      dispatch({type: "ADD_BLACKLIST", status: "success", error: "", value: res});
     })
     .catch(err => {
       dispatch({type: "ADD_BLACKLIST", status: "error", error: err});

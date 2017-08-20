@@ -52,11 +52,11 @@ class Api {
     )
 
     //Request a new connection
-    requestConnection = (token, connectionUserId) => (
+    requestConnection = (token, userId) => (
         superagent
             .post(`${API_HOST}/connections/request`)
             .set('Authorization', `token ${token}`)
-            .send({connectionUserId})
+            .send({userId})
     )
     
     addConnection = (token, userId) => (
@@ -67,11 +67,11 @@ class Api {
     )
     
     //Delete a user from the users connections
-    deleteConnection = (token, connectionUserId) => (
+    deleteConnection = (token, userId) => (
         superagent
             .delete(`${API_HOST}/connections`)
             .set('Authorization', `token ${token}`)
-            .send({connectionUserId})
+            .send({userId})
     )
 
     getBlacklist = (token) => (
@@ -80,18 +80,18 @@ class Api {
             .set('Authorization', `token ${token}`)
     )
 
-    addBlacklist = (token, connectionUserId) => (
+    addBlacklist = (token, userId) => (
         superagent
             .post(`${API_HOST}/connections/blacklist`)
             .set('Authorization', `token ${token}`)
-            .send({connectionUserId})
+            .send({userId})
     )
 
-    deleteBlacklist = (token, connectionUserId) => (
+    deleteBlacklist = (token, userId) => (
         superagent
             .delete(`${API_HOST}/connections/blacklist`)
             .set('Authorization', `token ${token}`)
-            .send({connectionUserId})
+            .send({userId})
     )
     // =======================================================================
     // *** Contract API calls ***
