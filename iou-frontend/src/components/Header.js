@@ -44,7 +44,7 @@ class Header extends Component {
   
   fetchConnections(e){
     this.props.dispatch(Connections.fetchConnections());
-    this.props.dispatch(Connections.fetchBlacklist());
+    // this.props.dispatch(Connections.fetchBlacklist());
   }
   fetchOrganisations(e){this.props.dispatch(Organisations.fetchOrganisations());}
   

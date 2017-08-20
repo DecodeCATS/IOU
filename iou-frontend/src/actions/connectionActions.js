@@ -67,18 +67,18 @@ export function requestConnection(connectionUserId) {
   };
 }
 
-export function fetchBlacklist() {
-  return function (dispatch) {
-    dispatch({type: "FETCH_BLACKLIST", status: "pending", error: ""});
-    Auth.getBlacklist()
-    .then(res => {
-      dispatch({type: "FETCH_BLACKLIST", status: "success", error: "", value: res});
-    })
-    .catch(err => {
-      dispatch({type: "FETCH_BLACKLIST", status: "error", error: err});
-    });
-  };
-}
+// export function fetchBlacklist() {
+//   return function (dispatch) {
+//     dispatch({type: "FETCH_BLACKLIST", status: "pending", error: ""});
+//     Auth.getBlacklist()
+//     .then(res => {
+//       dispatch({type: "FETCH_BLACKLIST", status: "success", error: "", value: res});
+//     })
+//     .catch(err => {
+//       dispatch({type: "FETCH_BLACKLIST", status: "error", error: err});
+//     });
+//   };
+// }
 
 export function addBlacklist (connectionUserId) {
   return function (dispatch) {
