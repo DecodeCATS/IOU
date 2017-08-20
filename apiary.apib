@@ -332,6 +332,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Notification (object)
 - id: 1000 (number, required) - The unique ID of the notification
+- type: `payment` (string) - The notification type
 - message: `Payment made` (string) - The message
 - objectId: 101 (number) - The unique id of the object
 - objectType: payments (string) - The object source of the id
@@ -340,6 +341,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Notification2 (object)
 - id: 1001 (number, required) - The unique ID of the notification
+- type: `request` (string) - The notification type
 - message: `Connection Request` (string) - The message
 - objectId: 5 (number) - The unique id of the object
 - objectType: users (string) - The object source of the id
