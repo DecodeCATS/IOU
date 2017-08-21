@@ -8,6 +8,7 @@ class CreatePayment extends Component {
   constructor(props) {
     super(props);
     this.renderContract = this.renderContract.bind(this);
+    this.renderCurrency = this.renderCurrency.bind(this);
   }
   
   renderContract(contract) {
@@ -17,13 +18,32 @@ class CreatePayment extends Component {
     );
   }
   
+  renderCurrency(currency) {
+    return (
+      <option key={currency.currencyId} value={currency.currencyId}>{currency.name}{`${currency.symbol ? "("+currency.symbol+")" : null}`}</option>
+    );
+  }
+  
   render(){
-    let payingContract = this.props.contracts.data.filter(contract =>{
-      return (contract.payerId === this.props.user.data.id && contract.isLatest);
-    });
+    let {contracts, currencies} = this.props;
     
-    console.log("Paying contract info");
-    console.log(payingContract);
+    let payingContract = [];
+    let currencyList = [];
+    
+    if (contracts && contracts.data) {
+      payingContract = contracts.data.filter(contract =>{
+        return (contract.payerId === this.props.user.data.id && contract.isLatest);
+      });
+    }
+    
+    if (currencies && currencies.data) {
+      console.log("I have currencies");
+      currencyList = currencies.data;
+    }
+    
+    // console.log("Paying contract info");
+    // console.log(payingContract);
+    console.log(currencyList);
     
     return (
       <div>
@@ -31,6 +51,9 @@ class CreatePayment extends Component {
           <div className="selectors">
             <select ref="contractId">
               {payingContract.map(contract=>this.renderContract(contract))}
+            </select>
+            <select ref="currencyId">
+              {currencyList.map(currency=>this.renderCurrency(currency))}
             </select>
           </div>
         </form>
@@ -44,5 +67,6 @@ export default connect(state => ({
   organisations: state.organisations,
   contracts: state.contracts, 
   payments: state.payments,
+  currencies: state.currencies,
   user: state.user
 }))(CreatePayment);
