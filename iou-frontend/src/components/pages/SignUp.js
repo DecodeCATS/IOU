@@ -99,11 +99,18 @@ class SignUp extends Component {
     handleSubmit(e) {
         e.preventDefault();
         if(!this.props.user.isLoggedIn) {
+            if (password.length<8) {
+                this.setState({error: "password must be 8 chars or more"});
+            }
             let {username, password, email, firstName, lastName, description} = this.state;
             if (username && password && email && firstName && lastName) {
                 auth.signup(username, email, password, firstName, lastName, description)
                 .then(res => this.props.history.push('/login'))
-                .catch(err => {this.setState({error: err})});
+                .catch(err => {
+                    let myError = err.toString();
+                    this.setState({error: myError})
+                    
+                });
             }
             else {
                 this.setState({error: `Field required: username, password, email, firstName, lastName`});
@@ -142,7 +149,7 @@ class SignUp extends Component {
                         ></input>
                     </div>
                     <div className="signupItem password">
-                        <p>Password:</p>
+                        <p>Password 8 chars minimum:</p>
                         <input ref="password" type="password" disabled={isUpdateProfile}
                             className={`${password? (password.length > 0 ? "inputGood":"inputBad"):"inputBad"}`}
                             onChange={this.handlePasswordInput}
