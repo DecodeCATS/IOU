@@ -39,7 +39,7 @@ class Contract extends Component {
       });
     }
     
-    console.log("Counterparty size after users", counterparties.length);
+    // console.log("Counterparty size after users", counterparties.length);
     // If counterparty is still empty, search through organisations
     if (counterparties.length < 1 && this.props.organisations.data) {
       counterparties = this.props.organisations.data.filter(user => {
@@ -53,7 +53,7 @@ class Contract extends Component {
         return flag;
       });
     }
-    console.log("Counterparty size after orgs", counterparties.length);
+    // console.log("Counterparty size after orgs", counterparties.length);
     return (
       <div key={contract.id} className="latestCards">
         <ContractCard
