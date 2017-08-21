@@ -99,10 +99,11 @@ class SignUp extends Component {
     handleSubmit(e) {
         e.preventDefault();
         if(!this.props.user.isLoggedIn) {
+            let {username, password, email, firstName, lastName, description} = this.state;
             if (password.length<8) {
                 this.setState({error: "password must be 8 chars or more"});
             }
-            let {username, password, email, firstName, lastName, description} = this.state;
+
             if (username && password && email && firstName && lastName) {
                 auth.signup(username, email, password, firstName, lastName, description)
                 .then(res => this.props.history.push('/login'))
