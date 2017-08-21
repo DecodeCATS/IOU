@@ -22,7 +22,7 @@ class CreateContract extends Component {
       title: "",
       description: "",
       amount: 1000,
-      dueDate: "2018-01-01",
+      dueDate: "",
       counterpartyUserId: 0,
       userPaySide: "payer"
     };
@@ -174,15 +174,14 @@ class CreateContract extends Component {
               ></input>
             </div>
             <div className="contractItem dueDate">
-              <p>Due Date:</p>
+              <p>Due Date (optional):</p>
               <input ref="dueDate" type="date"
-                  className={`${dueDate.length>0 ? "inputGood":"inputBad"}`}
                   onChange={this.handleDueDateInput}
                   value={dueDate}
               ></input>
             </div>
             <div className="contractItem button">
-                <button type="submit" disabled={(counterpartyUserId < 1 || !title || !amount || !dueDate)}>Create Contract</button>
+                <button type="submit" disabled={(counterpartyUserId < 1 || !title || !amount)}>Create Contract</button>
             </div>
         </form>
       </div>

@@ -83,7 +83,7 @@ class CreatePayment extends Component {
       type: "payment",
       status: status
     };
-    this.props.dispatch(Payments.addContractPayment(thePayment));
+    this.props.dispatch(Payments.addPayment(thePayment));
   }
   // =======================================================================
   // *** Renderers ***
@@ -151,7 +151,7 @@ class CreatePayment extends Component {
             <input ref="paymentAmount" type="number" value={amount} onChange={this.handleAmountInput}/>
           </div>
           <div className="paymentItem button">
-              <button type="submit" disabled={(contractId<1 || currencyId<1 || !amount || !dueDate)}>Create Contract</button>
+              <button type="submit" disabled={(contractId<1 || currencyId<1 || !amount || !dueDate)}>Create Payment</button>
           </div>
         </form>
       </div>
