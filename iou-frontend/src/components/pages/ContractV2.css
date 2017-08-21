@@ -1,0 +1,30 @@
+.pageContainer {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: 1rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "list"
+  "detail"
+  "payment";
+  /*flex-wrap: wrap;*/
+  /*justify-content: space-between;*/
+  /*padding: 20px;*/
+  min-height: 80vh;
+  width: 90vw;
+}
+
+.listContainer {
+  grid-area: list;
+  border: 1px solid black;
+}
+
+.detailContainer {
+  grid-area: detail;
+  border: 1px solid black;
+}
+
+.paymentContainer {
+  grid-area: payment;
+  border: 1px solid black;
+}

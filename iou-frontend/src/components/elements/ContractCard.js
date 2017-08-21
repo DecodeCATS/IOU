@@ -10,6 +10,8 @@ export default class ContractCard extends Component {
         <div className="title">
           <p>{contract.title}</p>
         </div>
+        <div className="counterparty">
+        </div>
       </div>
     );
   }

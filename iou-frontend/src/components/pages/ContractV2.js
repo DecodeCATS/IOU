@@ -18,9 +18,49 @@ class Contract extends Component {
   
   renderList(contract){
     
+    let myId = this.props.user.data.id;
+    let counterparties = [];
+    let isPayer = true;
+    
+    if (contract.payeeId === myId) {
+      isPayer = false;
+    }
+    
+    if (this.props.connections.data) {
+      counterparties = this.props.connections.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
+        }
+        return flag;
+      });
+    }
+    
+    console.log("Counterparty size after users", counterparties.length);
+    // If counterparty is still empty, search through organisations
+    if (counterparties.length < 1 && this.props.organisations.data) {
+      counterparties = this.props.organisations.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
+        }
+        return flag;
+      });
+    }
+    console.log("Counterparty size after orgs", counterparties.length);
     return (
       <div key={contract.id} className="latestCards">
-        <ContractCard contract={contract} />
+        <ContractCard
+          contract={contract}
+          isPayer={isPayer}
+          counterparty={counterparties[0]}
+        />
       </div>
     );
   }
@@ -30,17 +70,22 @@ class Contract extends Component {
     if (this.props.contracts.data) {
       latestContracts = this.props.contracts.data;//.filter(contract => contract.isLatest);
     }
-    console.log("Latest contracts", latestContracts);
+    // console.log("Latest contracts", latestContracts);
     return (
       <div className="pageContainer">
         <div className="listContainer">
-          {
-            latestContracts.map(contract => this.renderList(contract))
-          }
+          <h2>Contract List</h2>
+          <div>
+            {
+              latestContracts.map(contract => this.renderList(contract))
+            }
+          </div>
         </div>
         <div className="detailContainer">
+          <h2>Contract detail:</h2>
         </div>
         <div className="paymentContainer">
+          <h2>Payment detail:</h2>
         </div>
       </div>
     );
