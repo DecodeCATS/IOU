@@ -14,7 +14,7 @@ class CreateContract extends Component {
     // let monthStr = 
     // let tomorrowStr = [''+tomorrow.getFullYear(),''+(tomorrow.getMonth()+1),''+(tomorrow.getDate()+1)].join('-');
     this.defaultProps = {
-      counterpartyUserName: 0
+      counterpartyUserName: ""
     };
     
     // let counterpartyUser
@@ -36,6 +36,10 @@ class CreateContract extends Component {
     
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderCounterparty = this.renderCounterparty.bind(this);
+  }
+  
+  componentWillMount(){
+    
   }
   
   handlePaySide(e) {
@@ -130,12 +134,17 @@ class CreateContract extends Component {
     return (
       <div>
         <form id="createContractForm" className="contractForm" onSubmit={this.handleSubmit}>
-            <div className="selectors">
+            <div className="contractItem payDirection">
+              <p>I am the:</p>
               <select ref="paymentDirection" value={userPaySide} onChange={this.handlePaySide} required>
                 <option value="payer">Payer</option>
                 <option value="payee">Payee</option>
               </select>
+            </div>
+            <div className="contractItem counterparty">
+              <p>Contract with</p>
               <select ref="counterparty" value={counterpartyUserId} onChange={this.handleCounterparty} required>
+                <option key="0" value="0">Pick a counterparty</option>
                 {this.props.organisations.data.map(connection => this.renderCounterparty(connection,1))}
                 {this.props.connections.data.map(connection => this.renderCounterparty(connection))}
               </select>
@@ -173,7 +182,7 @@ class CreateContract extends Component {
               ></input>
             </div>
             <div className="contractItem button">
-                <button type="submit" disabled={(!title || !amount || !dueDate)}>Create Contract</button>
+                <button type="submit" disabled={(counterpartyUserId < 1 || !title || !amount || !dueDate)}>Create Contract</button>
             </div>
         </form>
       </div>

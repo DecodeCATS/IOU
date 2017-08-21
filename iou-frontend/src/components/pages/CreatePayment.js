@@ -12,7 +12,7 @@ class CreatePayment extends Component {
       contractId: 0,
       currencyId: 1,
       dueDate: "2018-01-01",
-      paidDate: null,
+      paidDate: "",
       amount: 1000
     };
     
