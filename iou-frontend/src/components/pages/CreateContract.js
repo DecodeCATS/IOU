@@ -172,7 +172,7 @@ class CreateContract extends Component {
                   value={dueDate}
               ></input>
             </div>
-            <div className="signupItem button">
+            <div className="contractItem button">
                 <button type="submit" disabled={(!title || !amount || !dueDate)}>Create Contract</button>
             </div>
         </form>
