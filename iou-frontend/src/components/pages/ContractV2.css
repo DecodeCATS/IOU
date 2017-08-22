@@ -21,8 +21,10 @@
   grid-gap: 1rem;
   grid-template-rows: max-content;
   grid-template-areas:
-  "detail"
+
   "list"
+  "history"
+  "detail"  
   "payment";
   /*flex-wrap: wrap;*/
   /*justify-content: space-between;*/
@@ -31,11 +33,31 @@
   width: 90vw;
 }
 
+
+.listContainer {
+  grid-area: list;
+  border: 1px solid black;
+}
+
+.detailContainer {
+  grid-area: detail;
+  border: 1px solid black;
+}
+
+.historyContainer{
+  grid-area: history;
+  border: 1px solid black;
+}
+
+.paymentContainer {
+  grid-area: payment;
+  border: 1px solid black;
+
 @media only screen and (min-width: 600px)  {
   .pageContainer {
   grid-gap: 1fr 1fr;
   grid-template-areas:
   "detail list"
-  "payment list";
+  "payment history";
   }
 }
