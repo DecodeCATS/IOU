@@ -51,11 +51,13 @@
 .notificationCards .notificationButtons button, .notificationCards .connectionButtons button {
   border: none;
   background-color: transparent;
-  color: dimgrey;
+  color: #078e91;
   font-size: 1rem;
   font-weight: bold;
 }
 
 .notificationCards .notificationButtons button:hover, .notificationCards .connectionButtons button:hover {
-  background-color: deepskyblue;
+  /*background-color: deepskyblue;*/
+  color: yellow;
+  background-color: #078e91;
 }

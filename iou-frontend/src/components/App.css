@@ -13,21 +13,18 @@
   src: url('https://fonts.googleapis.com/css?family=Roboto:400i')
 }
 
-* {
-  /*color: #37526d;*/
-  color: #078e91;
-  background-color: #f2e8cd;
-}
-
 body *, body *:before, body *:after { box-sizing: inherit; }
 body {
   box-sizing: border-box;
   font-size: 12px;
   margin: 0px;
+  color: #078e91;
+  background-color: #f2e8cd;
 }
 
-div p, div input {
+div p, div input, div textarea, div select {
   font-family: 'Roboto', sans-serif;
+  background-color: #f2e8cd;
 }
 
 h1, h2, h3, div, NavLink, button {
