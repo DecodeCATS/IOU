@@ -8,7 +8,7 @@ export default class ContractPaymentCard extends Component {
 
     let {payment} = this.props; //now, contract = to this.props.contract
     return (
-      <div className="payment">
+      <div className="contract-payment">
         <h4>Payment:</h4>
         <p>Amount: {payment.amount} </p>
         <p>Payment Due Date: {payment.dueDate ? payment.dueDate : "IOU"} </p>
