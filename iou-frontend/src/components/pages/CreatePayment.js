@@ -125,11 +125,17 @@ class CreatePayment extends Component {
     // console.log(currencyList);
     
     return (
-      <div>
+      <div className="createPaymentPage">
         <form className="paymentForm" onSubmit={this.handleSubmit}>
           <div className="paymentItem paymentContract">
             <p>Contract:</p>
-            <select ref="contractId" value={contractId} onChange={this.handleContractIdInput}>
+            <select
+              ref="contractId"
+              className={`${contractId>0 ? "inputGood":"inputBad"}`}
+              value={contractId}
+              onChange={this.handleContractIdInput}
+            >
+              <option key="0" value="0">Select contract</option>
               {payingContract.map(contract=>this.renderContract(contract))}
             </select>
           </div>
@@ -149,7 +155,13 @@ class CreatePayment extends Component {
           </div>
           <div className="paymentItem amount">
             <p>Amount (in cents):</p>
-            <input ref="paymentAmount" type="number" value={amount} onInput={this.handleAmountInput}/>
+            <input
+              ref="paymentAmount"
+              className={`${amount>0 ? "inputGood":"inputBad"}`}
+              type="number"
+              value={amount}
+              onInput={this.handleAmountInput}
+            />
           </div>
           <div className="paymentItem button">
               <button type="submit" disabled={(contractId<1 || currencyId<1 || !amount || !dueDate)}>Create Payment</button>

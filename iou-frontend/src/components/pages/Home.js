@@ -27,13 +27,13 @@ class Home extends Component {
         };
     }
     
-    componentWillMount() {
-        if (this.props.user.isLoggedIn && this.props.payments && this.props.payments.data) {
-            let activePayments = this.props.payments.data.filter(payment => {
-                return payment.status === "active";
-            })
-        }
-    }
+    // componentWillMount() {
+    //     if (this.props.user.isLoggedIn && this.props.payments && this.props.payments.data) {
+    //         // let activePayments = this.props.payments.data.filter(payment => {
+    //         //     return payment.status === "active";
+    //         // });
+    //     }
+    // }
 
     render() {
         return (

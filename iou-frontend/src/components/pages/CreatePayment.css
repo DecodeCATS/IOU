@@ -1,0 +1,141 @@
+.createPaymentPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.paymentItem div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  
+  font-size: 1.2rem;
+}
+
+.paymentItem p {
+  display: block;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 100%;
+  padding: 5px;
+}
+
+.paymentItem input, .paymentItem select {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1.2rem;
+  /*height: 100%;*/
+  padding: 5px;
+  width: 100%;
+}
+
+.paymentItem textarea {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1rem;
+  padding: 5px;
+  resize: none;
+  height: 80px;
+  width: 100%;
+}
+
+.paymentItem.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.paymentItem.button button{
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  color: darkblue;
+  width: 50%;
+}
+
+.paymentItem.button button:disabled{
+  color: #ffcccc;
+}
+
+.paymentItem.paymentContract{grid-area: contract;}
+.paymentItem.currency{grid-area: currency;}
+.paymentItem.amount{grid-area: amount;}
+.paymentItem.paidDate{grid-area: paidDate;}
+.paymentItem.dueDate{grid-area: dueDate;}
+.paymentItem.button{grid-area: button;}
+
+
+
+.paymentForm {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: .5rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "contract"
+    "dueDate"
+    "paidDate"
+    "amount"
+    "button";
+  width: 90vw;
+}
+
+@media only screen and (min-width: 600px)  {
+  .paymentForm {
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "contract contract"
+    "dueDate paidDate"
+    "amount currency"
+    "... button";
+  }
+  
+  .paymentItem p {
+    font-size: 1.2rem;
+  }
+  
+  .paymentItem input, .paymentItem textarea, .paymentItem select {
+    font-size: 1.5rem;
+  }
+  
+  .paymentItem.button button {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+  .paymentForm {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "contract dueDate"
+      "... paidDate"
+      "amount currency"
+      "... button"
+  }
+  
+  .paymentItem p {
+    font-size: 1.5rem;
+  }
+  
+  .paymentItem input, .paymentItem textarea, .paymentItem select {
+    font-size: 2rem;
+  }
+  
+  .paymentItem.button button {
+    font-size: 2.5rem;
+  }
+}
+
+.inputGood {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.inputBad {
+  background-color: #ffcccc;
+}

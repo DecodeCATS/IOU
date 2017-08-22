@@ -38,9 +38,9 @@ class CreateContract extends Component {
     this.renderCounterparty = this.renderCounterparty.bind(this);
   }
   
-  componentWillMount(){
+  // componentWillMount(){
     
-  }
+  // }
   
   handlePaySide(e) {
     if (e.target.value !== this.state.userPaySide) {
@@ -132,24 +132,33 @@ class CreateContract extends Component {
   render() {
     let {title, description, amount, dueDate, counterpartyUserId, userPaySide} = this.state;
     return (
-      <div>
+      <div className="createContractPage">
         <form id="createContractForm" className="contractForm" onSubmit={this.handleSubmit}>
             <div className="contractItem payDirection">
               <p>I am the:</p>
-              <select ref="paymentDirection" value={userPaySide} onChange={this.handlePaySide} required>
+              <select ref="paymentDirection"
+                value={userPaySide}
+                onChange={this.handlePaySide} require
+              >
                 <option value="payer">Payer</option>
                 <option value="payee">Payee</option>
               </select>
             </div>
             <div className="contractItem counterparty">
               <p>Contract with</p>
-              <select ref="counterparty" value={counterpartyUserId} onChange={this.handleCounterparty} required>
+              <select 
+                ref="counterparty"
+                className={`${counterpartyUserId>0 ? "inputGood":"inputBad"}`}
+                value={counterpartyUserId}
+                onChange={this.handleCounterparty}
+                required
+              >
                 <option key="0" value="0">Pick a counterparty</option>
                 {this.props.organisations.data.map(connection => this.renderCounterparty(connection,1))}
                 {this.props.connections.data.map(connection => this.renderCounterparty(connection))}
               </select>
             </div>
-            <div className="contractItem inputTitle">
+            <div className="contractItem title">
               <p>Title:</p>
               <input ref="title" type="text" placeholder="Contract Title"
                   className={`${title.length>0 ? "inputGood":"inputBad"}`}
