@@ -1,33 +1,63 @@
 import React, {Component} from 'react';
+// import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 // import api from '../../api';
 // import auth from '../../auth';
-import * as Connections from '../../actions/connectionActions';
-import * as Contracts from '../../actions/contractActions';
+// import * as Connections from '../../actions/connectionActions';
+// import * as Contracts from '../../actions/contractActions';
 import './Home.css';
 // import {browserHistory as history} from 'react-router';
 
 class Home extends Component {
-    componentWillMount() {
-        this.props.dispatch(Connections.fetchConnections());
-        this.props.dispatch(Contracts.fetchContracts());
+    constructor(props) {
+        super(props);
+        this.state = {
+          activePayments: [],
+          dataUpdated: "",
+          activeStats: {
+              sumPayments: 0,
+              sumReception: 0,
+              sumTotal: 0
+          },
+          totalStats: {
+              sumPayments: 0,
+              sumReception: 0,
+              sumTotal: 0
+          }
+        };
     }
+    
+    // componentWillMount() {
+    //     if (this.props.user.isLoggedIn && this.props.payments && this.props.payments.data) {
+    //         // let activePayments = this.props.payments.data.filter(payment => {
+    //         //     return payment.status === "active";
+    //         // });
+    //     }
+    // }
 
     render() {
-        // let {boards} = this.state;
-        // this.props.contracts
-        //console.log(`Rendering=${JSON.stringify(this.state.boards)}`);
-        console.log(this.props.connections, this.props.contracts);
         return (
             <div className="home">
                 <h1>Home Page!</h1>
-                <p>{this.props.location.state}</p>
-                <p>Data load status: {this.props.connections.status}</p>
-                {/*<p>Data load status: {this.props.contracts.status}</p>*/}
+                <div className="graph">
+                </div>
+                <div className="notificationSummary">
+                </div>
+                <div className="connectionSummary">
+                </div>
+                <div className="contractSummary">
+                </div>
+                <div className="paymentSummary">
+                </div>
             </div>
         );
     }
 
 }
 
-export default connect(state => ({ connections: state.connections, contracts: state.contracts }))(Home);
+export default connect(state => ({
+    user: state.user, 
+    connections: state.connections, 
+    contracts: state.contracts,
+    payments: state.payments
+}))(Home);

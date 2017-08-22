@@ -1,0 +1,61 @@
+.notificationContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 80vh;
+  width: 100vw;
+}
+
+.notificationSubContainer, .blacklistSubContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 45%;
+}
+
+.notificationCards {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: left;
+  height: 100%;
+  width: 100%;
+}
+
+.notificationCards .notificationCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+/* ========================================================================= */
+/* *** Blacklisted connections styling *** */
+/* ========================================================================= */
+.notificationCards .connectionCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+/* ========================================================================= */
+/* *** Button styling *** */
+/* ========================================================================= */
+.notificationCards .notificationButtons, .notificationCards .connectionButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notificationCards .notificationButtons button, .notificationCards .connectionButtons button {
+  border: none;
+  background-color: transparent;
+  color: dimgrey;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.notificationCards .notificationButtons button:hover, .notificationCards .connectionButtons button:hover {
+  background-color: deepskyblue;
+}

@@ -1,28 +1,11 @@
-.signup {
+.createContractPage {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 
-.signup h2 {
-  text-align: left;
-  width: 90vw;
-}
-
-.signupItem.username {
-  align-self: stretch;
-  justify-self: stretch;
-  grid-area: username;
-}
-.signupItem.password{grid-area: password;}
-.signupItem.email{grid-area: email;}
-.signupItem.firstName{grid-area: firstName;}
-.signupItem.lastName{grid-area: lastName;}
-.signupItem.description{grid-area: description;}
-.signupItem.button{grid-area: button;}
-
-.signupItem div {
+.contractItem div {
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
@@ -30,7 +13,7 @@
   font-size: 1.2rem;
 }
 
-.signupItem p {
+.contractItem p {
   display: block;
   text-align: left;
   vertical-align: middle;
@@ -39,12 +22,7 @@
   padding: 5px;
 }
 
-.signupItem .limitCounter {
-  color: green;
-  text-align: right;
-}
-
-.signupItem input {
+.contractItem input, .contractItem select {
   display: block;
   border: 1px solid darkgrey;
   font-size: 1.2rem;
@@ -53,11 +31,7 @@
   width: 100%;
 }
 
-.signupItem input:disabled {
-  background-color: lightgrey;
-}
-
-.signupItem textarea {
+.contractItem textarea {
   display: block;
   border: 1px solid darkgrey;
   font-size: 1rem;
@@ -67,12 +41,12 @@
   width: 100%;
 }
 
-.signupItem.button {
+.contractItem.button {
   display: flex;
   justify-content: flex-end;
 }
 
-.signupItem.button button{
+.contractItem.button button{
   background-color: transparent;
   border: none;
   font-size: 1.5rem;
@@ -82,73 +56,82 @@
   width: 50%;
 }
 
-.signupItem.button button:disabled{
+.contractItem.button button:disabled{
   color: #ffcccc;
 }
 
-.signupForm {
+.contractItem.payDirection{grid-area: payDirection;}
+.contractItem.counterparty{grid-area: counterparty;}
+.contractItem.title{grid-area: title;}
+.contractItem.description{grid-area: description;}
+.contractItem.amount{grid-area: amount;}
+.contractItem.dueDate{grid-area: dueDate;}
+.contractItem.button{grid-area: button;}
+
+
+
+.contractForm {
   display: grid;
   justify-content: stretch;
   grid-gap: .5rem;
   grid-template-rows: max-content;
   grid-template-areas:
-    "username"
-    "password"
-    "firstName"
-    "lastName"
-    "email"
+    "title"
+    "counterparty"
+    "payDirection"
+    "amount"
+    "dueDate"
     "description"
     "button";
   width: 90vw;
 }
 
 @media only screen and (min-width: 600px)  {
-  .signupForm {
+  .contractForm {
 
   grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content;
   grid-template-areas:
-    "username password"
-    "firstName lastName"
-    "email email"
+    "title title"
+    "payDirection counterparty"
+    "dueDate amount"
     "description description"
     "... button";
   }
   
-  .signupItem p {
+  .contractItem p {
     font-size: 1.2rem;
   }
   
-  .signupItem input, .signupItem textarea {
+  .contractItem input, .contractItem textarea, .contractItem select {
     font-size: 1.5rem;
   }
   
-  .signupItem.button button {
+  .contractItem.button button {
     font-size: 2rem;
   }
 }
 
-
 @media only screen and (min-width: 1024px)  {
-  .signupForm {
-    grid-template-columns: 1fr 1fr 1fr;
+  .contractForm {
+    grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: max-content;
     grid-template-areas:
-      "username email email"
-      "password firstName lastName"
+      "title payDirection counterparty"
+      "amount dueDate ..."
       "description description description"
       "... ... button";
   }
   
-  .signupItem p {
+  .contractItem p {
     font-size: 1.5rem;
   }
   
-  .signupItem input, .signupItem textarea {
+  .contractItem input, .contractItem textarea, .contractItem select {
     font-size: 2rem;
   }
   
-  .signupItem.button button {
+  .contractItem.button button {
     font-size: 2.5rem;
   }
 }

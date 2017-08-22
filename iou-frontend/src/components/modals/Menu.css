@@ -10,6 +10,10 @@
   text-align: left;
 }
 
+.menu .active {
+  background-color: yellow;
+}
+
 .menu {
   width: 270px;
   position: fixed;
@@ -63,6 +67,8 @@
 }
 
 .menu__item {
+  display: flex;
+  justify-content: space-between;
   padding: .5rem;
 }
 

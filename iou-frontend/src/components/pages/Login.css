@@ -1,0 +1,109 @@
+.loginContainer h2 {
+  text-align: left;
+  width: 90vw;
+}
+
+.loginItem.email {
+  align-self: stretch;
+  justify-self: stretch;
+  grid-area: email;
+}
+.loginItem.password{grid-area: password;}
+.loginItem.button{grid-area: button;}
+.error{grid-area: error;}
+
+.loginContainer {
+  display: grid;
+  justify-content: center;
+  grid-gap: .5rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+    "email"
+    "password"
+    "button"
+    "error";
+  width: 90vw;
+}
+
+.loginItem p {
+  display: block;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1rem;
+  line-height: 100%;
+  padding: 5px;
+}
+
+.loginItem input {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1.2rem;
+  /*height: 100%;*/
+  padding: 5px;
+  width: 100%;
+}
+
+.loginItem.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loginItem.button button{
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  color: darkblue;
+  width: 50%;
+}
+
+.loginItem.button button:disabled{
+  color: #ffcccc;
+}
+
+@media only screen and (min-width: 600px)  {
+  .loginContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "error error"
+      "email password"
+      ". button";
+  }
+  
+  .loginItem p {
+    font-size: 1.2rem;
+  }
+  
+  .loginItem input {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+  .loginContainer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "error error"
+      "email password"
+      ". button";
+  }
+  
+  .loginItem p {
+    font-size: 1.5rem;
+  }
+  
+  .loginItem input {
+    font-size: 2rem;
+  }
+}
+
+.inputGood {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.inputBad {
+  background-color: #ffcccc;
+}

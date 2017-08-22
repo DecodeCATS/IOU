@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
-import auth from '../../auth';
+// import auth from '../../auth';
 // import {browserHistory as history} from 'react-router';
+// import * as User from '../actions/userActions';
 import './Menu.css';
 
 
@@ -10,11 +11,19 @@ class Menu extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            id: 0,
-            email: '',
-            avatarUrl: ''
-        };
+        // this.defaultProps = {
+        //     userInfo: {
+        //         userId: 0,
+        //         email: '',
+        //         username: '',
+        //         firstName: '',
+        //         lastName: '',
+        //         avatarUrl: ''
+        //     }
+        // };
+        // this.state = {
+        //     userInfo: this.props.userInfo
+        // };
         this._handleLogout = this._handleLogout.bind(this);
     }
 
@@ -23,84 +32,113 @@ class Menu extends Component {
     }
 
     _handleLogout(e) {
-        e.preventDefault();
-        auth.logout();
+        // e.preventDefault();
+        // auth.logout();
+        //Call the parent function
+        this.props.logout();
+        //Needed?
         this.props.history.push('/');
         this.props.closeMenu();
         // history.push('/');
     }
 
-    fetchUser() {
-        auth.getUser()
-            .then(res => {
-                //console.log(`Menu user = ${res}`);
-                this.updateUser(res);
-            });
-    }
-
-    updateUser(user) {
-        if (this.state.id !== user.id) {
-            this.setState({
-                id: user.id,
-                email: user.email,
-                avatarUrl: user.avatarurl
-            });
-        }
-    }
-
-    componentDidUpdate() {
-        const isLoggedIn = auth.isLoggedIn();
-        if (isLoggedIn && this.state.id === 0) {
-            this.fetchUser();
-        } else if (!isLoggedIn) {
-            this.updateUser({
-                id: 0,
-                email: '',
-                avatarUrl: ''
-            });
-        }
-    }
-
     render() {
-        let {closeMenu, show} = this.props;
-        const isLoggedIn = auth.isLoggedIn();
-        //console.log(this.state.email);
+        let {closeMenu, show, connections, notifications, contracts, payments} = this.props;
+        const { isLoggedIn } = this.props.user;
+        // console.log(`User: ${JSON.stringify(this.props.user)}`);
+        let connectionCount = 0, notificationCount = 0, contractCount=0, paymentCount=0;
+        if (connections.data) {
+            connectionCount = connections.data.length;
+        }
+        
+        if (notifications.data) {
+            notificationCount = notifications.data.length;
+        }
+        
+        if (contracts.data) {
+            contracts.data.forEach(contract => {
+                if ((contract.id === contract.parentId && contract.status === "active")
+                ||(contract.parentId === null && contract.status === "pending")) {
+                    contractCount += 1;
+                }
+            });
+        }
+        
+        if (payments.data) {
+            paymentCount = payments.data.length;
+        }
+        
         return (
             <div className={`menu ${show ? "show" : ""}`}>
 
                 <div className="menu__header">
-                    <img src={this.state.avatarUrl} alt="profile-pic" className="menu__avatar"/>
-                    {isLoggedIn ? <p className="menu__user">{this.state.email}</p> : null}
+                    <img src={this.props.user.data.avatarUrl} alt="profile-pic" className="menu__avatar"/>
+                    {isLoggedIn ? <p className="menu__user">{this.props.user.data.username}</p> : null}
+                    {isLoggedIn ? <p className="menu__user">{this.props.user.data.firstName}, {this.props.user.data.lastName}</p> : null}
                 </div>
 
                 <div className="menu__list">
 
-                    <Link to="/" className="menu__item" onClick={closeMenu}>
+                    <NavLink exact to="/" className="menu__item" activeClassName="active" onClick={closeMenu}>
                         Home
-                    </Link>
+                    </NavLink>
 
                     {!isLoggedIn ?
-                        <Link to="/login" className="menu__item" onClick={closeMenu}>
+                        <NavLink to="/login" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Login
-                        </Link>
+                        </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/connections" className="menu__item" onClick={closeMenu}>
-                            Connections
-                        </Link>
+                        <NavLink to="/profile" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Profile</p>
+                        </NavLink>
                         : null}
 
                     {isLoggedIn ?
-                        <Link to="/contracts" className="menu__item" onClick={closeMenu}>
-                            Contracts
-                        </Link>
+                        <NavLink to="/notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Notifications</p>
+                            <p className="menuItemInfo">{notificationCount}</p>
+                        </NavLink>
+                        : null}
+                        
+                    {isLoggedIn ?
+                        <NavLink to="/connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Connections</p>
+                            <p className="menuItemInfo">{connectionCount}</p>
+                        </NavLink>
                         : null}
 
+                    {isLoggedIn ?
+                        <NavLink to="/contracts" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Contracts</p>
+                            <p className="menuItemInfo">{contractCount}</p>
+                        </NavLink>
+                        : null}
+
+                    {isLoggedIn ?
+                        <NavLink to="/createcontract" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Create Contract</p>
+                        </NavLink>
+                        : null}
+
+                    {isLoggedIn ?
+                        <NavLink to="/payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Payments</p>
+                            <p className="menuItemInfo">{paymentCount}</p>
+                        </NavLink>
+                        : null}
+
+                    {isLoggedIn ?
+                        <NavLink to="/createpayment" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Create Payment</p>
+                        </NavLink>
+                        : null}
+                        
                     {!isLoggedIn ?
-                        <Link to="/signup" className="menu__item" onClick={closeMenu}>
+                        <NavLink to="/signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Signup
-                        </Link>
+                        </NavLink>
                         : null}
 
                     {isLoggedIn ?

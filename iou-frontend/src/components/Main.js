@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Connection from './pages/Connection';
-import Contract from './pages/Contract';
+import Contract from './pages/ContractV2';
+import CreateContract from './pages/CreateContract';
+import Notification from './pages/Notification';
+import Payment from './pages/Payment';
+import CreatePayment from './pages/CreatePayment';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -18,10 +22,15 @@ class Main extends Component {
       <main className="main">
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/connections' component={Connection}/>
-          <Route path='/contracts' component={Contract}/>
-          <Route path='/login' component={Login}/>
-          <Route path='/signup' component={SignUp}/>
+          <Route path='/Connections' component={Connection}/>
+          <Route path='/Contracts' component={Contract}/>
+          <Route path='/CreateContract' component={CreateContract}/>
+          <Route path='/Notifications' component={Notification}/>
+          <Route path='/Payments' component={Payment}/>
+          <Route path='/CreatePayment' component={CreatePayment}/>
+          <Route path='/Login' component={Login}/>
+          <Route path='/Signup' component={SignUp}/>
+          <Route path='/Profile' component={SignUp}/>
         </Switch>
       </main>
     );

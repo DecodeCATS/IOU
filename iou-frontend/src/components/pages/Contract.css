@@ -1,0 +1,63 @@
+.contractContainer .textContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+    padding: 20px;
+    text-align: center;
+}
+
+.contractSubContainer .contractRow{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    /*min-width: 100vw;*/
+
+}
+
+.contractColumn {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid black;
+    min-height: 80vh;
+    min-width: 32%;
+}
+.contractColumn h3 {
+    font-style: italic;
+    font-size: medium;
+    font-weight: normal;
+}
+
+.contractContainer .contractButtons {
+    display: flex;
+    flex-flow: wrap;
+
+    justify-content: space-around;
+    padding: 10px 10px 30px 10px;
+    width: 100%;
+}
+
+.contractContainer .contractButtons button {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: wrap;
+    border-radius: 12px;
+    background-color: #2B62B5;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 30%;
+    height: 5vh;
+    justify-content: center;
+}
+
+.contractContainer .contractButtons button:hover {
+    background-color: #45c2eb;
+    border-radius: 12px;
+}
+
+.contractColumn hr {
+    color: black;
+    width: 50%;
+}

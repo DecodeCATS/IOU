@@ -1,35 +1,156 @@
-.connectionContainer {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+.container {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: 1rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "search"
+  "connection"
+  "result";
+  /*flex-wrap: wrap;*/
+  /*justify-content: space-between;*/
+  /*padding: 20px;*/
   min-height: 80vh;
-  min-width: 100vw;
+  width: 90vw;
 }
 
-.connectionSubContainer {
-  display: flex;
-  flex-direction: column;
+.connectionContainer, .searchContainer, .resultContainer {
   text-align: center;
-  width: 45%;
-}
-
-.connectionCards {
-  border: 1px solid black;
-  margin: 10px;
-  padding: 5px;
-  height: 100%;
   width: 100%;
 }
 
-.connectionCards connectionCard {
-
+.container .connectionContainer {
+  grid-area: connection;
+  display: flex;
+  flex-direction: column;
 }
 
-.connectionCard {
+.container .searchContainer .searchForm{
+  grid-area: search;
+  display: inline-grid;
+  grid-gap: .5rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "username"
+  "firstName"
+  "lastName"
+  "email"
+  "button";
+}
+
+.container .resultContainer {
+  grid-area: result;
+}
+
+.connectionCards, .searchCards, .resultCards {
+  border: 1px solid black;
+  padding: 5px;
+  min-height: 5vh;
+}
+
+.connectionCards .connectionCard, .resultCards .connectionCard  {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid black;
-  padding: 10px;
   margin: 10px;
+}
+
+.connectionCards .connectionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.connectionCards .connectionButtons button {
+  border: none;
+  background-color: transparent;
+  color: dimgrey;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.connectionCards .connectionButtons button:hover {
+  background-color: deepskyblue;
+}
+
+.searchItem.username {grid-area: username;}
+.searchItem.firstName {grid-area: firstName;}
+.searchItem.lastName {grid-area: lastName;}
+.searchItem.email {grid-area: email;}
+.searchItem.button {grid-area: button;}
+
+.searchItem div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  
+  font-size: 1.2rem;
+}
+
+.searchItem p {
+  display: block;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1.2rem;
+  line-height: 100%;
+  padding: 5px;
+}
+
+.searchItem input {
+  display: block;
+  border: 1px solid darkgrey;
+  font-size: 1.2rem;
+  /*height: 100%;*/
+  padding: 5px;
+  width: 100%;
+}
+
+.searchItem.button, .resultItem.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchItem.button button, .resultItem.button button{
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  color: darkblue;
+  width: 50%;
+}
+
+.searchItem.button button:disabled, .resultItem.button button:disabled{
+  color: #ffcccc;
+}
+
+
+@media only screen and (min-width: 600px)  {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "connection search"
+      "connection result";
+  }
+  
+  .container .searchContainer .searchForm {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "username button"
+      "firstName lastName"
+      "email email";
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+    .container {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+      "connection search"
+      "connection result";
+  }
 }

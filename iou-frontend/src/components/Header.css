@@ -7,3 +7,57 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.App-navbar__title {
+  margin: 0;
+  color: DarkBlue;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.settings-icon, .menu-icon {
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.menu__avatar.menu-icon {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background: green;
+  line-height: 60px;
+  text-align: center;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.buttons button {
+  background-color: transparent;
+  border: none;
+  font-size: .7rem;
+  font-weight: bold;
+  text-align: center;
+  color: darkblue;
+}
+
+.buttons button:hover {
+  background-color: yellow;
+}
+
+.buttons .success {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.buttons .pending {
+  background-color: #ffdb99; /* 80% orange */
+}
+
+.buttons .error {
+  background-color: #ffcccc;
+}
