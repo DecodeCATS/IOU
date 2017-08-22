@@ -78,11 +78,54 @@ class Contract extends Component {
 
   //Takes an Array of contracts, (which it gets from render() down below)
   renderList(contract){
+    let myId = this.props.user.data.id;
+    let counterparties = [];
+    let isPayer = true;
+
+    if (contract.payeeId === myId) {
+      isPayer = false;
+    }
+
+    //this.props.connections comes from the store
+    if (this.props.connections.data) {
+      counterparties = this.props.connections.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
+        }
+        return flag;
+      });
+    }
+
+
+    console.log("Counterparty size after users", counterparties.length);
+
+    // If counterparty is still empty, search through organisations
+    console.log("payment s=", this.props.payments.data);
+    if (counterparties.length < 1 && this.props.organisations.data) {
+      counterparties = this.props.organisations.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
+        }
+        return flag;
+      });
+    }
+
+    console.log("Counterparty size after orgs", counterparties.length);
     //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
     return (
       <div key={contract.id} className="latestCards" onClick={() => this.onClickContractAction(contract.id)}>
         <ContractCard
           contract={contract}
+          isPayer={isPayer}
+          counterparty={counterparties[0] ? counterparties[0]: {}}
         />
       </div>
     );
@@ -90,10 +133,53 @@ class Contract extends Component {
 
   renderContractHistoryData(contract)
   {
+    let myId = this.props.user.data.id;
+    let counterparties = [];
+    let isPayer = true;
+
+    if (contract.payeeId === myId) {
+      isPayer = false;
+    }
+
+    //this.props.connections comes from the store
+    if (this.props.connections.data) {
+      counterparties = this.props.connections.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
+        }
+        return flag;
+      });
+    }
+
+
+    console.log("Counterparty size after users", counterparties.length);
+
+    // If counterparty is still empty, search through organisations
+    console.log("payment s=", this.props.payments.data);
+    if (counterparties.length < 1 && this.props.organisations.data) {
+      counterparties = this.props.organisations.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
+        }
+        return flag;
+      });
+    }
+
+    console.log("Counterparty size after orgs", counterparties.length);
     return (
       <div key={contract.id} className="latestCards" onClick={() => this.onClickContractHistoryAction(contract.id)}>
         <ContractCard
           contract={contract}
+          isPayer={isPayer}
+          counterparty={counterparties[0] ? counterparties[0]: {}}
         />
       </div>
     );
@@ -153,7 +239,7 @@ class Contract extends Component {
     console.log("Counterparty size after orgs", counterparties.length);
 
     return (
-      <div key={contract.id}>
+      <div key={contract.id} className="latestCards">
         <ContractDetailCard
           contract={contract}
           isPayer={isPayer}
@@ -175,6 +261,7 @@ class Contract extends Component {
       <div className="pageContainer">
         <div className="listContainer">
           <h2>Contract List</h2>
+          <p>A list of all your contracts (click to select)</p>
           <div>
             {
               latestContracts.map(contract => this.renderList(contract))
@@ -183,18 +270,21 @@ class Contract extends Component {
         </div>
         <div className="historyContainer">
           <h2>Contract History</h2>
+          <p>Showing selected contract and all updated version(s) (click to select)</p>
           {
             this.state.detailedContractHistory.map(contract => this.renderContractHistoryData(contract))
           }
         </div>
         <div className="detailContainer">
-          <h2>Contract Details:</h2>
+          <h2>Contract Details</h2>
+          <p>Showing details of your selected contracts</p>
           {
             this.state.detailedContract.map(contract => this.renderContractDetails(contract))
           }
         </div>
         <div className="paymentContainer">
-          <h2>Payment Details:</h2>
+          <h2>Payment Details</h2>
+          <p>Showing all payments information for the selected version of your contract</p>
           {
             this.state.detailedContractPayments.map(payment => this.renderContractPayments(payment))
           }

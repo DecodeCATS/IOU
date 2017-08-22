@@ -14,7 +14,7 @@ export default class ContractDetailCard extends Component {
         console.log("is Payer =",isPayer);
 
         return (
-            <div className="contract">
+            <div className="contract-detail">
                 <div className="contract-headers">
                     <h4>Basic Contract Information</h4>
                     <p> Contract: {contract.title} </p>
