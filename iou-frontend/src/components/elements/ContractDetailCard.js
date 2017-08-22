@@ -41,9 +41,9 @@ export default class ContractDetailCard extends Component {
                 </div>
                 <div className="counter-party-data">
                     <h4>{isPayer ? "Payee " : "Payer "} Information</h4>
-                    <p>Username: {counterparty.username}</p>
+                    <p>Username: {counterparty.username ? counterparty.username : "N/A (This is an open contract)" }</p>
                     <p>Name: {counterparty.firstName} {counterparty.lastName}</p>
-                    <p>Type: {counterparty.type}</p>
+                    <p>Type: {counterparty.type} </p>
                     <p>Blacklisted: {counterparty.isBlacklisted ? "Yes" : "No" }</p>
                 </div>
             </div>
