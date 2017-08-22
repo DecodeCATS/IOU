@@ -139,7 +139,7 @@ class Connection extends Component {
                       user={user}
                     />
                     <div className="connectionButtons">
-                      <button disabled={true}>RequestFunds</button>
+                      <button disabled={true}>Create Contract</button>
                       <button onClick={this.addBlacklist.bind(this,user.id)}>Mute</button>
                       <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
                     </div>
@@ -151,7 +151,7 @@ class Connection extends Component {
         </div>
         
         <div className="searchContainer">
-          <h2>Search Connections by one of the following:</h2>
+          <h2>Search by username:</h2>
           <div className="searchCards">
             <form className="searchUserForm" onSubmit={this.handleSubmit}>
               <div className="searchItem username">

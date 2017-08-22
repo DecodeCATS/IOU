@@ -42,15 +42,15 @@ export function fetchContractPayments (contractId) {
   };
 }
 
-export function addContractPayment (contractId, payment) {
+export function addPayment (payment) {
   return function (dispatch) {
-    dispatch({type: "ADD_CONTRACT_PAYMENT", status: "pending", error: ""});
-    Auth.addContractPayment(contractId, payment)
+    dispatch({type: "ADD_PAYMENT", status: "pending", error: ""});
+    Auth.addPayment(payment)
     .then(res => {
-      dispatch({type: "ADD_CONTRACT_PAYMENT", status: "success", error: "", value: res});
+      dispatch({type: "ADD_PAYMENT", status: "success", error: "", value: res});
     })
     .catch(err => {
-      dispatch({type: "ADD_CONTRACT_PAYMENT", status: "error", error: err});
+      dispatch({type: "ADD_PAYMENT", status: "error", error: err});
     });
   };
 }

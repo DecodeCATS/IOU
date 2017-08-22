@@ -155,7 +155,7 @@ class Api {
         superagent
             .post(`${API_HOST}/payments`)
             .set('Authorization', `token ${token}`)
-            .send({payment})
+            .send(payment)
     )
 
     deleteContract = (token, paymentId) => (

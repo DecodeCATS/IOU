@@ -6,6 +6,7 @@ import Contract from './pages/ContractV2';
 import CreateContract from './pages/CreateContract';
 import Notification from './pages/Notification';
 import Payment from './pages/Payment';
+import CreatePayment from './pages/CreatePayment';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -26,6 +27,7 @@ class Main extends Component {
           <Route path='/CreateContract' component={CreateContract}/>
           <Route path='/Notifications' component={Notification}/>
           <Route path='/Payments' component={Payment}/>
+          <Route path='/CreatePayment' component={CreatePayment}/>
           <Route path='/Login' component={Login}/>
           <Route path='/Signup' component={SignUp}/>
           <Route path='/Profile' component={SignUp}/>

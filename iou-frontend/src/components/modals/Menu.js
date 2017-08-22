@@ -117,12 +117,24 @@ class Menu extends Component {
                         : null}
 
                     {isLoggedIn ?
+                        <NavLink to="/createcontract" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Create Contract</p>
+                        </NavLink>
+                        : null}
+
+                    {isLoggedIn ?
                         <NavLink to="/payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             <p className="menuItemName">Payments</p>
                             <p className="menuItemInfo">{paymentCount}</p>
                         </NavLink>
                         : null}
 
+                    {isLoggedIn ?
+                        <NavLink to="/createpayment" className="menu__item" activeClassName="active" onClick={closeMenu}>
+                            <p className="menuItemName">Create Payment</p>
+                        </NavLink>
+                        : null}
+                        
                     {!isLoggedIn ?
                         <NavLink to="/signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
                             Signup
