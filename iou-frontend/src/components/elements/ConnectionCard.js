@@ -11,7 +11,6 @@ export default class ConnectionCard extends Component {
         </div>
         <div className="realName">
           <p>{this.props.user.firstName} {this.props.user.lastName}</p>
-          <p></p>
         </div>
       </div>
     );
