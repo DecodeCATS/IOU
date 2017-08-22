@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 // import ReactDOM from 'react-dom'
 import ContractCard from '../elements/ContractCard';
 import './ContractV2.css';
+import ContractDetailCard from "../elements/ContractDetailCard";
 
 
 class Contract extends Component {
@@ -58,8 +59,6 @@ class Contract extends Component {
     }
 
     console.log("Counterparty size after orgs", counterparties.length);
-      //{/*contract info from the store after api call*/}
-      {/*my flag*/}
 
       //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
     return (
@@ -76,8 +75,6 @@ class Contract extends Component {
     //Steps 1 get the data for the specific data from the contracts array
     console.log(contractId, "what is contract id")
 
-    //console.log(this.props.contracts.data);
-
     let selectedContract = this.props.contracts.data.filter(contracts => {
         console.log(contracts.id, contractId, "the filter")
       return contracts.id === contractId;
@@ -86,9 +83,62 @@ class Contract extends Component {
     this.setState({detailedContract: selectedContract})
   }
 
+  renderContractDetails(contract) {
+      let myId = this.props.user.data.id;
+      let counterparties = [];
+      let isPayer = true;
+
+      if (contract.payeeId === myId) {
+          isPayer = false;
+      }
+
+      //this.props.connections comes from the store
+      if (this.props.connections.data) {
+          counterparties = this.props.connections.data.filter(user => {
+              let flag = false;
+              if (+contract.payerId === +user.id) {
+                  flag = true;
+              }
+              else if (+contract.payeeId === +user.id) {
+                  flag = true;
+              }
+              return flag;
+          });
+      }
+
+      console.log("Counterparty size after users", counterparties.length);
+      // If counterparty is still empty, search through organisations
+      if (counterparties.length < 1 && this.props.organisations.data) {
+          counterparties = this.props.organisations.data.filter(user => {
+              let flag = false;
+              if (+contract.payerId === +user.id) {
+                  flag = true;
+              }
+              else if (+contract.payeeId === +user.id) {
+                  flag = true;
+              }
+              return flag;
+          });
+      }
+
+      console.log("Counterparty size after orgs", counterparties.length);
+      //{/*contract info from the store after api call*/}
+
+      //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
+      return (
+          <div key={contract.id} className="latestCards" onClick={() => this.processContractDetail(contract.id)}>
+            <ContractDetailCard
+                contract={contract}
+                isPayer={isPayer}
+                counterparty={counterparties[0]}
+            />
+          </div>
+      );
+  }
+
+
   render() {
     let latestContracts = [];
-    let selectedContractData = [];
     if (this.props.contracts.data) {
       //this.props.contracts.data is now sored in the latestContractsArray
       latestContracts = this.props.contracts.data;//.filter(contract => contract.isLatest);
@@ -107,7 +157,7 @@ class Contract extends Component {
         <div className="detailContainer">
           <h2>Contract detail:</h2>
           {
-            this.state.detailedContract.map(contract=> this.renderList(contract))
+            this.state.detailedContract.map(contract=> this.renderContractDetails(contract))
           }
         </div>
         <div className="paymentContainer">
@@ -117,10 +167,7 @@ class Contract extends Component {
     );
   }
 }
-//
-// {
-//     this.state.detailedContract.map(contract=> this.renderList(contract))
-// }
+
 
 export default connect(state => ({ 
   user: state.user, 
