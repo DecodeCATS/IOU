@@ -13,6 +13,12 @@
   src: url('https://fonts.googleapis.com/css?family=Roboto:400i')
 }
 
+* {
+  /*color: #37526d;*/
+  color: #078e91;
+  background-color: #f2e8cd;
+}
+
 body *, body *:before, body *:after { box-sizing: inherit; }
 body {
   box-sizing: border-box;
@@ -73,4 +79,12 @@ h1, h2, p {
 
 .error {
   color: red;
+}
+
+.inputGood {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.inputBad {
+  background-color: #ffcccc;
 }
