@@ -1,11 +1,11 @@
-.createContractPage {
+.createPaymentPage {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 
-.contractItem div {
+.paymentItem div {
   display: flex;
   flex-wrap: wrap;
   justify-content: stretch;
@@ -13,7 +13,7 @@
   font-size: 1.2rem;
 }
 
-.contractItem p {
+.paymentItem p {
   display: block;
   text-align: left;
   vertical-align: middle;
@@ -22,7 +22,7 @@
   padding: 5px;
 }
 
-.contractItem input, .contractItem select {
+.paymentItem input, .paymentItem select {
   display: block;
   border: 1px solid darkgrey;
   font-size: 1.2rem;
@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-.contractItem textarea {
+.paymentItem textarea {
   display: block;
   border: 1px solid darkgrey;
   font-size: 1rem;
@@ -41,12 +41,12 @@
   width: 100%;
 }
 
-.contractItem.button {
+.paymentItem.button {
   display: flex;
   justify-content: flex-end;
 }
 
-.contractItem.button button{
+.paymentItem.button button{
   background-color: transparent;
   border: none;
   font-size: 1.5rem;
@@ -56,82 +56,78 @@
   width: 50%;
 }
 
-.contractItem.button button:disabled{
+.paymentItem.button button:disabled{
   color: #ffcccc;
 }
 
-.contractItem.payDirection{grid-area: payDirection;}
-.contractItem.counterparty{grid-area: counterparty;}
-.contractItem.title{grid-area: title;}
-.contractItem.description{grid-area: description;}
-.contractItem.amount{grid-area: amount;}
-.contractItem.dueDate{grid-area: dueDate;}
-.contractItem.button{grid-area: button;}
+.paymentItem.paymentContract{grid-area: contract;}
+.paymentItem.currency{grid-area: currency;}
+.paymentItem.amount{grid-area: amount;}
+.paymentItem.paidDate{grid-area: paidDate;}
+.paymentItem.dueDate{grid-area: dueDate;}
+.paymentItem.button{grid-area: button;}
 
 
 
-.contractForm {
+.paymentForm {
   display: grid;
   justify-content: stretch;
   grid-gap: .5rem;
   grid-template-rows: max-content;
   grid-template-areas:
-    "title"
-    "counterparty"
-    "payDirection"
-    "amount"
+    "contract"
     "dueDate"
-    "description"
+    "paidDate"
+    "amount"
     "button";
   width: 90vw;
 }
 
 @media only screen and (min-width: 600px)  {
-  .contractForm {
+  .paymentForm {
 
   grid-template-columns: 1fr 1fr;
   grid-template-rows: max-content;
   grid-template-areas:
-    "title title"
-    "payDirection counterparty"
-    "dueDate amount"
-    "description description"
+    "contract contract"
+    "dueDate paidDate"
+    "amount currency"
     "... button";
   }
   
-  .contractItem p {
+  .paymentItem p {
     font-size: 1.2rem;
   }
   
-  .contractItem input, .contractItem textarea, .contractItem select {
+  .paymentItem input, .paymentItem textarea, .paymentItem select {
     font-size: 1.5rem;
   }
   
-  .contractItem.button button {
+  .paymentItem.button button {
     font-size: 2rem;
   }
 }
 
 @media only screen and (min-width: 1024px)  {
-  .contractForm {
-    grid-template-columns: 2fr 1fr 1fr;
+  .paymentForm {
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: max-content;
     grid-template-areas:
-      "title payDirection counterparty"
-      "amount dueDate ..."
-      "description description description"
-      "... ... button";
+      "contract dueDate"
+      "... paidDate"
+      "amount currency"
+      "... button"
   }
   
-  .contractItem p {
+  .paymentItem p {
     font-size: 1.5rem;
   }
   
-  .contractItem input, .contractItem textarea, .contractItem select {
+  .paymentItem input, .paymentItem textarea, .paymentItem select {
     font-size: 2rem;
   }
   
-  .contractItem.button button {
+  .paymentItem.button button {
     font-size: 2.5rem;
   }
 }

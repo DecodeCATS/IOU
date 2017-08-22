@@ -49,7 +49,7 @@ class Payment extends Component {
       return flag;
     });
     
-    console.log(`Payment=${JSON.stringify(payment)}, contract=${JSON.stringify(contracts)}, counterparty=${JSON.stringify(counterparties)}`);
+    // console.log(`Payment=${JSON.stringify(payment)}, contract=${JSON.stringify(contracts)}, counterparty=${JSON.stringify(counterparties)}`);
     
     return (
       <div key={payment.paymentId} className="paymentCard">
@@ -64,7 +64,7 @@ class Payment extends Component {
   
   render() {
     let paymentData = this.props.payments.data;
-    console.log(`PaymentData=${JSON.stringify(paymentData)}`);
+    // console.log(`PaymentData=${JSON.stringify(paymentData)}`);
     return (
       <div>Payment Page!
         <div className="paymentCards">

@@ -132,7 +132,9 @@ class Contract extends Component {
       });
     }
 
+
     console.log("Counterparty size after users", counterparties.length);
+
     // If counterparty is still empty, search through organisations
     console.log("payment s=", this.props.payments.data);
     if (counterparties.length < 1 && this.props.organisations.data) {
@@ -149,9 +151,7 @@ class Contract extends Component {
     }
 
     console.log("Counterparty size after orgs", counterparties.length);
-    //{/*contract info from the store after api call*/}
 
-    //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
     return (
       <div key={contract.id} className="latestCards">
         <ContractDetailCard

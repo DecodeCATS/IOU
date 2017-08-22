@@ -259,7 +259,7 @@ var auth = {
     },
     
     addPayment(payment) {
-        return api.addContract(localStorage.token, payment)
+        return api.addPayment(localStorage.token, payment)
         .then(res => {
             return res.body;
         })

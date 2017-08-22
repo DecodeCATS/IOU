@@ -139,7 +139,7 @@ class Connection extends Component {
                       user={user}
                     />
                     <div className="connectionButtons">
-                      <button disabled={true}>RequestFunds</button>
+                      <button disabled={true}>Create Contract</button>
                       <button onClick={this.addBlacklist.bind(this,user.id)}>Mute</button>
                       <button onClick={this.deleteConnection.bind(this,user.id)}>Delete</button>
                     </div>
