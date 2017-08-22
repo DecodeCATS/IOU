@@ -93,7 +93,7 @@ class CreateContract extends Component {
   handleSubmit(e) {
     e.preventDefault();
     // console.log(e);
-    console.log(`isLoggedIn=${this.props.user.isLoggedIn} user=${JSON.stringify(this.props.user.data)}`);
+    // console.log(`isLoggedIn=${this.props.user.isLoggedIn} user=${JSON.stringify(this.props.user.data)}`);
 
     if(this.props.user.isLoggedIn && this.props.user.data.id > 0) {
       let payerId = 0;
@@ -131,6 +131,14 @@ class CreateContract extends Component {
   
   render() {
     let {title, description, amount, dueDate, counterpartyUserId, userPaySide} = this.state;
+    let connections = [];
+    let organisations = [];
+    if(this.props.connections && this.props.connections.data) {
+      connections = this.props.connections.data;
+    }
+    if(this.props.organisations && this.props.organisations.data) {
+      organisations = this.props.organisations.data;
+    }
     return (
       <div className="createContractPage">
         <form id="createContractForm" className="contractForm" onSubmit={this.handleSubmit}>
@@ -138,7 +146,7 @@ class CreateContract extends Component {
               <p>I am the:</p>
               <select ref="paymentDirection"
                 value={userPaySide}
-                onChange={this.handlePaySide} require
+                onChange={this.handlePaySide}
               >
                 <option value="payer">Payer</option>
                 <option value="payee">Payee</option>
@@ -151,11 +159,10 @@ class CreateContract extends Component {
                 className={`${counterpartyUserId>0 ? "inputGood":"inputBad"}`}
                 value={counterpartyUserId}
                 onChange={this.handleCounterparty}
-                required
               >
                 <option key="0" value="0">Pick a counterparty</option>
-                {this.props.organisations.data.map(connection => this.renderCounterparty(connection,1))}
-                {this.props.connections.data.map(connection => this.renderCounterparty(connection))}
+                {organisations.map(connection => this.renderCounterparty(connection,1))}
+                {connections.map(connection => this.renderCounterparty(connection))}
               </select>
             </div>
             <div className="contractItem title">

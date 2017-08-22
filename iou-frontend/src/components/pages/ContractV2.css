@@ -1,18 +1,20 @@
-
-
-.listContainer {
-  grid-area: list;
+.listContainer, .detailContainer, .paymentContainer, .historyContainer {
+  display: flex;
+  flex-direction:column;
   border: 1px solid black;
+  padding: 5px;
 }
 
-.detailContainer {
-  grid-area: detail;
-  border: 1px solid black;
-}
+.listContainer {grid-area: list;}
+.detailContainer {grid-area: detail;}
+.paymentContainer {grid-area: payment;}
+.historyContainer {gird-area: history;}
 
-.paymentContainer {
-  grid-area: payment;
+.latestCards {
   border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  min-height: 2vh;
 }
 
 .pageContainer {
@@ -21,8 +23,9 @@
   grid-gap: 1rem;
   grid-template-rows: max-content;
   grid-template-areas:
-  "detail"
   "list"
+  "history"
+  "detail"  
   "payment";
   /*flex-wrap: wrap;*/
   /*justify-content: space-between;*/
@@ -33,9 +36,9 @@
 
 @media only screen and (min-width: 600px)  {
   .pageContainer {
-  grid-gap: 1fr 1fr;
+  grid-gap: 1fr 4fr;
   grid-template-areas:
-  "detail list"
-  "payment list";
+  "list detail"
+  "history payment";
   }
 }

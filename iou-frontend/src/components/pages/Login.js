@@ -74,7 +74,8 @@ class Login extends Component {
             <div className="loginContainer">
                 <div className="loginItem email">
                     <p>Email</p>
-                    <input type="text" ref="email" className={`${email.length > 0 ? "inputGood":"inputBad"}`}
+                    <input type="text" ref="email" placeholder="purr@decode.cats"
+                       className={`${email.length > 0 ? "inputGood":"inputBad"}`}
                        onInput={this.handleEmailInput}
                        value={email}
                     />

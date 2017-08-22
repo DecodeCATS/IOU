@@ -1,8 +1,37 @@
+@fontface {
+  font-family: 'Bubblegum Sans', cursive;
+  src: url('https://fonts.googleapis.com/css?family=Bubblegum+Sans')
+}
+
+@fontface {
+  font-family: 'Lato', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Lato')
+}
+
+@fontface {
+  font-family: 'Roboto', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Roboto:400i')
+}
+
+* {
+  /*color: #37526d;*/
+  color: #078e91;
+  background-color: #f2e8cd;
+}
+
 body *, body *:before, body *:after { box-sizing: inherit; }
 body {
   box-sizing: border-box;
   font-size: 12px;
   margin: 0px;
+}
+
+div p, div input {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, div, NavLink, button {
+  font-family: 'Bubblegum Sans', cursive;
 }
 
 a {
@@ -50,4 +79,12 @@ h1, h2, p {
 
 .error {
   color: red;
+}
+
+.inputGood {
+  background-color: #d3f8d3; /* 90% lightgreen */
+}
+
+.inputBad {
+  background-color: #ffcccc;
 }

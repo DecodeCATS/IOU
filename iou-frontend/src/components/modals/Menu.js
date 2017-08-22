@@ -80,64 +80,64 @@ class Menu extends Component {
                 <div className="menu__list">
 
                     <NavLink exact to="/" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                        Home
+                        <h2>Home</h2>
                     </NavLink>
 
                     {!isLoggedIn ?
                         <NavLink to="/login" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Login
+                            <h2>Login</h2>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/profile" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Profile</p>
+                            <h2 className="menuItemName">Profile</h2>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/notifications" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Notifications</p>
-                            <p className="menuItemInfo">{notificationCount}</p>
+                            <h2 className="menuItemName">Notifications</h2>
+                            <h2 className="menuItemInfo">{notificationCount}</h2>
                         </NavLink>
                         : null}
                         
                     {isLoggedIn ?
                         <NavLink to="/connections" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Connections</p>
-                            <p className="menuItemInfo">{connectionCount}</p>
+                            <h2 className="menuItemName">Connections</h2>
+                            <h2 className="menuItemInfo">{connectionCount}</h2>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/contracts" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Contracts</p>
-                            <p className="menuItemInfo">{contractCount}</p>
+                            <h2 className="menuItemName">Contracts</h2>
+                            <h2 className="menuItemInfo">{contractCount}</h2>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/createcontract" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Create Contract</p>
+                            <h2 className="menuItemName">Create Contract</h2>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/payments" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Payments</p>
-                            <p className="menuItemInfo">{paymentCount}</p>
+                            <h2 className="menuItemName">Payments</h2>
+                            <h2 className="menuItemInfo">{paymentCount}</h2>
                         </NavLink>
                         : null}
 
                     {isLoggedIn ?
                         <NavLink to="/createpayment" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            <p className="menuItemName">Create Payment</p>
+                            <h2 className="menuItemName">Create Payment</h2>
                         </NavLink>
                         : null}
                         
                     {!isLoggedIn ?
                         <NavLink to="/signup" className="menu__item" activeClassName="active" onClick={closeMenu}>
-                            Signup
+                            <h2>Signup</h2>
                         </NavLink>
                         : null}
 
