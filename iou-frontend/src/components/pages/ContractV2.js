@@ -153,7 +153,7 @@ class Contract extends Component {
     console.log("Counterparty size after orgs", counterparties.length);
 
     return (
-      <div key={contract.id} className="latestCards">
+      <div key={contract.id}>
         <ContractDetailCard
           contract={contract}
           isPayer={isPayer}

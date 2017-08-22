@@ -151,7 +151,7 @@ class Connection extends Component {
         </div>
         
         <div className="searchContainer">
-          <h2>Search Connections by one of the following:</h2>
+          <h2>Search by username:</h2>
           <div className="searchCards">
             <form className="searchUserForm" onSubmit={this.handleSubmit}>
               <div className="searchItem username">
