@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './PaymentCard.css';
+import './ContractDetailCard.js';
 
 export default class ContractDetailCard extends Component {
     render(){

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './PaymentCard.css';
+import './ContractCard.css';
 
 export default class ContractCard extends Component {
     //onClick={this.props.click}
@@ -8,7 +8,7 @@ export default class ContractCard extends Component {
 
     let {contract} = this.props; //now, contract = to this.props.contract
     return (
-      <div className="contract">
+      <div className="payment">
         <div className="title">
           <p> {contract.title} </p>
         </div>
