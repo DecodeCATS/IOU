@@ -157,7 +157,7 @@ class Contract extends Component {
         <ContractDetailCard
           contract={contract}
           isPayer={isPayer}
-          counterparty={counterparties[0]}
+          counterparty={counterparties[0] ? counterparties[0]: {}}
         />
       </div>
     );
