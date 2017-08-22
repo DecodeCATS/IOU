@@ -20,6 +20,7 @@ class CreatePayment extends Component {
     this.handleCurrencyIdInput = this.handleCurrencyIdInput.bind(this);
     this.handleDueDateInput = this.handleDueDateInput.bind(this);
     this.handlePaidDateInput = this.handlePaidDateInput.bind(this);
+    this.handleAmountInput = this.handleAmountInput.bind(this);
     
     this.handleSubmit = this.handleSubmit.bind(this);
     
@@ -148,7 +149,7 @@ class CreatePayment extends Component {
           </div>
           <div className="paymentItem amount">
             <p>Amount (in cents):</p>
-            <input ref="paymentAmount" type="number" value={amount} onChange={this.handleAmountInput}/>
+            <input ref="paymentAmount" type="number" value={amount} onInput={this.handleAmountInput}/>
           </div>
           <div className="paymentItem button">
               <button type="submit" disabled={(contractId<1 || currencyId<1 || !amount || !dueDate)}>Create Payment</button>
