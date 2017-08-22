@@ -13,74 +13,38 @@ class Contract extends Component {
     super(props);
     this.state = {
       detailedContractId: 0,
-      detailedContract: []
+      detailedContract: [],
+      detailedContractHistory: [],
+      detailedContractPayments: []
     };
     this.renderList = this.renderList.bind(this);
     this.processContractDetail = this.processContractDetail.bind(this);
   }
-  
+
+    //This filters the contracts Array to get the right contract using the passed ContractId
+
+  processContractDetail(contractId){
+    // selectedContract is an Array of 1 contract, i.e: the selected contract
+    let selectedContract = this.props.contracts.data.filter(contracts => {
+      return contracts.id === contractId;
+    });
+    //the detailedContract Array in state will be updated to the selectedContract
+    // we can later use that in render() by using this.state.detailedContracts
+    this.setState({detailedContract: selectedContract})
+  }
+
+
+  //Takes an Array of contracts, (which it gets from render() down below)
   renderList(contract){
-    
-    let myId = this.props.user.data.id;
-    let counterparties = [];
-    let isPayer = true;
-    
-    if (contract.payeeId === myId) {
-      isPayer = false;
-    }
 
-    //this.props.connections comes from the store
-    if (this.props.connections.data) {
-      counterparties = this.props.connections.data.filter(user => {
-        let flag = false;
-        if (+contract.payerId === +user.id) {
-          flag = true;
-        }
-        else if (+contract.payeeId === +user.id) {
-          flag = true;
-        }
-        return flag;
-      });
-    }
-    
-    console.log("Counterparty size after users", counterparties.length);
-    // If counterparty is still empty, search through organisations
-    if (counterparties.length < 1 && this.props.organisations.data) {
-      counterparties = this.props.organisations.data.filter(user => {
-        let flag = false;
-        if (+contract.payerId === +user.id) {
-          flag = true;
-        }
-        else if (+contract.payeeId === +user.id) {
-          flag = true;
-        }
-        return flag;
-      });
-    }
-
-    console.log("Counterparty size after orgs", counterparties.length);
-
-      //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
+    //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
     return (
       <div key={contract.id} className="latestCards" onClick={() => this.processContractDetail(contract.id)}>
         <ContractCard
           contract={contract}
-          isPayer={isPayer}
-          counterparty={counterparties[0]}        />
+        />
       </div>
     );
-  }
-
-  processContractDetail(contractId){
-    //Steps 1 get the data for the specific data from the contracts array
-    console.log(contractId, "what is contract id")
-
-    let selectedContract = this.props.contracts.data.filter(contracts => {
-        console.log(contracts.id, contractId, "the filter")
-      return contracts.id === contractId;
-    });
-    console.log(selectedContract, "the selected contract array")
-    this.setState({detailedContract: selectedContract})
   }
 
   renderContractDetails(contract) {
@@ -126,7 +90,7 @@ class Contract extends Component {
 
       //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
       return (
-          <div key={contract.id} className="latestCards" onClick={() => this.processContractDetail(contract.id)}>
+          <div key={contract.id} className="latestCards">
             <ContractDetailCard
                 contract={contract}
                 isPayer={isPayer}
