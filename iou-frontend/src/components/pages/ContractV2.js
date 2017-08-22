@@ -11,7 +11,6 @@ import './ContractV2.css';
 
 
 class Contract extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -203,17 +202,17 @@ class Contract extends Component {
 
     if (contract.payeeId === myId) {
       isPayer = false;
-
     }
 
-    renderList(contract) {
-
-        let myId = this.props.user.data.id;
-        let counterparties = [];
-        let isPayer = true;
-
-        if (contract.payeeId === myId) {
-            isPayer = false;
+    //this.props.connections comes from the store
+    if (this.props.connections.data) {
+      counterparties = this.props.connections.data.filter(user => {
+        let flag = false;
+        if (+contract.payerId === +user.id) {
+          flag = true;
+        }
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
         }
         return flag;
       });
@@ -230,21 +229,12 @@ class Contract extends Component {
         if (+contract.payerId === +user.id) {
           flag = true;
         }
-
-        console.log("Counterparty size after users", counterparties.length);
-        // If counterparty is still empty, search through organisations
-        if (counterparties.length < 1 && this.props.organisations.data) {
-            counterparties = this.props.organisations.data.filter(user => {
-                let flag = false;
-                if (+contract.payerId === +user.id) {
-                    flag = true;
-                }
-                else if (+contract.payeeId === +user.id) {
-                    flag = true;
-                }
-                return flag;
-            });
+        else if (+contract.payeeId === +user.id) {
+          flag = true;
         }
+        return flag;
+      });
+    }
 
     console.log("Counterparty size after orgs", counterparties.length);
 
@@ -313,5 +303,4 @@ export default connect(state => ({
   contracts: state.contracts,
   payments: state.payments,
   currencies: state.currencies
-
 }))(Contract);
