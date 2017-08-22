@@ -142,24 +142,24 @@ class SignUp extends Component {
                 <h2 className="error">{error}</h2>
                 <form className="signupForm" onSubmit={this.handleSubmit}>
                     <div className="signupItem username">
-                        <p>UserName:</p>
-                        <input ref="username" type="text" placeholder="MyUsername" disabled={isUpdateProfile}
+                        <p>Username:</p>
+                        <input ref="username" type="text" placeholder="DecodeCATS" disabled={isUpdateProfile}
                             className={`${username ? (username.length > 0 ? "inputGood":"inputBad"): "inputBad"}`}
                             onChange={this.handleUsernameInput}
                             value={username}
                         ></input>
                     </div>
                     <div className="signupItem password">
-                        <p>Password 8 chars minimum:</p>
+                        <p>Password (8 chars min):</p>
                         <input ref="password" type="password" disabled={isUpdateProfile}
-                            className={`${password? (password.length > 0 ? "inputGood":"inputBad"):"inputBad"}`}
+                            className={`${password? (password.length >= 8 ? "inputGood":"inputBad"):"inputBad"}`}
                             onChange={this.handlePasswordInput}
                             value={password}
                         ></input>
                     </div>
                     <div className="signupItem email">
                         <p>Email:</p>
-                        <input ref="email" type="text" placeholder="email@address.com"
+                        <input ref="email" type="text" placeholder="liger@decode.cats"
                             className={`${email? (email.length > 0 ? "inputGood":"inputBad") : "inputBad"}`}
                             onChange={this.handleEmailInput}
                             value={email}
@@ -167,7 +167,7 @@ class SignUp extends Component {
                     </div>
                     <div className="signupItem firstName">
                         <p>First Name:</p>
-                        <input ref="firstName" type="text"
+                        <input ref="firstName" type="text" placeholder="Johnny"
                             className={`${firstName? (firstName.length > 0 ? "inputGood":"inputBad") : "inputBad"}`}
                             onChange={this.handleFirstNameInput}
                             value={firstName}
@@ -175,15 +175,15 @@ class SignUp extends Component {
                     </div>
                     <div className="signupItem lastName">
                         <p>Last Name:</p>
-                        <input ref="lastName" type="text"
+                        <input ref="lastName" type="text" placeholder="Decode"
                             className={`${lastName? (lastName.length > 0 ? "inputGood": "inputBad") : "inputBad"}`}
                             onChange={this.handleLastNameInput}
                             value={lastName}
                         ></input>
                     </div>
                     <div className="signupItem description">
-                        <p>Description:</p>
-                        <textarea ref="description" placeholder="Description optional"
+                        <p>Description (optional):</p>
+                        <textarea ref="description" placeholder="Once upon a time, i knocked the bottle over and there was a BIG BANG, and some universe spilled out. I thus owed the owner some grub..."
                             onChange={this.handleDescriptionInput}
                             value={description}
                         ></textarea>

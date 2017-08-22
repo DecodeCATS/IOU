@@ -94,7 +94,9 @@ class Header extends Component {
             <div>
               {this.renderAvatar()}
             </div>
-            <div className="App-navbar__title">{pathname}</div>
+            <div className="App-navbar__title">
+              <h1>{pathname}</h1>
+            </div>
             <div>
             </div>
             <Menu 

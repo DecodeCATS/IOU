@@ -6,6 +6,7 @@
   font: inherit;
   /*border is optional*/
   /*border-bottom:1px solid #444;*/
+  font-size: large;
   cursor: pointer;
   text-align: left;
 }
