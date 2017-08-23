@@ -1,5 +1,48 @@
-.paymentCards {
+.paymentSummary, .paymentCards, .paymentDetail, .paymentCard {
   border: 1px solid black;
   padding: 5px;
   min-height: 5vh;
+}
+
+.paymentCards button {
+  border: none;
+  background-color: transparent;
+  color: #078e91;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.paymentCards button:hover {
+  color: yellow;
+  background-color: #078e91;
+}
+
+.paymentContainer .paymentSummary{grid-area: summary;}
+.paymentContainer .paymentCards{grid-area: cards;}
+.paymentContainer .paymentDetail{grid-area: detail;}
+
+.paymentContainer {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: 1rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "summary"
+  "cards"
+  "detail";
+  /*flex-wrap: wrap;*/
+  /*justify-content: space-between;*/
+  /*padding: 20px;*/
+  min-height: 80vh;
+  width: 90vw;
+}
+
+@media only screen and (min-width: 600px)  {
+  .paymentContainer {
+  grid-gap: 1.2.rem;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas:
+  "cards summary"
+  "cards detail";
+  }
 }

@@ -175,7 +175,8 @@ class Contract extends Component {
 
     console.log("Counterparty size after orgs", counterparties.length);
     return (
-      <div key={contract.id} className="latestCards" onClick={() => this.onClickContractHistoryAction(contract.id)}>
+      <div key={contract.id} className="latestCards"
+        onClick={() => this.onClickContractHistoryAction(contract.id)}>
         <ContractCard
           contract={contract}
           isPayer={isPayer}
@@ -258,7 +259,7 @@ class Contract extends Component {
     }
     // console.log("Latest contracts", latestContracts);
     return (
-      <div className="pageContainer">
+      <div className="contractV2Container">
         <div className="listContainer">
           <h2>Contract List</h2>
           <p>A list of all your contracts (click to select)</p>
@@ -275,14 +276,14 @@ class Contract extends Component {
             this.state.detailedContractHistory.map(contract => this.renderContractHistoryData(contract))
           }
         </div>
-        <div className="detailContainer">
+        <div className="contractDetailContainer">
           <h2>Contract Details</h2>
           <p>Showing details of your selected contracts</p>
           {
             this.state.detailedContract.map(contract => this.renderContractDetails(contract))
           }
         </div>
-        <div className="paymentContainer">
+        <div className="contractPaymentContainer">
           <h2>Payment Details</h2>
           <p>Showing all payments information for the selected version of your contract</p>
           {
