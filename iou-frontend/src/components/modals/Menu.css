@@ -1,11 +1,9 @@
 .logoutbutton {
   background:none;
-  color:inherit;
+  color:red;
   border:none;
   padding:0;
   font: inherit;
-  /*border is optional*/
-  /*border-bottom:1px solid #444;*/
   font-size: large;
   cursor: pointer;
   text-align: left;
@@ -16,12 +14,13 @@
 }
 
 .menu {
-  width: 270px;
+  width: 170px;
   position: fixed;
-  top: 0;
+  top: 150px;
   left: 0;
   z-index: 10;
-  background: white;
+  background-color: #f2e8cd;
+  border: 2px solid #078e91;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -37,14 +36,16 @@
   visibility: visible;
 }
 
-.menu__header {
-  height: 160px;
-  background: dimgrey;
-}
+/*.menu__header {*/
+  /*height: 160px;*/
+  /*background: dimgrey;*/
+/*  background-color: inherit;*/
+/*}*/
 
 .menu__user {
-  color: white;
-  font-size: 1rem;
+  /*color: white;*/
+  color: #078e91;
+  font-size: 1.2rem;
   font-weight: bold;
   margin: 0;
   padding-left: .5rem;
@@ -69,10 +70,19 @@
 
 .menu__item {
   display: flex;
+  color: #078e91;
   justify-content: space-between;
   padding: .5rem;
 }
 
+.menu__item h2{
+  background-color: transparent;
+}
+
 .menu__item:hover {
   color: deepskyblue;
+}
+
+.menu__item.logoutbutton:hover {
+  color: red;
 }

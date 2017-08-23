@@ -34,13 +34,17 @@ class SignUp extends Component {
     }
     
     componentWillMount() {
+        // console.log("Test");
+        // console.log(this.props.user.isLoggedIn);
         if (this.props.user.isLoggedIn && this.props.user.data.id > 0 && this.state.username !== this.props.user.data.username) {
+            let {username, email, firstName, lastName, description} = this.props.user.data;
+            let userInfo = {...this.state, username: username, email:email, firstName:firstName, lastName:lastName, description: description ? description : ""};
             this.setState({
-                username: this.props.user.data.username,
-                email: this.props.user.data.email,
-                firstName: this.props.user.data.firstName,
-                lastName: this.props.user.data.lastName,
-                description: this.props.user.data.description,
+                username: userInfo.username,
+                email: userInfo.email,
+                firstName: userInfo.firstName,
+                lastName: userInfo.lastName,
+                description: userInfo.description,
                 password: '',
                 isUpdateProfile: true,
                 buttonText: "Update Info"
