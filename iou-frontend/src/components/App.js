@@ -29,6 +29,7 @@ class App extends Component {
   }
   
   componentDidUpdate() {
+    console.log("Updating App!!");
     // If the user is logged
     if (this.props.user.isLoggedIn) {
       // If there's no data on the user and it's not fetching, fetch user info
