@@ -58,6 +58,23 @@ class Connection extends Component {
   addBlacklist = (blacklistUserId) => {
     this.props.dispatch(Connections.addBlacklist(blacklistUserId));
   }
+
+  checkExistingConnection = (connectionUserId) => {
+      let existingConnection = this.props.connections.filter(connection => {
+          if (connection.id === connectionUserId) {
+              return true;
+          } else {
+              return false;
+          }
+      })
+
+      if (existingConnection.length > 0){
+          return true
+      } else {
+          return false
+      }
+
+  }
   
   // =======================================================================
   // *** Event handler for form Info ***
@@ -98,18 +115,33 @@ class Connection extends Component {
       e.preventDefault();
       if(this.props.user.isLoggedIn) {
           let {username, email, firstName, lastName} = this.state;
-          console.log(this.state);
+          // console.log(this.state);
           if (username || email || firstName || lastName) {
               auth.searchConnections(username, email, firstName, lastName)
               .then(res => {
-                console.log("Search Result:");
+                // console.log("Search Result:");
                 console.log(res);
-                this.setState({searchResult: res.users});
+                  let enrichedConnection = res.users.map(user =>{
+                      console.log(`User=${JSON.stringify(user)}`);
+                      let checkExistingConnection = this.props.connections.data.filter(connection => {
+                          console.log(`connection=${JSON.stringify(connection)}`);
+                          if (connection.id === user.id) {
+                              return true;
+                          } else {
+                              return false;
+                          }
+                      });
+                      console.log(checkExistingConnection);
+                      let enricheduser = {...user, isExisting: checkExistingConnection.length > 0 ? true : false};
+                      console.log(enricheduser);
+                      return enricheduser;
+                  })
+                this.setState({searchResult: enrichedConnection});
               })
               .catch(err => {this.setState({error: err})});
           }
           else {
-              this.setState({error: `Field required: username, password, email, firstName, lastName`});
+              this.setState({error: `Field required: username`});
           }
       }
       else {
@@ -190,7 +222,9 @@ class Connection extends Component {
                       user={result}
                     />
                     <div className="resultItem button">
-                      <button onClick={this.addConnection.bind(this,result.id)}>Add</button>
+                      <button
+                          disabled={result.isExisting}
+                          onClick={this.addConnection.bind(this,result.id)}>Add</button>
                     </div>
                   </div>
                 );
