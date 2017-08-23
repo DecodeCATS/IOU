@@ -30,7 +30,7 @@
   /*flex-wrap: wrap;*/
   /*justify-content: space-between;*/
   /*padding: 20px;*/
-  min-height: 80vh;
+  min-height: 70vh;
   width: 90vw;
 }
 
@@ -43,6 +43,22 @@
     "contractlist contractdetail"
     "contracthistory contractpayment";
   }
+  
+  .contractV2Container .contractDetailContainer {
+    font-size: .9rem;
+  }
+  
+  .contractV2Container .listContainer {
+    font-size: .8rem;
+  }
+  
+  .contractV2Container .historyContainer {
+    font-size: .8rem;
+  }
+  
+  .contractV2Container .contractPaymentContainer {
+    font-size: .8rem;
+  }
 }
 
 @media only screen and (min-width: 1024px)  {
@@ -51,7 +67,23 @@
     grid-template-columns: 1fr 2fr 2fr;
     grid-template-rows: max-content;
     grid-template-areas:
-    "contractlist contractdetail paymentdetail"
+    "contractlist contractdetail contractpayment"
     "contracthistory contractdetail contractpayment";
+  }
+  
+  .contractV2Container .contractDetailContainer {
+    font-size: 1rem;
+  }
+  
+  .contractV2Container .listContainer {
+    font-size: .9rem;
+  }
+  
+  .contractV2Container .historyContainer {
+    font-size: .9rem;
+  }
+  
+    .contractV2Container .contractPaymentContainer {
+    font-size: .9rem;
   }
 }
