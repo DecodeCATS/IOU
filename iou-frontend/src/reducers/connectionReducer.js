@@ -85,19 +85,32 @@ const connectionReducer = (state=defaultState, action) => {
       state = {...state, status: action.status, error: action.error};
       break;
     }
-    
-    case "DELETE_BLACKLIST": {
-      //Filter returns a new array object
-      if (action.status === 'success') {
-        let remainingData = state.data.filter(user => {
-          //If it's not the connection we want to delete, return true
-          return user.id !== action.value;
-        });
+
+      case "DELETE_BLACKLIST": {
+          if (action.status === 'success') {
+              let remainingData = state.data.map(user => {
+                  // If it's not the connection was un-muted we will set isBlacklisted status to 0 and return a new object
+                  //Otherwise just return an existing user object
+                  if (user.id === action.value) {
+                      user.isBlacklisted = 0;
+                      return user;
+                  } else {
+                      return user;
+                  }
+              });
         //Update the connections data and the update date
         state = {...state, data: remainingData, dataUpdated: Date()};
       }
       //Update the rest of the info
       state = {...state, status: action.status, error: action.error};
+      break;
+    }
+    
+    case "LOGOUT_USER": {
+      if (action.status === "success") {
+        state = {...state, data: defaultState.data, dataUpdated: Date()};
+      }
+      state = {...state, status: action.status, actionType: action.type, error: action.error};
       break;
     }
     

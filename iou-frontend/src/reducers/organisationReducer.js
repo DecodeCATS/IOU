@@ -22,7 +22,13 @@ const organisationReducer = (state=defaultState, action) => {
       state = {...state, status: action.status, error: action.error};
       break;
     }
-    
+    case "LOGOUT_USER": {
+      if (action.status === "success") {
+        state = {...state, data: defaultState.data, dataUpdated: Date()};
+      }
+      state = {...state, status: action.status, actionType: action.type, error: action.error};
+      break;
+    }
     default:
       break;
   }
