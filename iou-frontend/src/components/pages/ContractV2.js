@@ -55,7 +55,7 @@ class Contract extends Component {
   //TODO: Ask where does this.props.payments and other stuff get assigned
   //And are the all data
   processContractPayments(contractId){
-    //TODO: Not getting the first payment
+
     let selectedPayments = this.props.payments.data.filter(payments => {
       console.log("Payments for the contract are =", payments);
       return (payments.contractId === contractId);
@@ -217,7 +217,6 @@ class Contract extends Component {
         return flag;
       });
     }
-
 
     console.log("Counterparty size after users", counterparties.length);
 
