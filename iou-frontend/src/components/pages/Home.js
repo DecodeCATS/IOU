@@ -8,7 +8,7 @@ import { VictoryPie, VictoryChart, VictoryLine, VictoryAxis} from 'victory';
 // import * as Connections from '../../actions/connectionActions';
 // import * as Contracts from '../../actions/contractActions';
 import './Home.css';
-import ContractCard from '../elements/ContractCard';
+import ContractDetailCard from '../elements/ContractDetailCard2';
 
 // import {browserHistory as history} from 'react-router';
 
@@ -180,7 +180,7 @@ class Home extends Component {
 
     return (
       <div key={contract.id} className="latestCards">
-        <ContractCard
+        <ContractDetailCard
           contract={contract}
           isPayer={isPayer}
           counterparty={counterparties[0] ? counterparties[0]: {}}
@@ -243,10 +243,16 @@ class Home extends Component {
   renderPaymentFlow(){
     //let myId = this.props.user.data.id;
     let paymentsReceived = this.state.payeePayments.map(payment => {
-      return {x: payment.dueDate, y: +payment.amount/100} //change due date to paid date
+      let dueDateStr = payment.dueDate.toString();
+      dueDateStr = dueDateStr.substring(0,dueDateStr.indexOf('T'));
+
+      return {x: dueDateStr, y: +payment.amount/100} //change due date to paid date
     });
     let paymentsMade = this.state.payerPayments.map(payment => {
-      return {x: payment.dueDate, y: +payment.amount/100}
+      let dueDateStr = payment.dueDate.toString();
+      dueDateStr = dueDateStr.substring(0,dueDateStr.indexOf('T'));
+
+      return {x: dueDateStr, y: +payment.amount/100}
     });
 
     console.log("PaymentsReceived=", paymentsReceived);
@@ -255,22 +261,45 @@ class Home extends Component {
 
     return (
 
-        <VictoryChart width={1000} height={400} scale={{x: "time"}} style={chartStyle}>
+      <VictoryChart width={1000} height={400} scale={{x: "time"}} style={chartStyle}>
+        <VictoryAxis
+          fixLabelOverlap={true}
 
+          style={{
+            axis: { stroke: "black", strokeWidth: 2 },
+            ticks: { stroke: "transparent"},
+            tickLabels: { fill: "black"}
+          }}
+
+        />
+
+        <VictoryAxis
+          dependentAxis
+
+          style={{
+            grid: { strokeWidth: 1 },
+            axis: { stroke: "black" },
+            ticks: { stroke: "transparent", padding: 15 }
+          }}
+        />
           <VictoryLine
+
             style={{
-              data: {stroke: "gold"}
+              data: {stroke: "green", strokeWidth: 2},
             }}
             data={paymentsReceived}
           />
 
           <VictoryLine
+
             style={{
-              data: {stroke: "tomato"}
+              data: {stroke: "tomato"},
+              axisLabel: {fontSize: 20, padding: 30, angle: 90}
             }}
             data={paymentsMade}
           />
-        </VictoryChart>
+
+      </VictoryChart>
     )
   }
 
@@ -279,23 +308,31 @@ class Home extends Component {
     return (
       <div className="homePageContainer">
         <div className="infoContainer">
+          <h1 className="headers">Welcome to IOU</h1>
+          <h2>How are you doing today {this.props.user.data.username}? </h2>
+          <h3>You can see the visuals for you contracts below</h3>
+          <p>You can click on one of the sections of the pie chart to view more info about the contract</p>
+        </div>
+        <div className="detailContainer">
+          <h2>Contract Details</h2>
           {
             this.state.selectContractData.map(contract => this.renderContractDetails(contract))
           }
         </div>
         <div className="visual1Container">
-          <h4>Showing contracts where you receive money</h4>
+          <h2 className="headers">Showing contracts where you receive money</h2>
           {
             this.renderPayeePayments()
           }
         </div>
         <div className="visual2Container">
-          <h4>Showing contracts where you own money</h4>
+          <h2 className="headers">Showing contracts where you own money</h2>
           {
             this.renderPayerPayments()
           }
         </div>
         <div className="visual3Container">
+          <h2 className="headers">Showing payment flow</h2>
           {
             this.renderPaymentFlow()
           }
