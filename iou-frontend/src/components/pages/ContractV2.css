@@ -50,6 +50,8 @@
   
   .contractV2Container .listContainer {
     font-size: .8rem;
+    max-height: 70vh;
+    overflow-y: auto;
   }
   
   .contractV2Container .historyContainer {
@@ -64,6 +66,7 @@
 @media only screen and (min-width: 1024px)  {
   .contractV2Container {
     grid-gap: 1rem;
+    justify-items: start;
     grid-template-columns: 1fr 2fr 2fr;
     grid-template-rows: max-content;
     grid-template-areas:
@@ -77,6 +80,8 @@
   
   .contractV2Container .listContainer {
     font-size: .9rem;
+    overflow-y: auto;
+    max-height: 50vh
   }
   
   .contractV2Container .historyContainer {
@@ -85,5 +90,7 @@
   
     .contractV2Container .contractPaymentContainer {
     font-size: .9rem;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 }
