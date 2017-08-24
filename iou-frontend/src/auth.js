@@ -267,6 +267,16 @@ var auth = {
             throw new Error(`Error from server: ${err.message}`);
         });
     },
+    
+    completePayment(payment) {
+        return api.completePayment(localStorage.token, payment)
+        .then(res => {
+            return res.body;
+        })
+        .catch(err => {
+            throw new Error(`Error from server: ${err.message}`);
+        });
+    },
 
     deletePayment(paymentId) {
         return api.deleteContract(localStorage.token, paymentId)
