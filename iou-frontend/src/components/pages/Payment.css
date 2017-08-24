@@ -4,7 +4,7 @@
   min-height: 5vh;
 }
 
-.paymentCards button {
+.paymentCards button, .paymentDetail button {
   border: none;
   background-color: transparent;
   color: #078e91;
@@ -12,7 +12,7 @@
   font-weight: bold;
 }
 
-.paymentCards button:hover {
+.paymentCards button:hover, .paymentDetail button:hover {
   color: yellow;
   background-color: #078e91;
 }

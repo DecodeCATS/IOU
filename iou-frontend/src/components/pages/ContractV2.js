@@ -32,12 +32,12 @@ class Contract extends Component {
   processContractDetail(contractId){
     // selectedContract is an Array of 1 contract, i.e: the selected contract
     let selectedContract = this.props.contracts.data.filter(contracts => {
-      console.log(contracts);
+      // console.log(contracts);
       return contracts.id === contractId;
     });
     //the detailedContract Array in state will be updated to the selectedContract
     // we can later use that in render() by using this.state.detailedContracts
-    this.setState({detailedContract: selectedContract})
+    this.setState({detailedContract: selectedContract});
   }
 
   processContractHistory(contractId){
@@ -46,10 +46,10 @@ class Contract extends Component {
     let selectedContract = this.props.contracts.data.filter(contracts => {
       return (contracts.id === contractId || contracts.parentId === contractId);
     });
-    console.log("My selected Contract= ", selectedContract )
+    // console.log("My selected Contract= ", selectedContract )
     //the detailedContract Array in state will be updated to the selectedContract
     // we can later use that in render() by using this.state.detailedContracts
-    this.setState({detailedContractHistory: selectedContract})
+    this.setState({detailedContractHistory: selectedContract});
   }
 
   //TODO: Ask where does this.props.payments and other stuff get assigned
@@ -57,7 +57,7 @@ class Contract extends Component {
   processContractPayments(contractId){
     //TODO: Not getting the first payment
     let selectedPayments = this.props.payments.data.filter(payments => {
-      console.log("Payments for the contract are =", payments);
+      // console.log("Payments for the contract are =", payments);
       return (payments.contractId === contractId);
     });
     this.setState({detailedContractPayments : selectedPayments});
@@ -101,10 +101,10 @@ class Contract extends Component {
     }
 
 
-    console.log("Counterparty size after users", counterparties.length);
+    // console.log("Counterparty size after users", counterparties.length);
 
     // If counterparty is still empty, search through organisations
-    console.log("payment s=", this.props.payments.data);
+    // console.log("payment s=", this.props.payments.data);
     if (counterparties.length < 1 && this.props.organisations.data) {
       counterparties = this.props.organisations.data.filter(user => {
         let flag = false;
@@ -118,7 +118,7 @@ class Contract extends Component {
       });
     }
 
-    console.log("Counterparty size after orgs", counterparties.length);
+    // console.log("Counterparty size after orgs", counterparties.length);
     //onClick should get a CALLBACK and NOT A FUCNTION, Else you go into infinite loop
     return (
       <div key={contract.id} className="latestCards" onClick={() => this.onClickContractAction(contract.id)}>
@@ -156,10 +156,10 @@ class Contract extends Component {
     }
 
 
-    console.log("Counterparty size after users", counterparties.length);
+    // console.log("Counterparty size after users", counterparties.length);
 
     // If counterparty is still empty, search through organisations
-    console.log("payment s=", this.props.payments.data);
+    // console.log("payment s=", this.props.payments.data);
     if (counterparties.length < 1 && this.props.organisations.data) {
       counterparties = this.props.organisations.data.filter(user => {
         let flag = false;
@@ -173,7 +173,7 @@ class Contract extends Component {
       });
     }
 
-    console.log("Counterparty size after orgs", counterparties.length);
+    // console.log("Counterparty size after orgs", counterparties.length);
     return (
       <div key={contract.id} className="latestCards"
         onClick={() => this.onClickContractHistoryAction(contract.id)}>
@@ -220,10 +220,10 @@ class Contract extends Component {
     }
 
 
-    console.log("Counterparty size after users", counterparties.length);
+    // console.log("Counterparty size after users", counterparties.length);
 
     // If counterparty is still empty, search through organisations
-    console.log("payment s=", this.props.payments.data);
+    // console.log("payment s=", this.props.payments.data);
     if (counterparties.length < 1 && this.props.organisations.data) {
       counterparties = this.props.organisations.data.filter(user => {
         let flag = false;
@@ -237,7 +237,7 @@ class Contract extends Component {
       });
     }
 
-    console.log("Counterparty size after orgs", counterparties.length);
+    // console.log("Counterparty size after orgs", counterparties.length);
 
     return (
       <div key={contract.id} className="latestCards">

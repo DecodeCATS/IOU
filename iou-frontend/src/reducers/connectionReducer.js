@@ -46,14 +46,7 @@ const connectionReducer = (state=defaultState, action) => {
     
     case "ADD_CONNECTION": {
       if (action.status === "success") {
-        let existingConnections = state.data.map(connection => {
-          if (connection.id !== action.value){
-            // console.log(connection, 'action value' +action.value);
-            return connection;
-          }
-        });
-        state = {...state, data: existingConnections, dataUpdated: Date()};
-        state.data = action.value.users;
+        state = {...state, data: action.value.users, dataUpdated: Date()};
       }
       state = {...state, status: action.status, error: action.error};
       break;

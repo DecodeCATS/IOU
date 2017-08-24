@@ -122,6 +122,10 @@
   width: 50%;
 }
 
+.searchItem.button button, .resultItem.button button{
+  color: #078e91;
+}
+
 .searchItem.button button:disabled, .resultItem.button button:disabled{
   color: #ffcccc;
 }
