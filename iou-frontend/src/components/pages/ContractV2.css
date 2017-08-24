@@ -1,44 +1,96 @@
-.listContainer, .detailContainer, .paymentContainer, .historyContainer {
+.listContainer, .contractDetailContainer, .contractPaymentContainer, .historyContainer {
   display: flex;
   flex-direction:column;
   border: 1px solid black;
   padding: 5px;
 }
 
-.listContainer {grid-area: list;}
-.detailContainer {grid-area: detail;}
-.paymentContainer {grid-area: payment;}
-.historyContainer {gird-area: history;}
+.contractV2Container .listContainer {grid-area: contractlist;}
+.contractV2Container .contractDetailContainer {grid-area: contractdetail;}
+.contractV2Container .contractPaymentContainer {grid-area: contractpayment;}
+.contractV2Container .historyContainer {gird-area: contracthistory;}
 
 .latestCards {
   border: 1px solid black;
   padding: 5px;
   margin: 5px;
-  min-height: 2vh;
+  /*min-height: 2vh;*/
 }
 
-.pageContainer {
+.contractV2Container {
   display: grid;
   justify-content: stretch;
   grid-gap: 1rem;
   grid-template-rows: max-content;
   grid-template-areas:
-  "list"
-  "history"
-  "detail"  
-  "payment";
+  "contractlist"
+  "contracthistory"
+  "contractdetail"  
+  "contractpayment";
   /*flex-wrap: wrap;*/
   /*justify-content: space-between;*/
   /*padding: 20px;*/
-  min-height: 80vh;
+  min-height: 70vh;
   width: 90vw;
 }
 
 @media only screen and (min-width: 600px)  {
-  .pageContainer {
-  grid-gap: 1fr 4fr;
-  grid-template-areas:
-  "list detail"
-  "history payment";
+  .contractV2Container {
+    grid-gap: 1rem;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+    "contractlist contractdetail"
+    "contracthistory contractpayment";
+  }
+  
+  .contractV2Container .contractDetailContainer {
+    font-size: .9rem;
+  }
+  
+  .contractV2Container .listContainer {
+    font-size: .8rem;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .contractV2Container .historyContainer {
+    font-size: .8rem;
+  }
+  
+  .contractV2Container .contractPaymentContainer {
+    font-size: .8rem;
+  }
+}
+
+@media only screen and (min-width: 1024px)  {
+  .contractV2Container {
+    grid-gap: 1rem;
+    justify-items: start;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: max-content;
+    grid-template-areas:
+    "contractlist contractdetail contractpayment"
+    "contracthistory contractdetail contractpayment";
+  }
+  
+  .contractV2Container .contractDetailContainer {
+    font-size: 1rem;
+  }
+  
+  .contractV2Container .listContainer {
+    font-size: .9rem;
+    overflow-y: auto;
+    max-height: 50vh
+  }
+  
+  .contractV2Container .historyContainer {
+    font-size: .9rem;
+  }
+  
+    .contractV2Container .contractPaymentContainer {
+    font-size: .9rem;
+    max-height: 80vh;
+    overflow-y: auto;
   }
 }

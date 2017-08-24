@@ -9,9 +9,15 @@ export default class ContractDetailCard extends Component {
         let {counterparty} = this.props;
         let {isPayer} = this.props;
 
-        console.log("contract is =",contract);
-        console.log("counter party =",counterparty);
-        console.log("is Payer =",isPayer);
+        // console.log("contract is =",contract);
+        // console.log("counter party =",counterparty);
+        // console.log("is Payer =",isPayer);
+        
+        let createdAtStr = "";
+        if (contract.createdAt) {
+            createdAtStr = contract.createdAt.toString();
+            createdAtStr = createdAtStr.substring(0,createdAtStr.indexOf('T'));
+        }
 
         return (
             <div className="contract-detail">
@@ -25,8 +31,8 @@ export default class ContractDetailCard extends Component {
                 </div>
                 <div className="contract-amounts">
                     <h4>Monetary Amounts</h4>
-                    <p> Total Amount: {contract.total_amount} </p>
-                    <p> Remaining Amount: {contract.remainingAmount} </p>
+                    <p> Total Amount: {contract.total_amount/100}$</p>
+                    <p> Remaining Amount: {contract.remainingAmount/100}$</p>
                 </div>
                 <div className="contract-payment-details">
                     <h4>Payment Details</h4>
@@ -35,9 +41,9 @@ export default class ContractDetailCard extends Component {
                 </div>
                 <div className="contract-dates">
                     <h4>Important Dates</h4>
-                    <p> Date Accepted: {contract.createdAt} </p>
-                    <p> Creation Date: {contract.createdAt} </p>
-                    <p> Last Update Date: {contract.createdAt} </p>
+                    <p> Date Accepted: {createdAtStr} </p>
+                    <p> Creation Date: {createdAtStr} </p>
+                    <p> Last Update Date: {createdAtStr} </p>
                 </div>
                 <div className="counter-party-data">
                     <h4>{isPayer ? "Payee " : "Payer "} Information</h4>

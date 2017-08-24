@@ -22,6 +22,12 @@ export default class PaymentCard extends Component {
                 updatedAt: null
             }
         };
+        
+        this.completePayment = this.completePayment.bind(this);
+    }
+    
+    completePayment(e) {
+        
     }
 
     render() {
@@ -71,14 +77,21 @@ export default class PaymentCard extends Component {
                 paymentDirection = 'Receive from';
             }
         }
+        
+        let pDueDate = dueDate.toString().substr(0,dueDate.indexOf('T'));
 
+        //Disable the button for the list of payments, enable it only for payment details
+        if (!this.props.button) {
+            buttonToPay = false;
+        }
+        
         return (
-            <div className={`payment ${type}`}>
-                <p className="amount">{+amount / 100}</p>
-                <p className="dueDate">{dueDate}</p>
+            <div className={`payment ${type} ${status==="active" ? (paymentDirection==="Pay to" ? "inputBad" : "inputGood") : null}`}>
+                <p className="amount">{+amount / 100}$</p>
+                <p className="dueDate">{pDueDate}</p>
                 <p className="status">{status}</p>
-                <p className="direction">{paymentDirection}</p>
-                {buttonToPay === true ? <button>Pay</button> : null}
+                <p className="direction">{paymentDirection} {counterparty.username}</p>
+                {buttonToPay === true ? <button onClick={this.completePayment}>Pay</button> : null}
             </div>
         );
     }
