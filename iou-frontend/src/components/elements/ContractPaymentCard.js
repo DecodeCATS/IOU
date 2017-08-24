@@ -14,7 +14,7 @@ export default class ContractPaymentCard extends Component {
     return (
       <div className="contract-payment">
         <h4>Payment:</h4>
-        <p>Amount: {payment.amount} </p>
+        <p>Amount: {payment.amount/100}$</p>
         <p>Payment Due Date: {dueDate ? dueDate : "IOU"} </p>
         <p>Payment Date: {paidDate ? paidDate : "Payment Pending"} </p>
         <p>Payment Type: {payment.type} </p>

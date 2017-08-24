@@ -31,8 +31,8 @@ export default class ContractDetailCard extends Component {
                 </div>
                 <div className="contract-amounts">
                     <h4>Monetary Amounts</h4>
-                    <p> Total Amount: {contract.total_amount/100} </p>
-                    <p> Remaining Amount: {contract.remainingAmount/100} </p>
+                    <p> Total Amount: {contract.total_amount/100}$</p>
+                    <p> Remaining Amount: {contract.remainingAmount/100}$</p>
                 </div>
                 <div className="contract-payment-details">
                     <h4>Payment Details</h4>

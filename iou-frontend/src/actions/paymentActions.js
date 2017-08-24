@@ -54,3 +54,9 @@ export function addPayment (payment) {
     });
   };
 }
+
+export function completePayment(paymentId) {
+  return function (dispatch) {
+    dispatch({type: "COMPLETE_PAYMENT", status: "pending", error:""})
+  }
+}
