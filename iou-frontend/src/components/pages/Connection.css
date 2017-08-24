@@ -46,6 +46,8 @@
   border: 1px solid black;
   padding: 5px;
   min-height: 5vh;
+    max-height: 80vh;
+  overflow-y: auto;
 }
 
 .connectionCards .connectionCard, .resultCards .connectionCard  {
