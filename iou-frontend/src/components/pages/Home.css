@@ -1,13 +1,51 @@
-.home {
-  display: grid;
+.infoContainer, .visual1Container, .visual2Container, .visual3Container {
+  display: flex;
+  flex-direction:column;
+  border: 1px solid black;
+  padding: 5px;
 }
 
-.editContainer.show {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9990;
+ .infoContainer {grid-area: info;}
+ .visual1Container {grid-area: visual1;}
+ .visual2Container {grid-area: visual2;}
+ .visual3Container {grid-area: visual3;}
+
+
+.homePageContainer {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: 1rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+          "info"
+          "visual1"
+          "visual2"
+          "visual3";
+  min-height: 80vh;
+  width: 95%;
+
+}
+
+/*.latestCards {*/
+  /*border: 1px solid black;*/
+  /*padding: 5px;*/
+  /*margin: 5px;*/
+  /*min-height: 2vh;*/
+/*}*/
+
+@media only screen and (min-width: 600px)  {
+
+  .infoContainer {grid-area: info; grid-column: 1/5; grid-row: 1/3;}
+  .visual1Container {grid-area: visual1; grid-column: 1/3; grid-row: 3/5;}
+  .visual2Container {grid-area: visual2; grid-column: 3/5; grid-row: 3/5;}
+  .visual3Container {grid-area: visual3; grid-column: 1/5; grid-row: 5/15;}
+
+
+  .homePageContainer {
+    grid-gap: auto;
+    grid-template-areas:
+            "... info info ..."
+            "visual1 visual1 visual2 visual2"
+            "visual3 visual3 visual3 visual3";
+  }
 }
