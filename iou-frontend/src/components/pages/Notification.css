@@ -17,6 +17,7 @@
   border: 1px solid black;
   padding: 5px;
   text-align: left;
+  overflow-y: auto;
   height: 100%;
   width: 100%;
 }
