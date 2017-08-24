@@ -55,8 +55,17 @@ export function addPayment (payment) {
   };
 }
 
-export function completePayment(paymentId) {
+export function completePayment(payment) {
   return function (dispatch) {
-    dispatch({type: "COMPLETE_PAYMENT", status: "pending", error:""})
-  }
+    dispatch({type: "COMPLETE_PAYMENT", status: "pending", error:""});
+    payment.status = "completed";
+    payment.paidDate = new Date();
+    Auth.completePayment(payment)
+    .then(res => {
+      dispatch({type: "COMPLETE_PAYMENT", status: "success", error: "", value: res});
+    })
+    .catch(err => {
+      dispatch({type: "COMPLETE_PAYMENT", status: "error", error: err});
+    });
+  };
 }

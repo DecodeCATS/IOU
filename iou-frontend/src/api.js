@@ -157,6 +157,13 @@ class Api {
             .set('Authorization', `token ${token}`)
             .send(payment)
     )
+    
+    completePayment = (token, payment) => (
+        superagent
+            .patch(`${API_HOST}/payments`)
+            .set('Authorization', `token ${token}`)
+            .send(payment)
+    )
 
     deleteContract = (token, paymentId) => (
         superagent

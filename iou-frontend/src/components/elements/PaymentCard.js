@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import './PaymentCard.css';
+import * as Payments from '../../actions/paymentActions';
 
-export default class PaymentCard extends Component {
+class PaymentCard extends Component {
     constructor(props) {
         super(props);
 
@@ -27,7 +29,8 @@ export default class PaymentCard extends Component {
     }
     
     completePayment(e) {
-        
+        e.preventDefault();
+        this.props.dispatch(Payments.completePayment(this.props.payment));
     }
 
     render() {
@@ -71,7 +74,9 @@ export default class PaymentCard extends Component {
         if (counterparty.id !== 0) {
             if (counterparty.id === contract.payerId) {
                 paymentDirection = 'Pay to';
+                if (status === 'active') {
                 buttonToPay = true;
+                }
             }
             else if (counterparty.id === contract.payeeId) {
                 paymentDirection = 'Receive from';
@@ -96,3 +101,6 @@ export default class PaymentCard extends Component {
         );
     }
 }
+
+export default connect(state => ({ 
+}))(PaymentCard);

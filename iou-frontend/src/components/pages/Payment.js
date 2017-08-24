@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 
 
 import PaymentCard from '../elements/PaymentCard';
+import * as Payments from '../../actions/paymentActions';
 // Styling
 import './Payment.css';
 
@@ -91,6 +92,9 @@ class Payment extends Component {
         this.setState({detailedPayment: selectedPayment});
     }
     
+    completePayment(payment) {
+        this.props.dispatch(Payments.completePayment(this.props.payment));
+    }
 
     renderPaymentCard(payment, button) {
         let contracts = this.props.contracts.data.filter(contract => {
@@ -127,6 +131,7 @@ class Payment extends Component {
                     payment={payment}
                     contract={contracts.length > 0 ? contracts[0] : null}
                     counterparty={counterparties.length > 0 ? counterparties[0] : null}
+                    completePayment = {this.completePayment}
                 />
             </div>
         );
