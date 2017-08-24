@@ -23,43 +23,7 @@ List of notification events
             Authorization: token xyz
 
 + Attributes
-    - notificationId: 1000
-    
-+ Response 204
-
-## Notification Blacklist [/notifications/blacklist]
-
-### GET notification blacklist for the current user [GET /notifications/blacklist]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-
-+ Response 200 (application/json)
-    + Attributes
-        - blacklist (array[User7])
-
-### Add a user to the notification blacklist [POST /notifications/blacklist]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-            
-+ Attributes
-    - userId: 5 (number) - userId to blacklist
-            
-+ Response 201 (application/json)
-    + Attributes
-        - blacklist (array[User5])
-
-### DELETE a user from the notification blacklist [DELETE /notifications/blacklist]
-+ Request (application/json)
-    + Headers
-
-            Authorization: token xyz
-            
-+ Attributes
-    - userId: 5
+    - notificationId: 1000 (number)
     
 + Response 204
 
@@ -147,9 +111,19 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Response 201 (application/json)
     + Attributes (Contract3)
 
-## Contract Payments [/contracts/payments]
-### List payments of a contract[GET /contracts/{contractId}/payments]
-+ Parameters
+## Contract Payments [/payments]
+### List active payments for the user[GET /payments/active]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - payments (array[Payment102, Payment103, Payment201, Payment202, Payment401])
+
+### List payments of a contract[GET /payments/contracts/{contractId}]
++ Parameter
     - contractId: 90 (number) - The parent contract's ID
 + Request (application/json)
     + Headers
@@ -157,30 +131,28 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
             Authorization: token xyz
 
 + Response 200 (application/json)
-    + Attributes (array[Payment101, Payment102, Payment103])
+    + Attributes
+        - payments (array[Payment101, Payment102, Payment103])
 
-### Add a payment to a contract[POST /contracts/{contractId}/payments]
+### Add a payment to a contract[POST /payments]
 + Request (application/json)
     + Headers
     
             Authorization: token xyz
             
-+ Attributes
-    + payment (PaymentCreate)
+    + Attributes (PaymentCreate)
 
 + Response 200 (application/json)
     + Attributes (PaymentCreated)
 
-### Modify a payment of a contract[PATCH /contracts/{contractId}/payments/{paymentId}]
-+ Parameters
-    - contractId: 94 (number) - The contract's ID
-    - paymentId: 111 (number, required) - The unique ID of the payment to be updated
+### Modify a payment[PATCH /payments]
 + Request (application/json)
     + Headers
     
             Authorization: token xyz
             
 + Attributes
+    - paymentId: 111 (number, required) - The unique ID of the payment to be updated
     - type: `payment` (string) - type of payment (enum)
     - amount: 55555 (number) - payment amount (in cents)
     - dueDate: `2017-08-01` - due date
@@ -189,7 +161,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Response 200 (application/json)
     + Attributes (Payment401Updated)
 
-### Remove a payment from a contract[DELETE /contracts/{contractId}/payments/{paymentId}]
+### Remove a payment[DELETE /payments]
 + Request (application/json)
     + Headers
     
@@ -202,7 +174,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## Connections [/connections]
 
-### Get the list of connections [GET /connections]
+### Get the list of connections who are users [GET /connections]
 + Request (application/json)
     + Headers
     
@@ -211,6 +183,17 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 + Response 200 (application/json)
     + Attributes
         - users (array[User2, User3])
+        
+
+### Get the list of connections who are organisations [GET /connections/organisations]
++ Request (application/json)
+    + Headers
+    
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - users (array[User4])
 
 ### Search for a connection [POST /connections/search]
 + Request (application/json)
@@ -219,14 +202,14 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
             Authorization: token xyz
 
 + Attributes
-    - userName: `` (string) - The username
-    - firstName: `` (string) - The firstname
-    - lastName: `` (string) - The lastname
-    - email: `` (string) - The email address of the connection
+    - userName: `7` (string) - The username
+    - firstName: `John` (string) - The firstname
+    - lastName: `Doe` (string) - The lastname
+    - email: `@S` (string) - The email address of the connection
 
 + Response 200 (application/json)
     + Attributes
-        - connections (array[User6])
+        - users (array[User, User2, User4,User5])
 
 ### Request a new connection [POST /connections/request]
 + Request (application/json)
@@ -239,16 +222,18 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 + Response 204 (application/json)
 
-### Accept a new connection [POST /connections/{userId}]
-+ Parameters
-    - userId: 5 (number, required) - The ID of the desired connection
-    
+### Accept a new connection [POST /connections/accept]
 + Request (application/json)
     + Headers
 
             Authorization: token xyz
 
-+ Response 204 (application/json)
++ Attributes
+    - userId: 5 (number) - The ID of the desired connection
+    
++ Response 200 (application/json)
+    + Attributes
+        - users (array[User2, User3, User5])
 
 ### Remove a connection [DELETE /connections]
 + Request (application/json)
@@ -260,6 +245,51 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
     - userId: 5
             
 + Response 204
+
+
+## Connections Blacklist [/connections/blacklist]
+
+### GET notification blacklist for the current user [GET /connections/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+
++ Response 200 (application/json)
+    + Attributes
+        - blacklist (array[User7])
+
+### Add a user to the notification blacklist [POST /connections/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5 (number) - userId to blacklist
+            
++ Response 201 (application/json)
+    + Attributes
+        - blacklist (array[User5])
+
+### DELETE a user from the notification blacklist [DELETE /connections/blacklist]
++ Request (application/json)
+    + Headers
+
+            Authorization: token xyz
+            
++ Attributes
+    - userId: 5
+    
++ Response 204
+
+## Currencies [/currencies]
+### Get currencies [GET /currencies]
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Attributes
+        - currencies (array[CurrencyCAD, CurrencyEUR, CurrencyJPY])
 
 ## Authentication [/auth]
 
@@ -305,15 +335,17 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - id: 1000 (number, required) - The unique ID of the notification
 - message: `Payment made` (string) - The message
 - objectId: 101 (number) - The unique id of the object
-- objectType: 'payments' (string) - The object source of the id
+- objectType: payments (string) - The object source of the id
 - senderId: 2 (number) - the userID of the sender
+- Include Timestamps
 
 ## Notification2 (object)
 - id: 1001 (number, required) - The unique ID of the notification
 - message: `Connection Request` (string) - The message
 - objectId: 5 (number) - The unique id of the object
-- objectType: 'users' (string) - The object source of the id
-- sender: 5 (number, required) - the userID of the sender
+- objectType: users (string) - The object source of the id
+- senderId: 5 (number, required) - the userID of the sender
+- Include Timestamps
 
 ## Contract (object)
 - id: 90 (number, required) - The unique Id of the contract
@@ -566,7 +598,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
-- status: `paid` (string) - status of the payment (enum)
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-08-01` (string) - due date
 - paidDate: `2017-07-31` (string) - paid date
 - Include Timestamps
@@ -576,7 +608,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
-- status: `live` (string) - status of the payment (enum)
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-08-01` (string) - due date
 - paidDate: `` (string) - paid date
 - Include Timestamps
@@ -586,7 +618,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 90 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
-- status: `live` (string) - status of the payment (enum)
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-09-01` (string) - due date
 - paidDate: `` (string) - paid date
 - Include Timestamps
@@ -596,7 +628,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 91 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: `1000` (number) - payment amount (in cents)
-- status: `live` (string) - status of the payment (enum)
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-09-01` (string) - due date
 - paidDate: `` (string) - paid date
 - Include Timestamps
@@ -606,7 +638,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 91 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 1000 (number) - payment amount (in cents)
-- status: `live` (string) - status of the payment (enum)
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-10-01` (string) - due date
 - paidDate: `` (string) - paid date
 - Include Timestamps
@@ -616,7 +648,7 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - contractId: 94 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 63376 (number) - payment amount (in cents)
-- status: `live` (string) - status of the payment (enum)
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-08-01` (string) - due date
 - paidDate: `` (string) - paid date
 - Include Timestamps
@@ -633,19 +665,22 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 
 ## PaymentCreate
 - contractId: 94 (number) - contract ID for this payment
-- amount: 47312 (number) - payment amount (in cents)
 - type: `payment` (string) - Payment type (payment, interest)
+- amount: 47312 (number) - payment amount (in cents)
+- currencyId: 1 (number) - payment currency
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-09-01` (string) - due date
-- paidDate: `` (string) - paid date
+- paidDate: `2017-08-31` (string) - paid date
 
 ## PaymentCreated
 - paymentId: 121 (number) - unique ID of the payment
 - contractId: 94 (number) - contract ID for this payment
 - type: `payment` (string) - type of payment (enum)
 - amount: 47312 (number) - payment amount (in cents)
-- status: `live` (string) - status of the payment (enum)
+- currencyId: 1 (number) - payment currency
+- status: `active` (string) - status of the payment (enum)
 - dueDate: `2017-09-01` (string) - due date
-- paidDate: `` (string) - paid date
+- paidDate: `2017-08-31` (string) - paid date
 - Include Timestamps
 
 ## Timestamps (object)
@@ -671,6 +706,20 @@ Contract will be proposed if a person is the counterparty or if payee is empty.
 - payerId: 3 (number) - The payer (money out)
 - payeeId: '' - The payee (money in)
 
+## CurrencyCAD (object)
+- currencyID: 1 (number)
+- name: Canadian Dollar (string)
+- symbol: $ (string)
+
+## CurrencyEUR (object)
+- currencyID: 2 (number)
+- name: Euro (string)
+- symbol: € (string)
+
+## CurrencyJPY (object)
+- currencyID: 3 (number)
+- name: Japanese Yen (string)
+- symbol: ¥ (string)
 
 ## AuthData (object)
 - email: `hunter@thompson.com` (string) - The email that will be used as a login username
