@@ -74,7 +74,9 @@ class PaymentCard extends Component {
         if (counterparty.id !== 0) {
             if (counterparty.id === contract.payerId) {
                 paymentDirection = 'Pay to';
+                if (status === 'active') {
                 buttonToPay = true;
+                }
             }
             else if (counterparty.id === contract.payeeId) {
                 paymentDirection = 'Receive from';

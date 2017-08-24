@@ -63,6 +63,21 @@ const paymentReducer = (state=defaultState, action) => {
       state = {...state, status: action.status, statusType: action.type, error: action.error};
       break;
     }
+    case "COMPLETE_PAYMENT": {
+      if (action.status === "success") {
+        let newData = state.data.map(payment => {
+          if (payment.paymentId === action.value.paymentId) {
+            return action.value;
+          }
+          else {
+            return payment;
+          }
+        });
+        state = {...state, data: newData, dataUpdated: null};
+      }
+      state = {...state, status: action.status, statusType: action.type, error: action.error};
+      break;
+    }
     default:
       break;
   }

@@ -62,10 +62,10 @@ export function completePayment(payment) {
     payment.paidDate = new Date();
     Auth.completePayment(payment)
     .then(res => {
-      dispatch({type: "ADD_PAYMENT", status: "success", error: "", value: res});
+      dispatch({type: "COMPLETE_PAYMENT", status: "success", error: "", value: res});
     })
     .catch(err => {
-      dispatch({type: "ADD_PAYMENT", status: "error", error: err});
+      dispatch({type: "COMPLETE_PAYMENT", status: "error", error: err});
     });
   };
 }
