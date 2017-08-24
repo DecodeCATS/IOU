@@ -1,7 +1,27 @@
-h4 {
-  margin-bottom: 0;
+.contract-detail h4 {
+  margin: 0;
 }
 
-p {
+.contract-detail p {
   font-family: 'Roboto'
+}
+
+.contract-detail .contract-headers {grid-area:"headers";}
+.contract-detail .contract-amounts {grid-area:"amounts";}
+.contract-detail .contract-payment-details {grid-area:"payments";}
+.contract-detail .contract-dates {grid-area:"dates";}
+.contract-detail .counter-party-data {grid-area:"counterparty";}
+
+
+.contract-detail {
+  display: grid;
+  justify-content: stretch;
+  grid-gap: 1rem;
+  grid-template-rows: max-content;
+  grid-template-areas:
+  "headers"
+  "counterparty"
+  "amounts"
+  "dates"
+  "payments";
 }

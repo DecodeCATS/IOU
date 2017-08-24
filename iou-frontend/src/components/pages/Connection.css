@@ -65,13 +65,14 @@
 .connectionCards .connectionButtons button {
   border: none;
   background-color: transparent;
-  color: dimgrey;
+  color: #078e91;
   font-size: 1rem;
   font-weight: bold;
 }
 
 .connectionCards .connectionButtons button:hover {
-  background-color: deepskyblue;
+  color: yellow;
+  background-color: #078e91;
 }
 
 .searchItem.username {grid-area: username;}
@@ -119,6 +120,10 @@
   text-align: right;
   color: darkblue;
   width: 50%;
+}
+
+.searchItem.button button, .resultItem.button button{
+  color: #078e91;
 }
 
 .searchItem.button button:disabled, .resultItem.button button:disabled{

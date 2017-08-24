@@ -1,5 +1,5 @@
 .App-navbar {
-  color: darkgrey;
+  color: inherit;
   padding: 1.5rem;
   width: 100%;
   display: flex;
@@ -10,7 +10,7 @@
 
 .App-navbar__title {
   margin: 0;
-  color: DarkBlue;
+  /*color: DarkBlue;*/
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;

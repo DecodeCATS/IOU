@@ -57,7 +57,7 @@ class Menu extends Component {
         
         if (contracts.data) {
             contracts.data.forEach(contract => {
-                if ((contract.id === contract.parentId && contract.status === "active")
+                if ((contract.parentId === null && contract.status === "active")
                 ||(contract.parentId === null && contract.status === "pending")) {
                     contractCount += 1;
                 }
@@ -72,7 +72,7 @@ class Menu extends Component {
             <div className={`menu ${show ? "show" : ""}`}>
 
                 <div className="menu__header">
-                    <img src={this.props.user.data.avatarUrl} alt="profile-pic" className="menu__avatar"/>
+                    {/*<img src={this.props.user.data.avatarUrl} alt="profile-pic" className="menu__avatar"/>*/}
                     {isLoggedIn ? <p className="menu__user">{this.props.user.data.username}</p> : null}
                     {isLoggedIn ? <p className="menu__user">{this.props.user.data.firstName}, {this.props.user.data.lastName}</p> : null}
                 </div>

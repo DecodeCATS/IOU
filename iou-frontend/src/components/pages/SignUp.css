@@ -78,7 +78,8 @@
   font-size: 1.5rem;
   font-weight: bold;
   text-align: right;
-  color: darkblue;
+  color: #078e91;
+  /*color: darkblue;*/
   width: 50%;
 }
 
@@ -153,10 +154,4 @@
   }
 }
 
-.inputGood {
-  background-color: #d3f8d3; /* 90% lightgreen */
-}
 
-.inputBad {
-  background-color: #ffcccc;
-}

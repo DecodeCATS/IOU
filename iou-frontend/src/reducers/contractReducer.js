@@ -28,6 +28,14 @@ const contractReducer = (state=defaultState, action) => {
             state = {...state, status: action.status, statusType: action.type, error: action.error};
             break;
         }
+
+        case "LOGOUT_USER": {
+          if (action.status === "success") {
+            state = {...state, data: defaultState.data, dataUpdated: null};
+          }
+          state = {...state, status: action.status, actionType: action.type, error: action.error};
+          break;
+        }
         
         default:
             break;
